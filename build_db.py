@@ -197,6 +197,8 @@ TEAM_EVENT = re.compile(r'komand|\bteam\b', re.I)   # team championships: result
 EXCLUDE_TOURNAMENTS = {int(k): v['reason'] for k, v in OV['exclude_tournaments'].items()}   # never counted, even when the update fetches them again
 PAIR = re.compile(r'pār|paru|pair|dubult|parn|mix ?pār|paar|porų|poros|doubles|dvejet', re.I)   # pair events (EE 'paar', LT 'porų', EN 'doubles' added 2026-11-10)
 EXCL_NAME = re.compile(r'bank ?pool|one ?pocket|hcp|handi?cap|handikap|фора|marat|sn[uū]k|snooker', re.I)
+# Baribal Monday events (Baribali Esmaspäevak, all spellings) and Baribal HC are played with handicap, though not marked (Aleksandrs 22 Nov 2026)
+BARIBAL_HCP = re.compile(r'baribal\w*\s+(?:suvine\s+)?esma\w*|baribal\w*\s+hc\b', re.I)
 def game_of(t):
     disc, name = t[4], t[1]
     if re.search(r'8\s*/\s*9\s*/\s*10|8910|pool9-pool8-pool10|p8/9/10', name, re.I): return 'mixed'
@@ -227,6 +229,7 @@ for t in d['tournaments']:
     # Sigulda weekly championship is included (decided 2026-10-17)
     elif tid in EXCLUDE_TOURNAMENTS: excl = EXCLUDE_TOURNAMENTS[tid]
     elif EXCL_NAME.search(name): excl = 'other discipline'
+    elif BARIBAL_HCP.search(name): excl = 'handicap (Baribal Monday or HC event)'
     elif re.search(r'\bmini\b', name, re.I) and tid not in MINI_NO_HCP: excl = 'BPL MINI division (played with handicap)'
     elif g is None: excl = 'other discipline'
     elif g == 'mixed': excl = 'mixed 8/9/10 or unknown game'
@@ -264,7 +267,7 @@ for x in d['matches']:
     w = played(x)
     if w: stage_race[(x[0], x[8])][w] += 1
     if w and str(x[6]).isdigit(): stage_race[(x[0], 'race', int(x[6]))][w] += 1   # same stored race in the whole event
-WALKOVER = collections.Counter(); SHORT_NOT_ZERO = collections.Counter(); WALKOVER_EX = []
+WALKOVER = collections.Counter(); SHORT_NOT_ZERO = collections.Counter(); WALKOVER_EX = []; SHORT_EX = []
 odd_long = collections.Counter()
 raw_valid = []
 for x in d['matches']:
@@ -287,9 +290,9 @@ for x in d['matches']:
         if max(sc) < race and (not own or max(sc) < own):
             if min(sc) == 0:
                 WALKOVER[x[0]] += 1
-                if len(WALKOVER_EX) < 40: WALKOVER_EX.append((t['name'], str(t['date']), x[8], sc, race))
+                WALKOVER_EX.append(dict(tid=x[0], mid=x[1], a=x[2], b=x[3], score=sc, race=race, own=own, stage=x[8], n=sum(sr.values())))
                 continue
-            SHORT_NOT_ZERO[x[0]] += 1
+            SHORT_NOT_ZERO[x[0]] += 1; SHORT_EX.append(dict(tid=x[0], mid=x[1], a=x[2], b=x[3], score=sc, race=race, own=own, stage=x[8], n=sum(sr.values())))
     k = (x[0], x[8])
     if x[0] not in SOURCE and t['game'] != '14.1' and stage_long[k] < 0.5 * stage_all[k]:
         odd_long[x[0]] += 1; continue
@@ -554,7 +557,7 @@ db.commit()
 print('tournaments total', len(T), 'used', len({m['tid'] for m in matches}))
 print('excluded', collections.Counter(t['excl'] for t in T.values()))
 print('walkovers written as a score (x:0 short of the race), not counted:', sum(WALKOVER.values()), 'in', len(WALKOVER), 'events; short of the race but not x:0 (kept):', sum(SHORT_NOT_ZERO.values()))
-for _w in WALKOVER_EX: print('  walkover', _w)
+json.dump({'walkovers': WALKOVER_EX, 'short': SHORT_EX}, open('walkover_check.json', 'w', encoding='utf-8'), default=str)
 print('dropped odd long matches', sum(odd_long.values()), 'in', len(odd_long), 'events')
 print('raw valid', len(raw_valid), 'final matches', len(matches), 'players', len(used))
 print('shown (Estonian) players', sum(1 for k in used if k in SHOWN), 'background players', sum(1 for k in used if k not in SHOWN))
