@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin · Estonian Pool Rating</title>
+<style>
+:root{--bg:#f6f5f3;--surface:#fff;--fg:#1d1b1c;--muted:#6b6567;--line:#e3dfdd;--soft:#efecea;--accent:#9e3039;--accent-soft:#f5e3e4;--win:#23704a;--loss:#a3372d;
+--f-display:"Saira Semi Condensed","Arial Narrow",system-ui,sans-serif;--f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#161415;--surface:#1f1c1d;--fg:#ece8e6;--muted:#a39b9d;--line:#353032;--soft:#2a2628;--accent:#d0606a;--accent-soft:#3a2326}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.4 var(--f-body);padding-bottom:70px}
+a{color:var(--accent)}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.brand{font:700 18px var(--f-display);text-decoration:none;color:var(--fg)}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav button{border:0;background:none;padding:6px 10px;border-radius:6px;color:var(--muted);font:600 14px var(--f-body);cursor:pointer}
+nav button.on{background:var(--soft);color:var(--fg)}
+#who{margin-left:auto;color:var(--muted);font-size:12px}
+main{max-width:1150px;margin:0 auto;padding:14px 16px}
+h2{font:700 20px var(--f-display);margin:4px 0 10px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+input,select,textarea{font:inherit;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 9px;min-width:0}
+button.b{font:600 13px var(--f-body);border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:6px;padding:5px 10px;cursor:pointer;white-space:nowrap}
+button.b.p{background:var(--accent);border-color:var(--accent);color:#fff}
+button.b:disabled{opacity:.45;cursor:default}
+.tw{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap;background:var(--soft)}
+tr:last-child td{border-bottom:0}
+.m{color:var(--muted);font-size:12px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 6px;border-radius:9px;background:var(--soft);color:var(--muted)}
+.tag.live{background:#dcefe4;color:#23704a}.tag.bulk{background:#f6e7cf;color:#8a5a12}.tag.late{background:#f3dada;color:#a3372d}.tag.none{background:var(--soft)}
+.tag.k{background:var(--accent);color:#fff}
+.diff{background:var(--accent-soft)}
+.pend td{background:#fff6d9}
+@media (prefers-color-scheme:dark){.pend td{background:#3a321b}.tag.live{background:#1f3a2b;color:#8fd3ad}.tag.bulk{background:#3d3118;color:#e2bd78}.tag.late{background:#3e2222;color:#eb9a92}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px;margin-bottom:10px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.side{border:1px solid var(--line);border-radius:6px;padding:8px}
+.side.kept{border-color:var(--accent)}
+@media (max-width:640px){.pair{grid-template-columns:1fr}main{padding:10px}th,td{padding:5px 6px}}
+#pending{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:8px 16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;z-index:6}
+#plist{max-height:40vh;overflow:auto;width:100%;display:none}
+#plist.open{display:block}
+#msg{font-size:13px}
+.ok{color:var(--win)}.err{color:var(--loss)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:640px){.grid2{grid-template-columns:1fr}}
+.pick{max-height:220px;overflow:auto;border:1px solid var(--line);border-radius:6px;margin-top:4px}
+.pick div{padding:5px 8px;cursor:pointer;border-bottom:1px solid var(--line)}
+.pick div:hover{background:var(--soft)}
+td input{width:100%;min-width:70px}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="/">LV Pool Rating · Admin</a>
+  <nav id="nav"></nav>
+  <span id="who">Loading…</span>
+  <a class="b" href="#" id="logout" style="text-decoration:none;font:600 13px var(--f-body);border:1px solid var(--line);border-radius:6px;padding:5px 10px;color:var(--fg)">Log out</a>
+</header>
+<main id="main"><p class="m">Loading…</p></main>
+<div id="pending">
+  <b id="pcount">No changes</b>
+  <button class="b" id="pshow">Show</button>
+  <button class="b p" id="psave" disabled>Save</button>
+  <button class="b" id="papply">Apply now</button>
+  <span id="msg"></span>
+  <div id="plist"></div>
+</div>
+<script>
+'use strict';
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fold = x => (x || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/sh/g, 's').replace(/ch/g, 'c').replace(/zh/g, 'z');
+const today = () => new Date().toISOString().slice(0, 10);
+const clone = x => x === undefined ? undefined : JSON.parse(JSON.stringify(x));
+const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+const SITE = 'https://ee.poolrating.eu/';
+let D = null;            // site/admin/data.json (built by export_admin.py at the last update)
+const F = {};            // ov, hof, riga: {path, sha, data}
+const FILEKEY = {'overrides.json': 'ov', 'site/hof.json': 'hof', 'site/ml.json': 'riga'};
+let pending = [];        // changes not saved yet
+let PL = {}, TM = {};    // players and tournaments by id
+let tab = location.hash.slice(1) || 'names';
+
+async function api(path, body) {
+  const r = await fetch('/api/admin/' + path, body ? {method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify(body)} : {});
+  const j = await r.json().catch(() => ({error: 'Bad answer from the server (' + r.status + ')'}));
+  if (!r.ok) throw new Error(j.error || r.status);
+  return j;
+}
+function say(t, cls) { $('#msg').className = cls || ''; $('#msg').textContent = t; }
+
+// ---------- changes: every edit is one op; undo is the inverse op ----------
+function at(file, path) { let o = F[file].data; for (const k of path) o = o[k]; return o; }
+function applyOp(op) {
+  if (op.op === 'multi') return op.ops.forEach(applyOp);
+  if (op.op === 'set') {
+    const o = at(op.file, op.path.slice(0, -1)), k = op.path[op.path.length - 1];
+    if (op.after === undefined || op.after === null) delete o[k]; else o[k] = clone(op.after);
+  } else if (op.op === 'add') at(op.file, op.path).push(clone(op.item));
+  else if (op.op === 'del') { const l = at(op.file, op.path), i = l.findIndex(x => same(x, op.item)); if (i >= 0) l.splice(i, 1); }
+  else if (op.op === 'edit') { const l = at(op.file, op.path), i = l.findIndex(x => same(x, op.before)); if (i >= 0) l[i] = clone(op.after); else throw new Error('Row not found, it changed since'); }
+}
+function inverse(op) {
+  if (op.op === 'multi') return {op: 'multi', ops: op.ops.map(inverse).reverse()};
+  if (op.op === 'set') return {...op, before: op.after, after: op.before};
+  if (op.op === 'add') return {...op, op: 'del'};
+  if (op.op === 'del') return {...op, op: 'add'};
+  if (op.op === 'edit') return {...op, before: op.after, after: op.before};
+}
+const filesOf = op => op.op === 'multi' ? op.ops.flatMap(filesOf) : [op.file];
+function change(text, op, extra) {
+  try { applyOp(op); } catch (e) { say(e.message, 'err'); return; }
+  pending.push({text, op, ...extra});
+  showPending(); render();
+}
+function setOp(file, path, after) { return {op: 'set', file, path, before: clone(at(file, path.slice(0, -1))[path[path.length - 1]]), after: clone(after)}; }
+function showPending() {
+  $('#pcount').textContent = pending.length ? pending.length + ' change' + (pending.length > 1 ? 's' : '') + ' not saved' : 'No changes';
+  $('#psave').disabled = !pending.length;
+  $('#plist').innerHTML = pending.map((p, i) => `<div class="m" style="padding:3px 0">${i + 1}. ${esc(p.text)} <button class="b" data-unp="${i}">Remove</button></div>`).join('');
+}
+$('#pshow').onclick = () => $('#plist').classList.toggle('open');
+$('#plist').onclick = e => {
+  const i = e.target.dataset.unp; if (i === undefined) return;
+  // remove this change and every later one (later changes may build on it), newest first
+  for (let k = pending.length - 1; k >= +i; k--) applyOp(inverse(pending[k].op));
+  pending = pending.slice(0, +i); showPending(); render();
+};
+function serialize(key) {
+  const d = F[key].data;
+  if (key === 'ov') return JSON.stringify(d, null, 1) + '\n';
+  return '[' + d.map(r => '[' + r.map(x => JSON.stringify(x)).join(', ') + ']').join(',\n ') + ']\n';
+}
+$('#psave').onclick = async () => {
+  if (!pending.length) return;
+  const keys = new Set(pending.flatMap(p => filesOf(p.op))); keys.add('ov');
+  const log = F.ov.data.log || (F.ov.data.log = []);
+  let n = log.reduce((m, x) => Math.max(m, x.id || 0), 0);
+  const stamp = new Date().toISOString().slice(0, 16).replace('T', ' ');
+  for (const p of pending) {
+    log.push({id: ++n, date: stamp, text: p.text, op: p.op, ...(p.undoOf ? {undo_of: p.undoOf} : {})});
+    if (p.undoOf) { const o = log.find(x => x.id === p.undoOf); if (o) o.undone = stamp; }
+  }
+  const files = [...keys].map(k => ({path: F[k].path, sha: F[k].sha, content: serialize(k)}));
+  const message = pending.length === 1 ? pending[0].text : `${pending.length} changes: ` + pending.map(p => p.text).join('; ').slice(0, 300);
+  $('#psave').disabled = true; say('Saving…');
+  try {
+    const r = await api('save', {files, message});
+    for (const d of r.done) F[FILEKEY[d.path]].sha = d.sha;
+    pending = []; showPending(); render();
+    say('Saved. Press Apply now to run the rating update (or wait for the daily one).', 'ok');
+  } catch (e) {
+    log.splice(log.length - pending.length);   // keep the changes as pending, so nothing is lost
+    say(e.message, 'err'); $('#psave').disabled = false;
+  }
+};
+$('#papply').onclick = async () => {
+  if (pending.length) return say('Save first, then Apply now.', 'err');
+  const btn = $('#papply'); if (btn.disabled) return;
+  btn.disabled = true;   // off at once, so a double click starts nothing twice
+  try {
+    await api('apply', {});
+    say('Rating update started. It takes about 10 minutes.', 'ok'); setTimeout(pollRuns, 15000);
+  } catch (e) { say(e.message, 'err'); if (/already running/.test(e.message)) pollRuns(); else btn.disabled = false; }
+};
+async function pollRuns() {
+  try {
+    const r = (await api('runs'))[0]; if (!r) return;
+    if (r.status !== 'completed') { say('Rating update: ' + r.status.replace('_', ' ') + '…'); setTimeout(pollRuns, 20000); }
+    else { $('#papply').disabled = false; say('Rating update ' + (r.conclusion === 'success' ? 'finished. Reload the page to see the new data.' : 'failed: ' + r.url), r.conclusion === 'success' ? 'ok' : 'err'); }
+  } catch (e) {}
+}
+
+// ---------- tabs ----------
+const TABS = {names: 'Names', tournaments: 'Tournaments', duplicates: 'Duplicates', merge: 'Merge', fame: 'Hall of Fame', log: 'Log'};
+const ST = {q: '', only: 'diff', tq: '', tf: 'all', tlim: 100, dq: '', df: 'review', fame: 'hof', fq: '', edit: null, mA: null, mB: null};
+function nav() { $('#nav').innerHTML = Object.entries(TABS).map(([k, v]) => `<button data-tab="${k}" class="${k === tab ? 'on' : ''}">${v}</button>`).join(''); }
+$('#nav').onclick = e => { const t = e.target.dataset.tab; if (t) { tab = t; location.hash = t; ST.edit = null; nav(); render(); } };
+function render() { nav(); ({names, tournaments, duplicates, merge, fame, log: logTab})[tab](); }
+function keepFocus(fn) {   // re-render while typing in a search box
+  const a = document.activeElement, id = a && a.id, pos = a && a.selectionStart;
+  fn(); if (id && $('#' + id)) { const x = $('#' + id); x.focus(); try { x.setSelectionRange(pos, pos); } catch (e) {} }
+}
+const nm = p => p ? `${p.first} ${p.last}` : '?';
+const pname = id => { const p = PL[id]; return p ? shown(p) : '#' + id; };
+function shown(p) { const o = F.ov.data.names[p.id]; return o ? `${o.first} ${o.last}` : nm(p); }
+
+// ---------- Names ----------
+function nameDiff(p) {
+  const s = fold(shown(p));
+  return p.ts.some(x => x[2] && x[2] !== shown(p)) || p.cs.some(x => fold(x[1]) !== s) || p.ts.some(x => fold(x[1]) !== s) || REVIEW.has(String(p.id));
+}
+let REVIEW = new Set();
+function names() {
+  const q = fold(ST.q);
+  let rows = D.players.filter(p => ST.only === 'all' ? true : ST.only === 'foreign' ? !p.shown : p.shown);
+  if (ST.only === 'diff') rows = rows.filter(nameDiff);
+  if (q) rows = rows.filter(p => fold([shown(p), p.id, ...p.ts.flat(), ...p.cs.flat()].join(' ')).includes(q));
+  rows.sort((a, b) => (b.matches || 0) - (a.matches || 0));
+  const lim = rows.slice(0, 200);
+  $('#main').innerHTML = `<h2>Names</h2>
+  <div class="bar"><input id="nq" placeholder="Search name or id" value="${esc(ST.q)}" style="flex:1;min-width:160px">
+  <select id="nonly">${[['diff', 'Estonian players, names that differ'], ['shown', 'All Estonian players'], ['foreign', 'Background (foreign) players'], ['all', 'Everyone']].map(([k, v]) => `<option value="${k}" ${ST.only === k ? 'selected' : ''}>${v}</option>`).join('')}</select>
+  <span class="m">${rows.length} players${rows.length > 200 ? ', first 200 shown' : ''}</span></div>
+  <div class="tw"><table><tr><th>On our site</th><th>Tournament Service (English)</th><th>Other spelling</th><th>CueScore</th><th></th></tr>
+  ${lim.map(p => {
+    const o = F.ov.data.names[p.id], pend = pending.some(x => (x.op.ops || [x.op]).some(y => y.path && y.path[0] === 'names' && y.path[1] == p.id));
+    if (ST.edit === 'n' + p.id) return `<tr class="pend"><td colspan="5"><div class="bar">
+      <input id="ef" value="${esc(o ? o.first : p.first)}" placeholder="First name"><input id="el" value="${esc(o ? o.last : p.last)}" placeholder="Last name">
+      <input id="en" value="${esc(o ? o.note : '')}" placeholder="Note (optional)" style="flex:1">
+      <label class="m"><input type="checkbox" id="ehof" checked> also in Hall of Fame (<span id="ehofn">${hofCount(shown(p))}</span> places)</label>
+      <button class="b p" data-nsave="${p.id}">OK</button><button class="b" data-cancel>Cancel</button></div></td></tr>`;
+    return `<tr class="${pend ? 'pend' : ''}"><td><a href="${SITE}#p${p.id}" target="_blank">${esc(shown(p))}</a> ${o ? '<span class="tag" title="' + esc(o.note || '') + '">set by you</span>' : ''}<div class="m">${p.id} · ${p.country || ''} · ${p.matches || 0} matches${REVIEW.has(String(p.id)) ? ' · <b>to decide</b>' : ''}</div></td>
+      <td>${p.ts.map(x => `<div class="${fold(x[1]) !== fold(shown(p)) ? 'diff' : ''}">${esc(x[1])} <span class="m">${x[0]}</span></div>`).join('') || '<span class="m">-</span>'}</td>
+      <td>${p.ts.map(x => `<div class="${x[2] && x[2] !== shown(p) ? 'diff' : ''}">${esc(x[2] || '-')}</div>`).join('') || '<span class="m">-</span>'}</td>
+      <td>${p.cs.map(x => `<div class="${fold(x[1]) !== fold(shown(p)) ? 'diff' : ''}">${esc(x[1])} <span class="m">${x[0]}</span></div>`).join('') || '<span class="m">-</span>'}</td>
+      <td><button class="b" data-nedit="${p.id}">Change</button>${o ? ` <button class="b" data-nauto="${p.id}" title="Remove your spelling; the site picks the name automatically again">Auto</button>` : ''}</td></tr>`;
+  }).join('')}</table></div>`;
+  $('#nq').oninput = e => { ST.q = e.target.value; keepFocus(names); };
+  $('#nonly').onchange = e => { ST.only = e.target.value; names(); };
+}
+function hofCount(n) { let c = 0; for (const k of ['hof', 'riga']) for (const r of F[k].data) for (let i = 3; i <= 6; i++) if (r[i] === n) c++; return c; }
+function hofRenameOps(oldN, newN) {
+  const ops = [];
+  for (const k of ['hof', 'riga']) for (const r of F[k].data) {
+    if (![3, 4, 5, 6].some(i => r[i] === oldN)) continue;
+    const after = r.map((x, i) => i >= 3 && i <= 6 && x === oldN ? newN : x);
+    ops.push({op: 'edit', file: k, path: [], before: clone(r), after});
+  }
+  return ops;
+}
+document.addEventListener('click', e => {
+  const t = e.target, d = t.dataset;
+  if (d.cancel !== undefined) { ST.edit = null; render(); }
+  if (d.nedit) { ST.edit = 'n' + d.nedit; names(); }
+  if (d.nsave) {
+    const p = PL[d.nsave], f = $('#ef').value.trim(), l = $('#el').value.trim();
+    if (!f || !l) return say('First and last name are needed.', 'err');
+    const oldN = shown(p), newN = `${f} ${l}`;
+    const ops = [setOp('ov', ['names', String(p.id)], {first: f, last: l, note: $('#en').value.trim(), date: today()})];
+    if ($('#ehof').checked && oldN !== newN) ops.push(...hofRenameOps(oldN, newN));
+    ST.edit = null;
+    change(`Name ${p.id}: ${oldN} -> ${newN}` + (ops.length > 1 ? ` (+${ops.length - 1} Hall of Fame rows)` : ''), {op: 'multi', ops});
+  }
+  if (d.nauto) { const p = PL[d.nauto]; change(`Name ${p.id}: remove set spelling (${shown(p)})`, setOp('ov', ['names', String(p.id)], undefined)); }
+});
+
+// ---------- Tournaments ----------
+function tournaments() {
+  const q = fold(ST.tq), ex = F.ov.data.exclude_tournaments;
+  let rows = D.tournaments;
+  if (ST.tf === 'counted') rows = rows.filter(t => t.counted && !ex[t.id]);
+  if (ST.tf === 'not') rows = rows.filter(t => !t.counted || ex[t.id]);
+  if (ST.tf === 'mine') rows = rows.filter(t => ex[t.id]);
+  if (q) rows = rows.filter(t => fold(`${t.id} ${t.name} ${t.venue} ${t.date} ${t.game}`).includes(q));
+  $('#main').innerHTML = `<h2>Tournaments</h2>
+  <div class="bar"><input id="tq" placeholder="Search name, id, venue, date" value="${esc(ST.tq)}" style="flex:1;min-width:160px">
+  <select id="tf">${[['all', 'All'], ['counted', 'Counted'], ['not', 'Not counted'], ['mine', 'Excluded by you']].map(([k, v]) => `<option value="${k}" ${ST.tf === k ? 'selected' : ''}>${v}</option>`).join('')}</select>
+  <span class="m">${rows.length} tournaments</span></div>
+  <div class="tw"><table><tr><th>Date</th><th>Tournament</th><th>Game</th><th>Matches</th><th>Status</th><th></th></tr>
+  ${rows.slice(0, ST.tlim).map(t => {
+    const mine = ex[t.id], pend = pending.some(x => x.op.path && x.op.path[0] === 'exclude_tournaments' && x.op.path[1] == t.id);
+    if (ST.edit === 't' + t.id) return `<tr class="pend"><td colspan="6"><div class="bar"><b>${esc(t.name)}</b>
+      <input id="treason" placeholder="Reason (required)" style="flex:1;min-width:200px"><button class="b p" data-tsave="${t.id}">Exclude</button><button class="b" data-cancel>Cancel</button></div></td></tr>`;
+    const status = mine ? `<b class="err">Excluded by you</b><div class="m">${esc(mine.reason)}</div>` : t.counted ? '<span class="ok">Counted</span>' : `<span class="m">Not counted: ${esc(t.reason)}</span>`;
+    return `<tr class="${pend ? 'pend' : ''}"><td class="m" style="white-space:nowrap">${t.date}</td>
+      <td><a href="${t.url}" target="_blank">${esc(t.name)}</a> <span class="tag">${t.src} ${t.id}</span><div class="m">${esc(t.venue)}${t.counted ? ` · <a href="${SITE}#t${t.id}" target="_blank">on our site</a>` : ''}</div></td>
+      <td class="m">${esc(t.game)}</td><td class="m">${t.matches} · ${t.players} pl. (${t.lat} EE)</td><td>${status}</td>
+      <td>${mine ? `<button class="b" data-tinc="${t.id}">Count again</button>` : `<button class="b" data-tex="${t.id}">Exclude</button>`}</td></tr>`;
+  }).join('')}</table></div>
+  ${rows.length > ST.tlim ? `<p><button class="b" id="tmore">Show more</button></p>` : ''}`;
+  $('#tq').oninput = e => { ST.tq = e.target.value; ST.tlim = 100; keepFocus(tournaments); };
+  $('#tf').onchange = e => { ST.tf = e.target.value; tournaments(); };
+  if ($('#tmore')) $('#tmore').onclick = () => { ST.tlim += 200; tournaments(); };
+}
+document.addEventListener('click', e => {
+  const d = e.target.dataset;
+  if (d.tex) { ST.edit = 't' + d.tex; tournaments(); $('#treason').focus(); }
+  if (d.tsave) {
+    const r = $('#treason').value.trim(), t = TM[d.tsave]; if (!r) return say('Write a reason.', 'err');
+    ST.edit = null; change(`Exclude tournament ${t.id} ${t.name} (${t.date}): ${r}`, setOp('ov', ['exclude_tournaments', String(t.id)], {reason: r, date: today()}));
+  }
+  if (d.tinc) { const t = TM[d.tinc]; change(`Count again tournament ${t.id} ${t.name} (${t.date})`, setOp('ov', ['exclude_tournaments', String(t.id)], undefined)); }
+});
+
+// ---------- Duplicates ----------
+function counts(p) {   // which side counts now, after your choices
+  const dup = F.ov.data.duplicates;
+  if (dup[p.b] && dup[p.b].original == p.a) return p.a;
+  if (dup[p.a] && dup[p.a].original == p.b) return p.b;
+  return p.kept;
+}
+function side(p, id, n, chk, only, cnt) {
+  const t = TM[id] || {name: '(not in the data)', date: '', src: '?', url: '#', matches: 0};
+  return `<div class="side ${cnt == id ? 'kept' : ''}">
+    <div>${cnt == id ? '<span class="tag k">counts</span> ' : ''}<span class="tag">${t.src} ${id}</span> <span class="tag ${chk[0]}">${chk[0]}</span></div>
+    <div style="margin:4px 0"><a href="${t.url}" target="_blank">${esc(t.name)}</a></div>
+    <div class="m">${t.date} · ${n} results · ${esc(chk[1])}</div>
+    ${only.length ? `<details style="margin-top:4px"><summary class="m">${only.length} results only here</summary>${only.map(m => `<div class="m">${esc(pname(m[0]))} ${m[1]}:${m[3]} ${esc(pname(m[2]))}</div>`).join('')}</details>` : ''}
+    ${cnt == id ? '' : `<button class="b" style="margin-top:6px" data-dpick="${p.a}|${p.b}|${id}">Count this one</button>`}</div>`;
+}
+function duplicates() {
+  const rv = F.ov.data.dup_review || [], q = fold(ST.dq);
+  const inRev = p => rv.some(r => same([...r.ids].map(String).sort(), [String(p.a), String(p.b)].sort()));
+  let rows = D.duplicates;
+  if (ST.df === 'review') rows = rows.filter(inRev);
+  if (ST.df === 'live') rows = rows.filter(p => p.check_a[0] === 'live' && p.check_b[0] === 'live');
+  if (ST.df === 'diff') rows = rows.filter(p => p.only_a.length || p.only_b.length);
+  if (ST.df === 'mine') rows = rows.filter(p => F.ov.data.duplicates[p.a] || F.ov.data.duplicates[p.b]);
+  if (q) rows = rows.filter(p => fold(`${p.a} ${p.b} ${(TM[p.a] || {}).name} ${(TM[p.a] || {}).date}`).includes(q));
+  rows = rows.slice().sort((x, y) => ((TM[y.a] || {}).date || '').localeCompare((TM[x.a] || {}).date || ''));
+  $('#main').innerHTML = `<h2>Duplicates</h2>
+  <p class="m">The same event entered twice (Tournament Service and CueScore, or twice on one site). Only one copy counts. live = match times spread over the event day, bulk = all results typed in at once, late = times days after the event.</p>
+  <div class="bar"><input id="dq" placeholder="Search name, id or date" value="${esc(ST.dq)}" style="flex:1;min-width:160px">
+  <select id="df">${[['review', 'To review (' + rv.length + ')'], ['diff', 'With different results'], ['live', 'Both live'], ['mine', 'Decided by you'], ['all', 'All pairs']].map(([k, v]) => `<option value="${k}" ${ST.df === k ? 'selected' : ''}>${v}</option>`).join('')}</select>
+  <span class="m">${rows.length} pairs</span></div>
+  ${rows.map(p => {
+    const r = rv.find(r => same([...r.ids].map(String).sort(), [String(p.a), String(p.b)].sort())), cnt = counts(p);
+    return `<div class="card">${r ? `<div style="margin-bottom:6px"><b>To review:</b> <span class="m">${esc(r.note)}</span> <button class="b" data-dok="${p.a}|${p.b}">Keep as it is</button></div>` : ''}
+      <div class="m" style="margin-bottom:6px">${p.same} results the same${p.days != null ? ` · ${p.days} days apart` : ''}${cnt == null ? ' · <b>neither copy counts now</b> (both excluded or no counted results)' : ''}</div>
+      <div class="pair">${side(p, p.a, p.na, p.check_a, p.only_a, cnt)}${side(p, p.b, p.nb, p.check_b, p.only_b, cnt)}</div></div>`;
+  }).join('') || '<p class="m">Nothing here.</p>'}`;
+  $('#dq').oninput = e => { ST.dq = e.target.value; keepFocus(duplicates); };
+  $('#df').onchange = e => { ST.df = e.target.value; duplicates(); };
+}
+function reviewDelOp(a, b) {
+  const r = (F.ov.data.dup_review || []).find(r => same([...r.ids].map(String).sort(), [String(a), String(b)].sort()));
+  return r ? [{op: 'del', file: 'ov', path: ['dup_review'], item: clone(r)}] : [];
+}
+document.addEventListener('click', e => {
+  const d = e.target.dataset;
+  if (d.dpick) {
+    const [a, b, keep] = d.dpick.split('|'), copy = keep === a ? b : a, dup = F.ov.data.duplicates;
+    const ops = [];
+    if (dup[keep]) ops.push(setOp('ov', ['duplicates', keep], undefined));
+    ops.push(setOp('ov', ['duplicates', copy], {original: keep, note: `${(TM[keep] || {}).src} ${keep} counts, not ${(TM[copy] || {}).src} ${copy}`, date: today()}));
+    if (F.ov.data.exclude_tournaments[keep]) ops.push(setOp('ov', ['exclude_tournaments', keep], undefined));
+    ops.push(...reviewDelOp(a, b));
+    change(`Duplicate: ${(TM[keep] || {}).src} ${keep} counts instead of ${copy} (${(TM[keep] || {}).name})`, {op: 'multi', ops});
+  }
+  if (d.dok) { const [a, b] = d.dok.split('|'); change(`Duplicate ${a} / ${b}: reviewed, keep as it is`, {op: 'multi', ops: reviewDelOp(a, b)}); }
+});
+
+// ---------- Merge ----------
+// a profile id (Tournament Service or CueScore) -> the player it belongs to now
+let PROF = null;
+function profIndex() {
+  if (PROF) return PROF; PROF = {};
+  for (const p of D.players) { for (const x of p.ts) PROF[x[0]] = [p, 'Tournament Service', x[1]]; for (const x of p.cs) PROF[x[0]] = [p, 'CueScore', x[1]]; }
+  return PROF;
+}
+function profLine(id) {
+  const h = profIndex()[String(id)];
+  if (!h) return `<div><span class="m">profile ${esc(id)}: not in any counted match</span></div>`;
+  const [p, src, nameThere] = h;
+  return `<div>${esc(nameThere)} <span class="m">(${src} ${esc(id)})</span> → <a href="${SITE}#p${p.id}" target="_blank">${esc(shown(p))}</a> <span class="m">${p.country || ''} · ${p.matches || 0} matches</span></div>`;
+}
+function pcard(p, which) {
+  if (!p) return `<div class="card"><input id="m${which}" placeholder="Search player ${which} (name or id)" style="width:100%"><div class="pick" id="pk${which}"></div></div>`;
+  return `<div class="card"><div class="bar" style="justify-content:space-between"><b>${which}: ${esc(shown(p))}</b><button class="b" data-mclear="${which}">Change</button></div>
+    <div class="m">id ${p.id} · ${p.country || '?'} · ${p.city || ''} · ${p.matches || 0} matches · ${p.since || ''} to ${p.last_match || ''}${p.rating ? ' · rating ' + p.rating : ''}</div>
+    ${[...p.ts.map(x => ['TS', x[0], x[1]]), ...p.cs.map(x => ['CS', x[0], x[1]])].map(x => `<div class="m">${x[0]} ${x[1]}: ${esc(x[2])}${String(x[1]) !== String(p.id) && p.ts.length + p.cs.length > 1 ? ` <button class="b" data-msplit="${p.id}|${x[1]}" title="This profile is a different person: never merge it with ${esc(shown(p))}">Split off</button>` : ''}</div>`).join('')}
+    <div style="margin-top:4px"><a href="${SITE}#p${p.id}" target="_blank">profile on our site</a></div></div>`;
+}
+function merge() {
+  const ov = F.ov.data, A = PL[ST.mA], B = PL[ST.mB];
+  $('#main').innerHTML = `<h2>Merge players</h2>
+  <p class="m">Pick two players. Merge joins them into one (A keeps its id). Never merge keeps them apart for good, even when the names look the same.</p>
+  <div class="grid2">${pcard(A, 'A')}${pcard(B, 'B')}</div>
+  ${A && B ? `<div class="bar"><input id="mnote" placeholder="Note (optional)" style="flex:1;min-width:180px"><button class="b p" data-mdo="merge">Merge B into A</button><button class="b" data-mdo="never">Never merge</button></div>` : ''}
+  <h2 style="margin-top:16px">Never merge</h2>
+  <p class="m">These profiles stay separate players, even when the names look alike.</p>
+  <div class="tw"><table>${ov.not_same.map(x => `<tr><td>${x.ids.map(profLine).join('')}${x.note ? `<div class="m">Note: ${esc(x.note)}</div>` : ''}</td><td><button class="b" data-mnsdel='${esc(JSON.stringify(x))}'>Remove</button></td></tr>`).join('')}</table></div>
+  <h2 style="margin-top:16px">Merges</h2>
+  <p class="m">Two profiles joined into one player. The ones you make in this panel come first.</p>
+  <div class="tw"><table>${ov.merges.map((m, i) => [m, i]).sort((x, y) => (y[0].date || '').localeCompare(x[0].date || '') || y[1] - x[1]).slice(0, ST.mlim || 30).map(([m]) => `<tr><td>${profLine(m.keep)}${profLine(m.merge)}
+    <div class="m">${m.date ? 'Merged ' + esc(m.date) : 'Merged before the panel existed'}${m.note ? ' · ' + esc(m.note) : ''}</div></td>
+    <td><button class="b" data-mmdel='${esc(JSON.stringify(m))}'>Undo</button></td></tr>`).join('')}</table></div>
+  ${ov.merges.length > (ST.mlim || 30) ? `<p><button class="b" id="mmore">Show all ${ov.merges.length}</button></p>` : ''}`;
+  if ($('#mmore')) $('#mmore').onclick = () => { ST.mlim = 1e4; merge(); };
+  for (const w of ['A', 'B']) {
+    const inp = $('#m' + w); if (!inp) continue;
+    inp.oninput = () => {
+      const q = fold(inp.value); if (q.length < 2) return $('#pk' + w).innerHTML = '';
+      const hits = D.players.filter(p => fold(`${shown(p)} ${p.id} ${p.ts.flat().join(' ')} ${p.cs.flat().join(' ')}`).includes(q)).sort((a, b) => (b.matches || 0) - (a.matches || 0)).slice(0, 30);
+      $('#pk' + w).innerHTML = hits.map(p => `<div data-mset="${w}|${p.id}">${esc(shown(p))} <span class="m">${p.id} · ${p.country || ''} · ${p.matches || 0} m. · ${p.last_match || ''}</span></div>`).join('');
+    };
+  }
+}
+document.addEventListener('click', e => {
+  const d = e.target.closest('[data-mset]') ? e.target.closest('[data-mset]').dataset : e.target.dataset;
+  if (d.mset) { const [w, id] = d.mset.split('|'); ST['m' + w] = +id; merge(); }
+  if (d.mclear) { ST['m' + d.mclear] = null; merge(); }
+  if (d.mdo) {
+    const A = PL[ST.mA], B = PL[ST.mB]; if (A.id === B.id) return say('Pick two different players.', 'err');
+    const note = $('#mnote').value.trim() || `${shown(A)} / ${shown(B)}`;
+    if (d.mdo === 'merge') change(`Merge ${shown(B)} (${B.id}) into ${shown(A)} (${A.id})`, {op: 'add', file: 'ov', path: ['merges'], item: {keep: String(A.id), merge: String(B.id), stage: 'late', note, date: today()}});
+    else change(`Never merge ${shown(A)} (${A.id}) and ${shown(B)} (${B.id})`, {op: 'add', file: 'ov', path: ['not_same'], item: {ids: [String(A.id), String(B.id)], note, date: today()}});
+    ST.mA = ST.mB = null; merge();
+  }
+  if (d.msplit) { const [id, prof] = d.msplit.split('|'); change(`Split profile ${prof} off ${pname(id)} (${id}): never merge`, {op: 'add', file: 'ov', path: ['not_same'], item: {ids: [String(id), String(prof)], note: `profile ${prof} is not ${pname(id)}`, date: today()}}); }
+  if (d.mnsdel) { const x = JSON.parse(d.mnsdel); change(`Remove never merge ${x.ids.join(' / ')}`, {op: 'del', file: 'ov', path: ['not_same'], item: x}); }
+  if (d.mmdel) { const x = JSON.parse(d.mmdel); change(`Undo merge ${x.merge} into ${x.keep}`, {op: 'del', file: 'ov', path: ['merges'], item: x}); }
+});
+
+// ---------- Hall of Fame ----------
+const HCOL = ['Year', 'Category', 'Game', 'Gold', 'Silver', 'Bronze', 'Bronze', 'Source', 'Event'];
+let NAMESET = new Set();
+function fame() {
+  const k = ST.fame, rows = F[k].data, q = fold(ST.fq);
+  NAMESET = new Set(D.players.filter(p => p.shown).map(shown));
+  const list = rows.map((r, i) => [r, i]).filter(([r]) => !q || fold(r.join(' ')).includes(q));
+  const cell = (r, i) => { const v = r[i]; if (i >= 3 && i <= 6 && v && !NAMESET.has(v)) return `<td class="diff" title="No Estonian player with exactly this name">${esc(v)}</td>`; return `<td${i === 8 ? ' class="m"' : ''}>${esc(v)}</td>`; };
+  const form = (r, key) => `<tr class="pend"><td colspan="10"><div class="grid2">${HCOL.map((h, i) => `<label class="m">${h}<input id="h${i}" value="${esc(r[i] ?? '')}" list="${i >= 3 && i <= 6 ? 'pnames' : ''}" style="width:100%"></label>`).join('')}</div>
+    <div class="bar" style="margin-top:6px"><button class="b p" data-hsave="${key}">OK</button><button class="b" data-cancel>Cancel</button></div></td></tr>`;
+  $('#main').innerHTML = `<h2>Hall of Fame</h2>
+  <div class="bar"><select id="hf"><option value="hof" ${k === 'hof' ? 'selected' : ''}>Estonian Championships (hof.json)</option><option value="riga" ${k === 'riga' ? 'selected' : ''}>Meistriliiga (ml.json)</option></select>
+  <input id="fq" placeholder="Search year, name, event" value="${esc(ST.fq)}" style="flex:1;min-width:160px"><button class="b" data-hadd>Add a medal row</button>
+  <span class="m">${list.length} rows. Red = no Estonian player with exactly this spelling.</span></div>
+  <datalist id="pnames">${[...NAMESET].sort().map(n => `<option value="${esc(n)}">`).join('')}</datalist>
+  <div class="tw"><table><tr>${HCOL.map(h => `<th>${h}</th>`).join('')}<th></th></tr>
+  ${ST.edit === 'hnew' ? form([new Date().getFullYear(), 'Main', 'Pool 8', '', '', '', '', 'Tournament Service', ''], 'new') : ''}
+  ${list.map(([r, i]) => ST.edit === 'h' + i ? form(r, i) : `<tr>${r.map((_, j) => cell(r, j)).join('')}<td style="white-space:nowrap"><button class="b" data-hedit="${i}">Edit</button> <button class="b" data-hdel="${i}">Delete</button></td></tr>`).join('')}
+  </table></div>`;
+  $('#hf').onchange = e => { ST.fame = e.target.value; ST.edit = null; fame(); };
+  $('#fq').oninput = e => { ST.fq = e.target.value; keepFocus(fame); };
+}
+document.addEventListener('click', e => {
+  const d = e.target.dataset, k = ST.fame, label = k === 'hof' ? 'Hall of Fame' : 'Meistriliiga';
+  if (d.hadd !== undefined) { ST.edit = 'hnew'; fame(); }
+  if (d.hedit) { ST.edit = 'h' + d.hedit; fame(); }
+  if (d.hsave) {
+    const r = HCOL.map((_, i) => $('#h' + i).value.trim()); r[0] = +r[0] || r[0];
+    if (!r[0] || !r[3]) return say('Year and gold are needed.', 'err');
+    ST.edit = null;
+    if (d.hsave === 'new') change(`${label}: add ${r[0]} ${r[1]} ${r[2]} (gold ${r[3]})`, {op: 'add', file: k, path: [], item: r});
+    else { const before = F[k].data[+d.hsave]; change(`${label}: edit ${before[0]} ${before[1]} ${before[2]}`, {op: 'edit', file: k, path: [], before: clone(before), after: r}); }
+  }
+  if (d.hdel) { const r = F[k].data[+d.hdel]; if (confirm(`Delete ${r[0]} ${r[1]} ${r[2]}?`)) change(`${label}: delete ${r[0]} ${r[1]} ${r[2]} (gold ${r[3]})`, {op: 'del', file: k, path: [], item: clone(r)}); }
+});
+
+// ---------- Log ----------
+function logTab() {
+  const log = (F.ov.data.log || []).slice().reverse();
+  $('#main').innerHTML = `<h2>Log of your changes</h2>
+  <p class="m">Undo adds the opposite change to the unsaved list; Save it to make it count.</p>
+  <div class="tw"><table><tr><th>When</th><th>Change</th><th></th></tr>
+  ${log.map(x => `<tr><td class="m" style="white-space:nowrap">${esc(x.date)}</td><td>${esc(x.text)}${x.undone ? ` <span class="tag">undone ${esc(x.undone)}</span>` : ''}${x.undo_of ? ` <span class="tag">undo of #${x.undo_of}</span>` : ''}</td>
+    <td>${x.undone || x.undo_of || pending.some(p => p.undoOf === x.id) ? '' : `<button class="b" data-lundo="${x.id}">Undo</button>`}</td></tr>`).join('') || '<tr><td class="m" colspan="3">No changes yet.</td></tr>'}</table></div>`;
+}
+document.addEventListener('click', e => {
+  const d = e.target.dataset;
+  if (d.lundo) { const x = F.ov.data.log.find(x => x.id === +d.lundo); change(`Undo: ${x.text}`, inverse(x.op), {undoOf: x.id}); }
+});
+
+// ---------- log out: the panel's Access cookie, then the Cloudflare Access login itself ----------
+$('#logout').onclick = async e => {
+  e.preventDefault();
+  if (pending.length && !confirm('You have unsaved changes. Log out anyway?')) return;
+  pending = [];
+  location.href = '/cdn-cgi/access/logout';   // Cloudflare's own log-out page for this site
+};
+// ---------- start ----------
+window.addEventListener('beforeunload', e => { if (pending.length) { e.preventDefault(); e.returnValue = ''; } });
+(async () => {
+  try {
+    const [who, files, data] = await Promise.all([api('whoami'), api('files'), fetch('/admin/data.json', {cache: 'no-store'}).then(r => r.json())]);
+    for (const f of files.files) F[FILEKEY[f.path]] = {path: f.path, sha: f.sha, data: JSON.parse(f.content)};
+    D = data;
+    for (const p of D.players) PL[p.id] = p;
+    for (const t of D.tournaments) TM[t.id] = t;
+    REVIEW = new Set(D.name_review.map(x => String(x[0])));
+    $('#who').textContent = `${who.email} · ${who.branch === 'main' ? 'live site' : 'TEST branch ' + who.branch} · data from ${D.generated}`;
+    showPending(); render();
+  } catch (e) {
+    $('#main').innerHTML = `<p class="err">Could not load: ${esc(e.message)}</p>`;
+    $('#who').textContent = '';
+  }
+})();
+</script>
+</body>
+</html>

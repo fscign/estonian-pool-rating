@@ -1,0 +1,47 @@
+name: Daily rating update
+on:
+  schedule:
+    - cron: '17 4 * * *'   # every day 04:17 UTC (06:17 Tallinn winter time), after the pool-data collections (CueScore Baltics 03:19); off the full hour
+  workflow_dispatch:       # "Run workflow" button (also started by the admin panel's "Apply now")
+permissions:
+  contents: write
+concurrency:
+  group: repo-writes
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install numpy requests beautifulsoup4 lxml
+      - name: Get the raw data from fscign/pool-data (all sources are collected there)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: sh get_data.sh
+      - name: League list, build, rating, site data
+        run: sh run_update.sh
+      - name: Save new results
+        run: |
+          cat report.txt >> "$GITHUB_STEP_SUMMARY" || true
+          today=$(date -u +%Y-%m-%d)
+          {
+            echo; echo "### Data sources"; echo; echo "| Source | Last collected | Result | Last log line |"; echo "|---|---|---|---|"
+            for f in status/status_*.txt; do
+              [ -f "$f" ] || continue
+              n=$(basename "$f" .txt); n=${n#status_}
+              case "$n" in cuescore_ee*|cuescore_lv*|cuescore_lt*|cuescore_fi*|cuescore_se*|cuescore_dk*|cuescore_no*|tournamentservice*|epbf*|wnt*|pbs*) ;; *) continue;; esac
+              IFS='|' read -r when res last < "$f"
+              case "$when" in "$today"*) flag="";; *) flag=" ⚠ not today";; esac
+              echo "| $n | $when$flag | $res | $last |"
+            done
+          } >> "$GITHUB_STEP_SUMMARY" || true
+          git config user.name "rating-bot"
+          git config user.email "rating-bot@users.noreply.github.com"
+          for f in site/data.json site/admin/data.json leagues.json cs_times.json data/leagues_page.html; do [ -f "$f" ] && git add "$f"; done
+          git commit -m "Daily update $(date +%Y-%m-%d)" || echo "No changes"
+          for i in 1 2 3; do git pull --rebase --autostash && git push && exit 0; sleep 10; done
+          exit 1

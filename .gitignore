@@ -1,8 +1,11 @@
-data/
+data/*
+!data/leagues_page.html
 status/
 *.sqlite
 previous_data.json
 *_log.txt
+update_log.txt
+report.txt
 name_review.json
 admin_dups.json
 __pycache__/
