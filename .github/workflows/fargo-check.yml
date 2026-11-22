@@ -1,0 +1,19 @@
+name: fargo-check (one-off FargoRate lookup)
+on:
+  workflow_dispatch:
+  push:
+    paths: ['fargo/names.json']
+permissions:
+  contents: write
+jobs:
+  look:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install requests
+      - run: python fargo/lookup.py
+      - run: |
+          git config user.name "github-actions"; git config user.email "actions@github.com"
+          git add fargo/results.json; git commit -m "FargoRate lookup results" || true
+          git pull --rebase -q; git push
