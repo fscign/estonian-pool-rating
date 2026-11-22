@@ -3,15 +3,13 @@ import sqlite3, numpy as np, datetime, json, sys, collections
 
 DB = 'ee_pool.sqlite'
 HALF_LIFE_Y = 2.0
-PRIOR_RACKS = 3          # virtual racks won and lost vs an average newcomer
+import os
+PRIOR_RACKS = 3.0
+CORE_PR = float(os.environ.get('PR', 0.2))   # prior used while solving everyone together (Baltic test 22 Nov 2026)
+         # virtual racks won and lost vs an average newcomer
 NEWCOMER = 450           # anchored-scale rating that the prior pulls towards
 TODAY = datetime.date.today()
 K = np.log(2) / 100      # 100 points = 2:1 rack odds
-
-# Reference ratings that place the whole scale: established Estonians, FargoRate (robustness 1,000+), read 22 Nov 2026
-ANCHORS = {'Grabe Denis': 811, 'Mägi Mark': 787, 'Gnadeberg Karl': 753, 'Rehepapp Mihkel': 747, 'Adigazalov Rafig': 723,
-           'Teesaar Raimo': 720, 'Erm Erki': 715, 'Maimre Gert': 709, 'Maimre Revo': 693, 'Saiov Stanislav': 677,
-           'Ventsel Illimar': 663, 'Jermikimov Aleksandr': 656, 'Gnadeberg Gert': 628, 'Ventsel Harry': 583, 'Maimre Roland': 523}
 
 db = sqlite3.connect(DB)
 pl = db.execute('SELECT id, last_name, first_name, shown, country FROM players').fetchall()
@@ -25,24 +23,16 @@ S141 = np.array([m[5] == '14.1' for m in M]); WA[S141] /= 14; WB[S141] /= 14
 # racks played (shown on the site, 200 = established) count rack games only, not 14.1
 NR = np.where(S141, 0.0, WA + WB)
 
-import unicodedata
-def key(s):
-    s = unicodedata.normalize('NFKD', s.lower()); return ''.join(c for c in s if not unicodedata.combining(c)).replace('sh', 's')
-anchor_idx = {}
-for ln_fn, val in ANCHORS.items():
-    ln, fn = ln_fn.split(' ', 1)
-    hit = [i for i, p in enumerate(pl) if p[3] and key(p[1]) == key(ln) and key(fn).split()[0] in key(p[2])]
-    if not hit:
-        hit = [i for i, p in enumerate(pl) if p[3] and key(ln)[:5] == key(p[1])[:5] and key(fn)[:4] in key(p[2])]
-    if hit: anchor_idx[hit[0]] = val
-    else: print('anchor not found', ln_fn, file=sys.stderr)
-
-LV = np.array([bool(p[3]) for p in pl])   # shown (Estonian) players
+# Baltic calculation (22 Nov 2026): Latvians, Estonians and Lithuanians each have their own newcomer group; the Latvian group is
+# the solver's fixed point (any fixed point would do: the level is set afterwards by the FargoRate reference players)
+BALTIC = ('LAT', 'EST', 'LIT')
+LV = np.array([p[4] == 'LAT' for p in pl])
+SH = np.array([bool(p[3]) for p in pl])   # shown (Estonian) players
 # Newcomer pull per country (22 Nov 2026): every other country has its own group average, so weak Latvian club players are not
 # pulled towards the average of all foreigners (EPBF / Matchroom pros, Finns ...), which lifted the whole Latvian pool by about 60.
-_n = collections.Counter(p[4] or '?' for p in pl if not p[3])
+_n = collections.Counter(p[4] or '?' for p in pl if p[4] not in BALTIC)
 _cc = {}
-GRP = np.array([0 if p[3] else _cc.setdefault((p[4] or '?') if _n[p[4] or '?'] >= 100 else 'other', len(_cc) + 1) for p in pl])   # small countries share one group
+GRP = np.array([0 if p[4] == 'LAT' else _cc.setdefault('S-' + p[4], len(_cc) + 1) if p[4] in BALTIC else _cc.setdefault((p[4] or '?') if _n[p[4] or '?'] >= 100 else 'other', len(_cc) + 1) for p in pl])   # small countries share one group
 NG = len(_cc) + 1
 # Newcomer prior: a player is pulled (3 virtual racks won and lost) towards the average of his own group.
 # Latvians and foreign players get separate group averages, so strong foreign BPL players do not lift the
@@ -63,14 +53,14 @@ def solve(upto_ord, r0=None, prior_mu=0.0, iters=400, mu_f=None):
         H = np.bincount(a, h, N) + np.bincount(b, h, N)
         mu = np.where(LV, prior_mu, mu_g[GRP])
         pp = 1 / (1 + np.exp(-K * (r - mu)))
-        gp = PRIOR_RACKS - 2 * PRIOR_RACKS * pp; hp = 2 * PRIOR_RACKS * pp * (1 - pp) * K
+        gp = CORE_PR - 2 * CORE_PR * pp; hp = 2 * CORE_PR * pp * (1 - pp) * K
         g += gp; H += hp
         step = np.clip(g / H, -60, 60)
         step[~active] = 0
         r += step
         # the overall level is pinned only by the weak prior, so move everyone together towards it as well
         pp = 1 / (1 + np.exp(-K * (r - mu)))
-        gp = PRIOR_RACKS - 2 * PRIOR_RACKS * pp; hp = 2 * PRIOR_RACKS * pp * (1 - pp) * K
+        gp = CORE_PR - 2 * CORE_PR * pp; hp = 2 * CORE_PR * pp * (1 - pp) * K
         al, af = active & LV, active & ~LV
         shift = float(np.clip(gp[al].sum() / hp[al].sum(), -60, 60)) if al.any() else 0.0
         r[active] += shift
@@ -85,15 +75,46 @@ def solve(upto_ord, r0=None, prior_mu=0.0, iters=400, mu_f=None):
     solve.mu_f = mu_g
     return r, active, racks, eff
 
+
+# Newcomer pull without squeezing everyone else (Baltic test 22 Nov 2026): everyone is first solved together with only a very weak
+# pull (CORE_PR), so weak occasional players are no longer lifted towards the group average, which used to narrow the whole scale
+# (strong players beat weak ones more often than the ratings said). Then each player's own shown rating gets the normal pull
+# (PRIOR_RACKS) with his opponents held at their solved ratings, so a newcomer's number stays steady without moving anyone else.
+def refit(rc, upto_ord, prior_mu=0.0, iters=60):
+    sel = dates <= upto_ord
+    a, b, wa, wb = A[sel], B[sel], WA[sel], WB[sel]
+    w = 0.5 ** (((upto_ord - dates[sel]) / 365.25) / HALF_LIFE_Y); n = wa + wb
+    mu = np.where(LV, prior_mu, solve.mu_f[GRP])
+    r = rc.copy(); ra_o, rb_o = rc[b], rc[a]
+    for _ in range(iters):
+        pa = 1 / (1 + np.exp(-K * (r[a] - ra_o))); pb = 1 / (1 + np.exp(-K * (r[b] - rb_o)))
+        g = np.bincount(a, w * (wa - n * pa), N) + np.bincount(b, w * (wb - n * pb), N)
+        H = np.bincount(a, w * n * pa * (1 - pa) * K, N) + np.bincount(b, w * n * pb * (1 - pb) * K, N)
+        pp = 1 / (1 + np.exp(-K * (r - mu)))
+        g += PRIOR_RACKS - 2 * PRIOR_RACKS * pp; H += 2 * PRIOR_RACKS * pp * (1 - pp) * K
+        st = np.clip(g / H, -60, 60); r += st
+        if np.abs(st).max() < 0.01: break
+    return r
+
 # Determine offset (unanchored -> anchored) with prior mean consistent with NEWCOMER
 today = TODAY.toordinal(); offset = 0.0; r = None
 # The prior only fixes where the scale sits; anchoring then shifts the whole scale, so solve once with prior at 0.
-r, active, racks, eff = solve(today, None, prior_mu=0.0, iters=3000)
-ai = list(anchor_idx); offset = float(np.mean([anchor_idx[i] - r[i] for i in ai]))
+r_core, active, racks, eff = solve(today, None, prior_mu=0.0, iters=3000)
+r = refit(r_core, today)
+# Level (Baltic test 22 Nov 2026, Aleksandrs): every player with FargoRate robustness 1,000+ and 300+ racks here in the last 2 years,
+# any country and level (fargo/reference.json); the whole scale is shifted so that their median difference to FargoRate is 0
+# (fargo/reference.json: source profile id, name and FargoRate of each; found through player_profiles, so merges do not lose them)
+_prof = {s_: p_ for s_, p_ in db.execute('SELECT source_id, player_id FROM player_profiles')}
+QF = []
+for q in json.load(open('fargo/reference.json', encoding='utf-8'))['players']:
+    pid = _prof.get(str(q['id']), q['id'])
+    if pid in idx and active[idx[pid]]: QF.append((idx[pid], q['fargo']))
+offset = float(np.median([f - r[i] for i, f in QF]))
+print('reference players', len(QF))
 print('newcomer pull point on the anchored scale:', round(offset))
 final = r + offset
-print('offset', round(offset, 1), 'newcomer points by country', {k: round(solve.mu_f[v] + offset) for k, v in _cc.items() if k in ('LAT', 'LIT', 'FIN', 'SWE', 'NOR', 'DEN', 'GER', 'POL')})
-print('anchor check:', [(pl[i][1], anchor_idx[i], round(final[i])) for i in anchor_idx])
+print('offset', round(offset, 1), 'newcomer points by country', {k: round(solve.mu_f[v] + offset) for k, v in _cc.items() if k in ('S-EST', 'S-LIT', 'FIN', 'SWE', 'NOR', 'DEN', 'GER', 'POL')})
+print('reference check (FargoRate, ours):', [(pl[i][1], f, round(final[i])) for i, f in QF if f >= 700])
 
 # current ratings table
 nmatch = np.bincount(A, None, N) + np.bincount(B, None, N)
@@ -119,11 +140,12 @@ snap = []
 # a player's history starts once he has 100 racks within 2 years; before that the rating is mostly the newcomer starting level
 MIN_RACKS = 100
 started = np.zeros(N, bool)
-y, mth = 2011, 12; rr = None; mf = None
+y, mth = 2011, 12; rr = None; rc = None; mf = None
 while (y, mth) <= (TODAY.year, TODAY.month):
     nm = datetime.date(y + (mth == 12), mth % 12 + 1, 1)
     end = min(nm - datetime.timedelta(days=1), TODAY)
-    rr, act, _, _ = solve(end.toordinal(), rr, prior_mu=0.0, iters=3000, mu_f=mf)
+    rc, act, _, _ = solve(end.toordinal(), rc, prior_mu=0.0, iters=3000, mu_f=mf)
+    rr = refit(rc, end.toordinal())
     mf = solve.mu_f
     sel = dates <= end.toordinal(); recent = sel & (dates > end.toordinal() - 730)
     rec = np.zeros(N, bool); rec[A[recent]] = True; rec[B[recent]] = True
@@ -131,7 +153,7 @@ while (y, mth) <= (TODAY.year, TODAY.month):
     started |= (np.bincount(A[recent], nr, N) + np.bincount(B[recent], nr, N)) >= MIN_RACKS
     rec &= started
     cnt = np.bincount(A[sel], None, N) + np.bincount(B[sel], None, N)
-    ref = LV & (last_ord <= end.toordinal()) & (cnt >= 20) & (last_ord >= 0)
+    ref = SH & (last_ord <= end.toordinal()) & (cnt >= 20) & (last_ord >= 0)
     corr = float(np.median(r[ref] - rr[ref])) if ref.sum() >= 15 else None
     snap.append((f'{y}-{mth:02d}', rr.copy(), rec, corr, int(ref.sum())))
     y, mth = (y + 1, 1) if mth == 12 else (y, mth + 1)

@@ -11,11 +11,11 @@ def load(f):
 OV = json.load(open('overrides.json', encoding='utf-8'))   # every manual decision (names, merges, exclusions ...), edited in the admin panel
 s = lambda v: v if isinstance(v, str) else ''
 
-# ---------- Tournament Service (all countries in pool-data): Baltic events in full, other countries only with an Estonian ----------
+# ---------- Tournament Service (all countries in pool-data): Baltic events in full, other countries only with a Baltic player ----------
 ts = load('data/ts_raw.json.gz') or {'tournaments': [], 'players': {}, 'matches': []}
 P = ts['players']
 BALTIC_TS = {'LAT', 'LIT', 'EST', ''}
-est_ts = {k for k, v in P.items() if v[2] == 'EST'}
+est_ts = {k for k, v in P.items() if v[2] in ('EST', 'LAT', 'LIT')}   # Baltic calculation (22 Nov 2026): any event with a Baltic player
 with_est = {m[0] for m in ts['matches'] if m[2] in est_ts or m[3] in est_ts}
 TS_CTRY = {}
 d = {'tournaments': [], 'players': P, 'matches': []}
@@ -31,7 +31,8 @@ CS_GAME = {'8-Ball': '8-ball', '9-Ball': '9-ball', '10-Ball': '10-ball', 'Straig
 SOURCE = {}            # tournament id -> 'cuescore'
 CSIDS = set()          # player ids that come from CueScore
 CS_NORDIC = set()      # CueScore profiles seen only in Nordic files: joined to a Tournament Service profile only when the flag matches
-CS_ESTONIAN = set(OV.get('estonian', []))    # CueScore profiles with a wrong flag that are Estonian (overrides.json 'estonian')
+CS_ESTONIAN = set(OV.get('estonian', []))
+CS_LATVIAN = set(OV.get('latvian', []))      # CueScore profiles with a wrong flag that are Latvian (same list as the Latvian site)    # CueScore profiles with a wrong flag that are Estonian (overrides.json 'estonian')
 CS_EXCLUDE = set(OV['exclude_cs_players'])   # CueScore profiles that are not real players
 CS_MATCH_OFFSET = 1_000_000_000
 CS_CC = {'LTU': 'LIT', 'GBR': 'ENG', 'DEU': 'GER', 'NLD': 'NED', 'CHE': 'SUI', 'DNK': 'DEN', 'LVA': 'LAT'}   # CueScore codes -> Tournament Service codes
@@ -55,7 +56,7 @@ for cc_file in ('ee', 'lv', 'lt', 'fi', 'se', 'dk', 'no'):
         if cid in P:
             if not nordic: CS_NORDIC.discard(cid)
             continue
-        P[cid] = [ln or '', fn or '', 'EST' if cc == 'EST' or cid in CS_ESTONIAN else CS_CC.get(cc, cc or '?'), '', None, 'm']
+        P[cid] = [ln or '', fn or '', 'EST' if cc == 'EST' or cid in CS_ESTONIAN else 'LAT' if cid in CS_LATVIAN else CS_CC.get(cc, cc or '?'), '', None, 'm']
         CSIDS.add(cid)
         if nordic: CS_NORDIC.add(cid)
         if len(v) > 3 and v[3] and len(v[3]) > 3 and not nordic: CLUB[cid] = (v[5] if len(v) > 5 and v[5] else '', v[3])   # (date, club); alpha3 codes are countries, not clubs
@@ -154,7 +155,7 @@ for e in (pb or {}).get('events', []):
             i = str(i)
             if i not in P and i not in CS_EXCLUDE:
                 w = (n or '').split()
-                P[i] = [w[-1] if w else '', ' '.join(w[:-1]), 'EST' if c == 'EST' or i in CS_ESTONIAN else CS_CC.get(c, c or '?'), '', None, 'm']
+                P[i] = [w[-1] if w else '', ' '.join(w[:-1]), 'EST' if c == 'EST' or i in CS_ESTONIAN else 'LAT' if i in CS_LATVIAN else CS_CC.get(c, c or '?'), '', None, 'm']
                 CSIDS.add(i)
         md = datetime.date.fromisoformat(when[:10]) if when else sd
         d['matches'].append([tid, PB_M + int(mid) * 10 + int(setno), str(ia), str(ib), str(sa), str(sb), int(race or 0),
@@ -339,6 +340,7 @@ SHOWN = {k for k in eligible if country(k) == 'EST' and k not in EXCLUDE_PLAYERS
 # players with another flag who play in Estonia and are shown (overrides 'estonian', any profile id; Aleksandrs 22 Nov 2026:
 # Phil Mathias, Michael Kirsch, Anton Bobkov)
 FORCE_EST = {C(k) for k in OV.get('estonian', []) if k in P and C(k) in eligible}
+FORCE_LAT = {C(k) for k in OV.get('latvian', []) if k in P and C(k) in eligible}
 SHOWN |= {k for k in FORCE_EST if k not in EXCLUDE_PLAYERS}
 
 # ---------- final matches; a tournament entry that repeats another entry (>=50% same results) is a duplicate ----------
@@ -500,6 +502,7 @@ for k in sorted(used, key=int):
     ts_id = int(k) if k not in CSIDS else None
     clubs = sorted(CLUB[x] for x in group[k] if x in CLUB)   # newest club the player represented on CueScore
     if k in FORCE_EST: v = list(v); v[2] = 'EST'
+    if k in FORCE_LAT: v = list(v); v[2] = 'LAT'
     lg = league_of(k, first, last) if k in SHOWN else None
     db.execute('INSERT INTO players VALUES(?,?,?,?,?,?,?,?,?,NULL,?,?,?,?)', (int(k), first, last, v[2], city, birth, v[5], ts_id, cs_id, int(k in SHOWN),
                clubs[-1][1] if clubs else None, lg, SEX_HINT.get(k)))

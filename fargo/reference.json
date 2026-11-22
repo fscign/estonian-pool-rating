@@ -1,0 +1,4350 @@
+{
+"read": "2026-11-22",
+"rule": "FargoRate robustness 1,000+, 300+ racks here in the last 2 years, played in the last 2 years, any country (Aleksandrs 22 Nov 2026)",
+"players": [
+{
+"id": 6146490,
+"name": "Abdullah Aouida",
+"cc": "SWE",
+"fargo": 608,
+"rob": 3077,
+"fid": "991518"
+},
+{
+"id": 6500003162,
+"name": "Adam Kiernicki",
+"cc": "POL",
+"fargo": 657,
+"rob": 8082,
+"fid": "561122"
+},
+{
+"id": 6972087,
+"name": "Adam Nilsson",
+"cc": "SWE",
+"fargo": 675,
+"rob": 2307,
+"fid": "1115697"
+},
+{
+"id": 2084760,
+"name": "Adam Rydström",
+"cc": "SWE",
+"fargo": 689,
+"rob": 4422,
+"fid": "969079"
+},
+{
+"id": 6500004053,
+"name": "Adam Stankiewicz",
+"cc": "POL",
+"fargo": 713,
+"rob": 4049,
+"fid": "990789"
+},
+{
+"id": 6308573,
+"name": "Adib Issa",
+"cc": "DEN",
+"fargo": 651,
+"rob": 1440,
+"fid": "1070312"
+},
+{
+"id": 6500013380,
+"name": "Adrian Pollard",
+"cc": "ENG",
+"fargo": 687,
+"rob": 1433,
+"fid": "1200914"
+},
+{
+"id": 6500004019,
+"name": "Adrian Weiss",
+"cc": "SWE",
+"fargo": 758,
+"rob": 6992,
+"fid": "988746"
+},
+{
+"id": 2188065,
+"name": "Agneta Planeskog",
+"cc": "SWE",
+"fargo": 465,
+"rob": 2958,
+"fid": "991521"
+},
+{
+"id": 5500000568,
+"name": "Ahmed Abiev",
+"cc": "NOR",
+"fargo": 669,
+"rob": 2044,
+"fid": "1078066"
+},
+{
+"id": 46005,
+"name": "Aimar Kulp",
+"cc": "EST",
+"fargo": 511,
+"rob": 1195,
+"fid": "1079420"
+},
+{
+"id": 15174565,
+"name": "Aimo Nikkilä",
+"cc": "SWE",
+"fargo": 553,
+"rob": 1739,
+"fid": "1139789"
+},
+{
+"id": 5500000006,
+"name": "Aj Manas",
+"cc": "PHL",
+"fargo": 807,
+"rob": 2565,
+"fid": "1172770"
+},
+{
+"id": 6500012435,
+"name": "Akseli Hannukkala",
+"cc": "FIN",
+"fargo": 637,
+"rob": 1441,
+"fid": "1078274"
+},
+{
+"id": 1688616,
+"name": "Alan Conway",
+"cc": "DEN",
+"fargo": 725,
+"rob": 4008,
+"fid": "560780"
+},
+{
+"id": 6500004626,
+"name": "Alara Ghaffari",
+"cc": "TCY",
+"fargo": 607,
+"rob": 1276,
+"fid": "1003107"
+},
+{
+"id": 6172489,
+"name": "Alban Richard",
+"cc": "FRA",
+"fargo": 703,
+"rob": 3567,
+"fid": "562411"
+},
+{
+"id": 5500000012,
+"name": "Albert Januarta",
+"cc": "IDN",
+"fargo": 822,
+"rob": 1694,
+"fid": "1231281"
+},
+{
+"id": 5500000251,
+"name": "Albin Ouschan",
+"cc": "AUT",
+"fargo": 833,
+"rob": 13216,
+"fid": "562429"
+},
+{
+"id": 6500003747,
+"name": "Aleksa Pecelj",
+"cc": "SRB",
+"fargo": 813,
+"rob": 8901,
+"fid": "933063"
+},
+{
+"id": 16561,
+"name": "Aleksandr Jermikimov",
+"cc": "EST",
+"fargo": 651,
+"rob": 2938,
+"fid": "1003152"
+},
+{
+"id": 9015,
+"name": "Aleksandra Sinilnikova",
+"cc": "EST",
+"fargo": 555,
+"rob": 1083,
+"fid": "1027529"
+},
+{
+"id": 22413,
+"name": "Aleksandrs Horsuns",
+"cc": "LAT",
+"fargo": 662,
+"rob": 3007,
+"fid": "991473"
+},
+{
+"id": 49708,
+"name": "Aleksanteri Piilola",
+"cc": "FIN",
+"fargo": 673,
+"rob": 2142,
+"fid": "907920"
+},
+{
+"id": 82334,
+"name": "Aleksej Morozov",
+"cc": "LIT",
+"fargo": 603,
+"rob": 1012,
+"fid": "1412223"
+},
+{
+"id": 6500011588,
+"name": "Alessio Hybler",
+"cc": "GER",
+"fargo": 697,
+"rob": 1605,
+"fid": "1140587"
+},
+{
+"id": 6188660,
+"name": "Alex Embermark",
+"cc": "SWE",
+"fargo": 591,
+"rob": 4887,
+"fid": "991525"
+},
+{
+"id": 1084966,
+"name": "Alex Kazakis",
+"cc": "GRC",
+"fargo": 827,
+"rob": 15417,
+"fid": "560861"
+},
+{
+"id": 6500001995,
+"name": "Alex Montpellier",
+"cc": "FRA",
+"fargo": 740,
+"rob": 7368,
+"fid": "561869"
+},
+{
+"id": 5500000314,
+"name": "Alex Pagulayan",
+"cc": "CAN",
+"fargo": 817,
+"rob": 14024,
+"fid": "12671"
+},
+{
+"id": 6248397,
+"name": "Alexander Martinsson",
+"cc": "SWE",
+"fargo": 564,
+"rob": 1476,
+"fid": "1055741"
+},
+{
+"id": 5500000149,
+"name": "Alexis Ferrer",
+"cc": "PHL",
+"fargo": 798,
+"rob": 1107,
+"fid": "1052128"
+},
+{
+"id": 6087501,
+"name": "Alf Toffer",
+"cc": "SWE",
+"fargo": 626,
+"rob": 3737,
+"fid": "563046"
+},
+{
+"id": 9093061,
+"name": "Alireza Hafezi",
+"cc": "SWE",
+"fargo": 644,
+"rob": 1189,
+"fid": "1108622"
+},
+{
+"id": 6500014430,
+"name": "Almin Salkic",
+"cc": "SWE",
+"fargo": 719,
+"rob": 3298,
+"fid": "991529"
+},
+{
+"id": 5500000010,
+"name": "Aloysius Yapp",
+"cc": "SGP",
+"fargo": 845,
+"rob": 9828,
+"fid": "461222"
+},
+{
+"id": 6500002571,
+"name": "Ana Gradisnik",
+"cc": "SVN",
+"fargo": 694,
+"rob": 4380,
+"fid": "561081"
+},
+{
+"id": 6500013451,
+"name": "Anastasia Losseva",
+"cc": "EST",
+"fargo": 487,
+"rob": 1314,
+"fid": "1234349"
+},
+{
+"id": 1006136,
+"name": "Anders Brannfjell",
+"cc": "NOR",
+"fargo": 673,
+"rob": 1420,
+"fid": "1069274"
+},
+{
+"id": 1286246,
+"name": "Anders Edvardsson",
+"cc": "SWE",
+"fargo": 675,
+"rob": 5245,
+"fid": "936156"
+},
+{
+"id": 6500004680,
+"name": "Andrea Grosso",
+"cc": "ITA",
+"fargo": 722,
+"rob": 2922,
+"fid": "1103689"
+},
+{
+"id": 1095532,
+"name": "Andreas Sunnerdahl",
+"cc": "SWE",
+"fargo": 631,
+"rob": 1456,
+"fid": "1211761"
+},
+{
+"id": 6500000036,
+"name": "Andreja Klasovic",
+"cc": "SRB",
+"fargo": 734,
+"rob": 2917,
+"fid": "560996"
+},
+{
+"id": 61910,
+"name": "Andres Viidik",
+"cc": "EST",
+"fargo": 509,
+"rob": 2425,
+"fid": "1079377"
+},
+{
+"id": 12374794,
+"name": "Andrew Moorhouse",
+"cc": "ENG",
+"fargo": 659,
+"rob": 1016,
+"fid": "1177022"
+},
+{
+"id": 5500000111,
+"name": "Andri Januarta",
+"cc": "IDN",
+"fargo": 775,
+"rob": 1374,
+"fid": "1198731"
+},
+{
+"id": 6104415,
+"name": "Andrian Ristic",
+"cc": "SWE",
+"fargo": 680,
+"rob": 3278,
+"fid": "991517"
+},
+{
+"id": 6500013995,
+"name": "Angelina Lubinaz",
+"cc": "GER",
+"fargo": 631,
+"rob": 1120,
+"fid": "1056581"
+},
+{
+"id": 4469,
+"name": "Anna Grintšuk",
+"cc": "EST",
+"fargo": 539,
+"rob": 1388,
+"fid": "1094881"
+},
+{
+"id": 5500000225,
+"name": "Antonios Kakaris",
+"cc": "GRC",
+"fargo": 745,
+"rob": 3356,
+"fid": "969066"
+},
+{
+"id": 6500006957,
+"name": "Antti Rantanen",
+"cc": "FIN",
+"fargo": 665,
+"rob": 1735,
+"fid": "969283"
+},
+{
+"id": 6500007984,
+"name": "Ari Ratinen",
+"cc": "FIN",
+"fargo": 678,
+"rob": 2056,
+"fid": "1078279"
+},
+{
+"id": 1006145,
+"name": "Aria Senemar",
+"cc": "NOR",
+"fargo": 602,
+"rob": 1195,
+"fid": "1069489"
+},
+{
+"id": 6500014006,
+"name": "Arild Moilanen",
+"cc": "NOR",
+"fargo": 672,
+"rob": 1860,
+"fid": "1069275"
+},
+{
+"id": 6218147,
+"name": "Arne Arnesson",
+"cc": "SWE",
+"fargo": 547,
+"rob": 1304,
+"fid": "991552"
+},
+{
+"id": 6500004679,
+"name": "Arseni Sevastyanov",
+"cc": "FIN",
+"fargo": 773,
+"rob": 5926,
+"fid": "1003181"
+},
+{
+"id": 6500012387,
+"name": "Arttu Mikkola",
+"cc": "FIN",
+"fargo": 656,
+"rob": 1512,
+"fid": "1192912"
+},
+{
+"id": 5239433,
+"name": "Ashraful Asif",
+"cc": "BGD",
+"fargo": 553,
+"rob": 1232,
+"fid": "1078970"
+},
+{
+"id": 6500012393,
+"name": "Asko Hämäläinen",
+"cc": "FIN",
+"fargo": 689,
+"rob": 1440,
+"fid": "1234266"
+},
+{
+"id": 6500013799,
+"name": "Atle Bjorland",
+"cc": "NOR",
+"fargo": 619,
+"rob": 1171,
+"fid": "1078374"
+},
+{
+"id": 6500008389,
+"name": "Ayoub Bakhtaoui",
+"cc": "MAR",
+"fargo": 694,
+"rob": 1604,
+"fid": "1014709"
+},
+{
+"id": 5500000542,
+"name": "Bader Alawadhi",
+"cc": "KWT",
+"fargo": 789,
+"rob": 5451,
+"fid": "560089"
+},
+{
+"id": 6649580,
+"name": "Behruz Moghadam",
+"cc": "SWE",
+"fargo": 650,
+"rob": 3422,
+"fid": "991469"
+},
+{
+"id": 6500000033,
+"name": "Benjamin Belhassen",
+"cc": "FRA",
+"fargo": 715,
+"rob": 3840,
+"fid": "560229"
+},
+{
+"id": 5738538,
+"name": "Benjamin Herland Aralden",
+"cc": "NOR",
+"fargo": 661,
+"rob": 1577,
+"fid": "1081667"
+},
+{
+"id": 5500000375,
+"name": "Benji Buckley",
+"cc": "ENG",
+"fargo": 725,
+"rob": 11139,
+"fid": "560081"
+},
+{
+"id": 5500000139,
+"name": "Bernie Regalario",
+"cc": "PHL",
+"fargo": 817,
+"rob": 2688,
+"fid": "1104130"
+},
+{
+"id": 5500000457,
+"name": "Billy Thorpe",
+"cc": "USA",
+"fargo": 779,
+"rob": 13271,
+"fid": "13668"
+},
+{
+"id": 16668370,
+"name": "Björn Schütz",
+"cc": "SWE",
+"fargo": 571,
+"rob": 2577,
+"fid": "1159702"
+},
+{
+"id": 1006162,
+"name": "Bjørn Birger Andreassen",
+"cc": "NOR",
+"fargo": 511,
+"rob": 1540,
+"fid": "1078074"
+},
+{
+"id": 1954316,
+"name": "Bojan Stefanov",
+"cc": "SRB",
+"fargo": 685,
+"rob": 2219,
+"fid": "562664"
+},
+{
+"id": 6500007469,
+"name": "Boris Ivanovski",
+"cc": "GER",
+"fargo": 743,
+"rob": 4030,
+"fid": "1003166"
+},
+{
+"id": 6500014241,
+"name": "Borys Gaćkowski",
+"cc": "POL",
+"fargo": 623,
+"rob": 1287,
+"fid": "1283863"
+},
+{
+"id": 9217429,
+"name": "Brittany Bryant",
+"cc": "CAN",
+"fargo": 687,
+"rob": 9901,
+"fid": "13541"
+},
+{
+"id": 5500000415,
+"name": "Can Salim",
+"cc": "GER",
+"fargo": 773,
+"rob": 7619,
+"fid": "461162"
+},
+{
+"id": 5500000096,
+"name": "Carlo Biado",
+"cc": "PHL",
+"fargo": 841,
+"rob": 12550,
+"fid": "10331"
+},
+{
+"id": 5500000540,
+"name": "Carlo Blasi",
+"cc": "ITA",
+"fargo": 677,
+"rob": 2709,
+"fid": "1161267"
+},
+{
+"id": 6500003188,
+"name": "Casper Matikainen",
+"cc": "FIN",
+"fargo": 801,
+"rob": 9023,
+"fid": "561722"
+},
+{
+"id": 6500002810,
+"name": "Chantal Stadler",
+"cc": "GER",
+"fargo": 654,
+"rob": 1329,
+"fid": "1103754"
+},
+{
+"id": 5500001692,
+"name": "Chezka Centeno",
+"cc": "PHL",
+"fargo": 780,
+"rob": 3090,
+"fid": "621942"
+},
+{
+"id": 48859,
+"name": "Chihiro Kawahara",
+"cc": "JPN",
+"fargo": 752,
+"rob": 4906,
+"fid": "621881"
+},
+{
+"id": 6500012212,
+"name": "Chingiz Sadyhov",
+"cc": "SWE",
+"fargo": 600,
+"rob": 1542,
+"fid": "991571"
+},
+{
+"id": 5500000014,
+"name": "Chris Melling",
+"cc": "ENG",
+"fargo": 809,
+"rob": 7241,
+"fid": "760666"
+},
+{
+"id": 5500000961,
+"name": "Chris Reinhold",
+"cc": "USA",
+"fargo": 763,
+"rob": 8568,
+"fid": "925669"
+},
+{
+"id": 6500000285,
+"name": "Christian Johannessen",
+"cc": "NOR",
+"fargo": 709,
+"rob": 3423,
+"fid": "360861"
+},
+{
+"id": 6180822,
+"name": "Christian Rundqvist",
+"cc": "SWE",
+"fargo": 601,
+"rob": 1274,
+"fid": "991576"
+},
+{
+"id": 6500002840,
+"name": "Christine Steinlage",
+"cc": "GER",
+"fargo": 635,
+"rob": 3449,
+"fid": "930934"
+},
+{
+"id": 6500002706,
+"name": "Christos Papageorgiou",
+"cc": "GRC",
+"fargo": 731,
+"rob": 3344,
+"fid": "562222"
+},
+{
+"id": 6500003035,
+"name": "Claudia Von Rohr",
+"cc": "SUI",
+"fargo": 655,
+"rob": 4403,
+"fid": "930922"
+},
+{
+"id": 6308457,
+"name": "Conny Frodig",
+"cc": "SWE",
+"fargo": 587,
+"rob": 2312,
+"fid": "991586"
+},
+{
+"id": 5500000369,
+"name": "Cristian Surdea",
+"cc": "ROU",
+"fargo": 744,
+"rob": 2171,
+"fid": "562928"
+},
+{
+"id": 6110898,
+"name": "Damir Muholjic",
+"cc": "SWE",
+"fargo": 566,
+"rob": 1387,
+"fid": "991589"
+},
+{
+"id": 6500011796,
+"name": "Dan Andersson",
+"cc": "SWE",
+"fargo": 657,
+"rob": 6692,
+"fid": "991590"
+},
+{
+"id": 6500002512,
+"name": "Daniel Guttenberger",
+"cc": "AUT",
+"fargo": 775,
+"rob": 4022,
+"fid": "560978"
+},
+{
+"id": 7284524,
+"name": "Daniel Hult",
+"cc": "SWE",
+"fargo": 665,
+"rob": 1729,
+"fid": "991595"
+},
+{
+"id": 3184097,
+"name": "Daniel Kandi",
+"cc": "DEN",
+"fargo": 753,
+"rob": 1993,
+"fid": "561022"
+},
+{
+"id": 6500007201,
+"name": "Daniel Lang",
+"cc": "SVK",
+"fargo": 699,
+"rob": 1265,
+"fid": "1003281"
+},
+{
+"id": 1969741,
+"name": "Daniel Magnusson",
+"cc": "SWE",
+"fargo": 663,
+"rob": 3772,
+"fid": "991597"
+},
+{
+"id": 2312297,
+"name": "Daniel Rosander",
+"cc": "SWE",
+"fargo": 575,
+"rob": 1788,
+"fid": "1053349"
+},
+{
+"id": 5403445,
+"name": "Dario Rakic",
+"cc": "SWE",
+"fargo": 546,
+"rob": 3263,
+"fid": "991601"
+},
+{
+"id": 5500000527,
+"name": "Darren Appleton",
+"cc": "ENG",
+"fargo": 785,
+"rob": 10543,
+"fid": "847199"
+},
+{
+"id": 6500007101,
+"name": "Darya Siranchuk",
+"cc": "UKR",
+"fargo": 659,
+"rob": 2404,
+"fid": "1003096"
+},
+{
+"id": 5500000265,
+"name": "David Alcaide",
+"cc": "ESP",
+"fargo": 819,
+"rob": 15296,
+"fid": "461017"
+},
+{
+"id": 6500000055,
+"name": "David Larsson",
+"cc": "SWE",
+"fargo": 721,
+"rob": 3783,
+"fid": "561459"
+},
+{
+"id": 9197422,
+"name": "David Löfqvist",
+"cc": "SWE",
+"fargo": 573,
+"rob": 1470,
+"fid": "1115700"
+},
+{
+"id": 19242253,
+"name": "Davoud Mohammadi",
+"cc": "SWE",
+"fargo": 525,
+"rob": 1301,
+"fid": "1175037"
+},
+{
+"id": 5500000242,
+"name": "Dean Shields",
+"cc": "ENG",
+"fargo": 773,
+"rob": 2582,
+"fid": "1200930"
+},
+{
+"id": 4888728,
+"name": "Denis Dujso",
+"cc": "SWE",
+"fargo": 631,
+"rob": 1779,
+"fid": "991606"
+},
+{
+"id": 9016,
+"name": "Denis Grabe",
+"cc": "EST",
+"fargo": 811,
+"rob": 16344,
+"fid": "360321"
+},
+{
+"id": 6500007344,
+"name": "Dennis Laszkowski",
+"cc": "GER",
+"fargo": 785,
+"rob": 6345,
+"fid": "998790"
+},
+{
+"id": 6500000083,
+"name": "Dimitri Jungo",
+"cc": "SUI",
+"fargo": 789,
+"rob": 9347,
+"fid": "461101"
+},
+{
+"id": 5500000197,
+"name": "Dimitris Loukatos",
+"cc": "GRC",
+"fargo": 779,
+"rob": 7017,
+"fid": "973759"
+},
+{
+"id": 6500004294,
+"name": "Dmytro Skorokhodov",
+"cc": "UKR",
+"fargo": 708,
+"rob": 3430,
+"fid": "1003198"
+},
+{
+"id": 6500014205,
+"name": "Dominik Demel",
+"cc": "CZE",
+"fargo": 615,
+"rob": 1181,
+"fid": "1399457"
+},
+{
+"id": 6500005387,
+"name": "Dominik Regieli",
+"cc": "POL",
+"fargo": 686,
+"rob": 3783,
+"fid": "1108401"
+},
+{
+"id": 6500000250,
+"name": "Dominik Zajac",
+"cc": "POL",
+"fargo": 718,
+"rob": 3305,
+"fid": "562860"
+},
+{
+"id": 5500000874,
+"name": "Donny Mills",
+"cc": "USA",
+"fargo": 752,
+"rob": 6412,
+"fid": "360619"
+},
+{
+"id": 6639461,
+"name": "Dragos Wiszniovschi",
+"cc": "SWE",
+"fargo": 649,
+"rob": 1459,
+"fid": "1248792"
+},
+{
+"id": 2748608,
+"name": "Dzenan Sahovic",
+"cc": "SWE",
+"fargo": 639,
+"rob": 3035,
+"fid": "991417"
+},
+{
+"id": 6500006494,
+"name": "Dzmitry Hryb",
+"cc": "POL",
+"fargo": 739,
+"rob": 2359,
+"fid": "1146104"
+},
+{
+"id": 5500000133,
+"name": "Edward Koyongian",
+"cc": "IDN",
+"fargo": 787,
+"rob": 1197,
+"fid": "1273791"
+},
+{
+"id": 6500014871,
+"name": "Eelis Alanen",
+"cc": "FIN",
+"fargo": 583,
+"rob": 1129,
+"fid": "1303929"
+},
+{
+"id": 6500005327,
+"name": "Eero Romppanen",
+"cc": "FIN",
+"fargo": 497,
+"rob": 1255,
+"fid": "1078282"
+},
+{
+"id": 6500012357,
+"name": "Eevertti Övermark",
+"cc": "FIN",
+"fargo": 666,
+"rob": 1764,
+"fid": "1069686"
+},
+{
+"id": 5500000207,
+"name": "Elliott Sanderson",
+"cc": "ENG",
+"fargo": 771,
+"rob": 8777,
+"fid": "562538"
+},
+{
+"id": 16567,
+"name": "Elvis Miglans",
+"cc": "SWE",
+"fargo": 669,
+"rob": 4220,
+"fid": "991612"
+},
+{
+"id": 1006215,
+"name": "Emil Andreassen",
+"cc": "NOR",
+"fargo": 497,
+"rob": 1170,
+"fid": "1069355"
+},
+{
+"id": 6500012903,
+"name": "Emmi Oravainen",
+"cc": "FIN",
+"fargo": 526,
+"rob": 1268,
+"fid": "1234347"
+},
+{
+"id": 6500007860,
+"name": "Eric Mattern",
+"cc": "GER",
+"fargo": 767,
+"rob": 1956,
+"fid": "1107821"
+},
+{
+"id": 13872481,
+"name": "Erik Weiselius",
+"cc": "SWE",
+"fargo": 767,
+"rob": 1953,
+"fid": "562783"
+},
+{
+"id": 5500000511,
+"name": "Ernesto Gjoni",
+"cc": "ALB",
+"fargo": 743,
+"rob": 2529,
+"fid": "1077402"
+},
+{
+"id": 1272012,
+"name": "Erol Dane Mula",
+"cc": "PHL",
+"fargo": 621,
+"rob": 2233,
+"fid": "1078078"
+},
+{
+"id": 89291,
+"name": "Ervin Solodilov",
+"cc": "EST",
+"fargo": 569,
+"rob": 1266,
+"fid": "1269717"
+},
+{
+"id": 7120056,
+"name": "Esa Strandman",
+"cc": "FIN",
+"fargo": 631,
+"rob": 1946,
+"fid": "991618"
+},
+{
+"id": 6500004489,
+"name": "Fabio Rizzi",
+"cc": "FRA",
+"fargo": 791,
+"rob": 4292,
+"fid": "969266"
+},
+{
+"id": 6500013222,
+"name": "Fabrizio Ingrasci",
+"cc": "GER",
+"fargo": 689,
+"rob": 1948,
+"fid": "1141034"
+},
+{
+"id": 5500000371,
+"name": "Fedor Gorst",
+"cc": "USA",
+"fargo": 851,
+"rob": 17411,
+"fid": "561590"
+},
+{
+"id": 6500014243,
+"name": "Felipe Gonzalez",
+"cc": "ESP",
+"fargo": 683,
+"rob": 2101,
+"fid": "1162126"
+},
+{
+"id": 1564009,
+"name": "Felix Karlberg",
+"cc": "SWE",
+"fargo": 679,
+"rob": 3322,
+"fid": "991621"
+},
+{
+"id": 6500000972,
+"name": "Felix Vogel",
+"cc": "GER",
+"fargo": 789,
+"rob": 7160,
+"fid": "562843"
+},
+{
+"id": 6506382,
+"name": "Fenix Rautio",
+"cc": "SWE",
+"fargo": 571,
+"rob": 1780,
+"fid": "1152419"
+},
+{
+"id": 5500000420,
+"name": "Fitim Haradinaj",
+"cc": "XKX",
+"fargo": 775,
+"rob": 3594,
+"fid": "561263"
+},
+{
+"id": 5500000261,
+"name": "Francesco Candela",
+"cc": "ITA",
+"fargo": 759,
+"rob": 6991,
+"fid": "560181"
+},
+{
+"id": 6500000995,
+"name": "Francisco Sanchez Ruiz",
+"cc": "ESP",
+"fargo": 847,
+"rob": 16414,
+"fid": "562117"
+},
+{
+"id": 5500000234,
+"name": "Fraser Patrick",
+"cc": "ENG",
+"fargo": 780,
+"rob": 3119,
+"fid": "562326"
+},
+{
+"id": 44809,
+"name": "Fred Martmaa",
+"cc": "EST",
+"fargo": 581,
+"rob": 1587,
+"fid": "1079421"
+},
+{
+"id": 1006240,
+"name": "Fredrik Førde",
+"cc": "NOR",
+"fargo": 619,
+"rob": 1184,
+"fid": "1078718"
+},
+{
+"id": 4736556,
+"name": "Fuad Dzin",
+"cc": "SWE",
+"fargo": 641,
+"rob": 4509,
+"fid": "560638"
+},
+{
+"id": 6500013240,
+"name": "Gabriel Aspholm",
+"cc": "SWE",
+"fargo": 707,
+"rob": 5112,
+"fid": "1075823"
+},
+{
+"id": 61633,
+"name": "Georg Grossthal",
+"cc": "EST",
+"fargo": 609,
+"rob": 2153,
+"fid": "1079417"
+},
+{
+"id": 5500000200,
+"name": "George Antonakis",
+"cc": "GRC",
+"fargo": 755,
+"rob": 3219,
+"fid": "969060"
+},
+{
+"id": 6500003981,
+"name": "Georgi Georgiev",
+"cc": "BGR",
+"fargo": 787,
+"rob": 7963,
+"fid": "929815"
+},
+{
+"id": 34107,
+"name": "Gert Gnadeberg",
+"cc": "EST",
+"fargo": 628,
+"rob": 2960,
+"fid": "991441"
+},
+{
+"id": 3670591,
+"name": "Gert Laursen",
+"cc": "DEN",
+"fargo": 673,
+"rob": 1187,
+"fid": "1082024"
+},
+{
+"id": 6500007857,
+"name": "Gert Maimre",
+"cc": "EST",
+"fargo": 709,
+"rob": 5599,
+"fid": "1027538"
+},
+{
+"id": 6500000762,
+"name": "Gianluca Boni",
+"cc": "ITA",
+"fargo": 689,
+"rob": 1877,
+"fid": "1003246"
+},
+{
+"id": 6500007309,
+"name": "Glenn Andersson",
+"cc": "SWE",
+"fargo": 653,
+"rob": 4637,
+"fid": "991640"
+},
+{
+"id": 7957612,
+"name": "Guido Thyssen",
+"cc": "GER",
+"fargo": 494,
+"rob": 1491,
+"fid": "1083521"
+},
+{
+"id": 26474,
+"name": "Gunnar Pleer",
+"cc": "EST",
+"fargo": 582,
+"rob": 1210,
+"fid": "1079378"
+},
+{
+"id": 6500014050,
+"name": "Gustav Liljeby",
+"cc": "SWE",
+"fargo": 717,
+"rob": 2192,
+"fid": "991649"
+},
+{
+"id": 12632674,
+"name": "Göran Nilsson",
+"cc": "SWE",
+"fargo": 557,
+"rob": 1348,
+"fid": "1130021"
+},
+{
+"id": 9838597,
+"name": "Hans Kannika Larsson",
+"cc": "SWE",
+"fargo": 653,
+"rob": 1252,
+"fid": "1117811"
+},
+{
+"id": 52190302,
+"name": "Harin Lee",
+"cc": "KOR",
+"fargo": 719,
+"rob": 1398,
+"fid": "1205948"
+},
+{
+"id": 8531485,
+"name": "Harry Larsson",
+"cc": "SWE",
+"fargo": 515,
+"rob": 1463,
+"fid": "1119503"
+},
+{
+"id": 10689,
+"name": "Harry Ventsel",
+"cc": "EST",
+"fargo": 579,
+"rob": 2384,
+"fid": "1079407"
+},
+{
+"id": 5500000150,
+"name": "Harry Vergara",
+"cc": "PHL",
+"fargo": 796,
+"rob": 1633,
+"fid": "1017288"
+},
+{
+"id": 5500001941,
+"name": "Hayato Hijikata",
+"cc": "JPN",
+"fargo": 810,
+"rob": 4901,
+"fid": "461087"
+},
+{
+"id": 5500000828,
+"name": "Hayden Ernst",
+"cc": "USA",
+"fargo": 710,
+"rob": 3676,
+"fid": "1144188"
+},
+{
+"id": 5237718,
+"name": "Hayder Barem",
+"cc": "SWE",
+"fargo": 495,
+"rob": 1105,
+"fid": "1139805"
+},
+{
+"id": 6500004580,
+"name": "Helene Krogsgaard Mikkelsen",
+"cc": "DEN",
+"fargo": 547,
+"rob": 2323,
+"fid": "1070318"
+},
+{
+"id": 44808,
+"name": "Henri Tuulik",
+"cc": "EST",
+"fargo": 502,
+"rob": 1059,
+"fid": "1079440"
+},
+{
+"id": 1006270,
+"name": "Henrik Flatås",
+"cc": "NOR",
+"fargo": 567,
+"rob": 1269,
+"fid": "1069364"
+},
+{
+"id": 6500000145,
+"name": "Henrik Hagen",
+"cc": "NOR",
+"fargo": 693,
+"rob": 2809,
+"fid": "560966"
+},
+{
+"id": 39811,
+"name": "Henrik Larsson",
+"cc": "SWE",
+"fargo": 627,
+"rob": 3617,
+"fid": "561027"
+},
+{
+"id": 6682639,
+"name": "Henrik Wernersson",
+"cc": "SWE",
+"fargo": 491,
+"rob": 1141,
+"fid": "991668"
+},
+{
+"id": 6500000895,
+"name": "Henrique Correia",
+"cc": "PRT",
+"fargo": 755,
+"rob": 3206,
+"fid": "610330"
+},
+{
+"id": 6500004601,
+"name": "Hervis Hamid",
+"cc": "NED",
+"fargo": 619,
+"rob": 7065,
+"fid": "1068372"
+},
+{
+"id": 6500013225,
+"name": "Hlynur Stefansson",
+"cc": "ISL",
+"fargo": 668,
+"rob": 3987,
+"fid": "1075825"
+},
+{
+"id": 6500000134,
+"name": "Holger Gries",
+"cc": "GER",
+"fargo": 703,
+"rob": 2302,
+"fid": "561588"
+},
+{
+"id": 6500001103,
+"name": "Hubert Lopotko",
+"cc": "POL",
+"fargo": 785,
+"rob": 4790,
+"fid": "562076"
+},
+{
+"id": 6500014852,
+"name": "Hugo Boyle",
+"cc": "ESP",
+"fargo": 641,
+"rob": 2631,
+"fid": "1082620"
+},
+{
+"id": 5500000238,
+"name": "Hunter Lombardo",
+"cc": "USA",
+"fargo": 741,
+"rob": 11323,
+"fid": "16866"
+},
+{
+"id": 6246259,
+"name": "Hussein Abdallah",
+"cc": "SWE",
+"fargo": 606,
+"rob": 2832,
+"fid": "991672"
+},
+{
+"id": 6234514,
+"name": "Håkan Larsson",
+"cc": "SWE",
+"fargo": 653,
+"rob": 2154,
+"fid": "1055721"
+},
+{
+"id": 31164,
+"name": "Illimar Ventsel",
+"cc": "EST",
+"fargo": 661,
+"rob": 3009,
+"fid": "1027540"
+},
+{
+"id": 4736562,
+"name": "Imad Hamid",
+"cc": "PSE",
+"fargo": 621,
+"rob": 2206,
+"fid": "991673"
+},
+{
+"id": 5500000363,
+"name": "Imran Majid",
+"cc": "ENG",
+"fargo": 777,
+"rob": 12893,
+"fid": "845505"
+},
+{
+"id": 6500002591,
+"name": "Ina Kaplan",
+"cc": "GER",
+"fargo": 717,
+"rob": 4419,
+"fid": "561244"
+},
+{
+"id": 6500000928,
+"name": "Ine Helvik",
+"cc": "NOR",
+"fargo": 617,
+"rob": 5294,
+"fid": "561344"
+},
+{
+"id": 1006277,
+"name": "Ingolf Höns",
+"cc": "NOR",
+"fargo": 599,
+"rob": 2086,
+"fid": "1069295"
+},
+{
+"id": 6500014250,
+"name": "Iris Eijmberts",
+"cc": "NED",
+"fargo": 557,
+"rob": 3134,
+"fid": "1182824"
+},
+{
+"id": 6500007485,
+"name": "Ivan Rudenko",
+"cc": "UKR",
+"fargo": 719,
+"rob": 2761,
+"fid": "1003205"
+},
+{
+"id": 6500000057,
+"name": "Ivica Putnik",
+"cc": "HRV",
+"fargo": 747,
+"rob": 5313,
+"fid": "461152"
+},
+{
+"id": 6500013681,
+"name": "Jacek Pietrzyk",
+"cc": "POL",
+"fargo": 686,
+"rob": 1110,
+"fid": "1087747"
+},
+{
+"id": 5500001206,
+"name": "Jack Beggs",
+"cc": "NZL",
+"fargo": 689,
+"rob": 2279,
+"fid": "1106331"
+},
+{
+"id": 1298131,
+"name": "Jack Nordby",
+"cc": "NOR",
+"fargo": 543,
+"rob": 1635,
+"fid": "1069367"
+},
+{
+"id": 27186442,
+"name": "Jacob Gyll",
+"cc": "SWE",
+"fargo": 495,
+"rob": 1191,
+"fid": "1201076"
+},
+{
+"id": 6500014668,
+"name": "Jacob Sæther",
+"cc": "NOR",
+"fargo": 605,
+"rob": 1098,
+"fid": "1262299"
+},
+{
+"id": 41878996,
+"name": "Jakop Yaeso",
+"cc": "PHL",
+"fargo": 603,
+"rob": 1028,
+"fid": "1245398"
+},
+{
+"id": 6500013233,
+"name": "Jakub Chrobot",
+"cc": "POL",
+"fargo": 721,
+"rob": 1961,
+"fid": "1220043"
+},
+{
+"id": 5500000116,
+"name": "James Aranas",
+"cc": "PHL",
+"fargo": 813,
+"rob": 7563,
+"fid": "610021"
+},
+{
+"id": 1006290,
+"name": "Jan Ove Kvalsund Hansen",
+"cc": "NOR",
+"fargo": 644,
+"rob": 1951,
+"fid": "1078083"
+},
+{
+"id": 6500003470,
+"name": "Jan Rempe",
+"cc": "NED",
+"fargo": 735,
+"rob": 9062,
+"fid": "629688"
+},
+{
+"id": 6500002641,
+"name": "Jan Van Lierop",
+"cc": "NED",
+"fargo": 784,
+"rob": 9815,
+"fid": "562969"
+},
+{
+"id": 6500012822,
+"name": "Jan Vimr",
+"cc": "CZE",
+"fargo": 623,
+"rob": 1882,
+"fid": "1188250"
+},
+{
+"id": 6500002130,
+"name": "Jani Siekkinen",
+"cc": "FIN",
+"fargo": 741,
+"rob": 8158,
+"fid": "562561"
+},
+{
+"id": 5500000470,
+"name": "Jani Uski",
+"cc": "FIN",
+"fargo": 797,
+"rob": 6117,
+"fid": "923794"
+},
+{
+"id": 6500011800,
+"name": "Janne Huttunen",
+"cc": "FIN",
+"fargo": 669,
+"rob": 2723,
+"fid": "1234267"
+},
+{
+"id": 46007,
+"name": "Janno Piilbaum",
+"cc": "EST",
+"fargo": 556,
+"rob": 2304,
+"fid": "1027541"
+},
+{
+"id": 11662906,
+"name": "Jasmin Dzinic",
+"cc": "SWE",
+"fargo": 593,
+"rob": 2035,
+"fid": "1159705"
+},
+{
+"id": 6500000079,
+"name": "Jasmin Ouschan",
+"cc": "AUT",
+"fargo": 761,
+"rob": 7963,
+"fid": "360838"
+},
+{
+"id": 5500000230,
+"name": "Jayson Shaw",
+"cc": "ENG",
+"fargo": 835,
+"rob": 16515,
+"fid": "856604"
+},
+{
+"id": 5500000164,
+"name": "Jeffrey De Luna",
+"cc": "PHL",
+"fargo": 805,
+"rob": 9916,
+"fid": "461055"
+},
+{
+"id": 5500000117,
+"name": "Jeffrey Ignacio",
+"cc": "PHL",
+"fargo": 815,
+"rob": 5791,
+"fid": "461093"
+},
+{
+"id": 6914053,
+"name": "Jenna Jokinen",
+"cc": "FIN",
+"fargo": 524,
+"rob": 1776,
+"fid": "1035246"
+},
+{
+"id": 9226664,
+"name": "Jens Bergman",
+"cc": "SWE",
+"fargo": 598,
+"rob": 1088,
+"fid": "1115698"
+},
+{
+"id": 3259099,
+"name": "Jens Hytting Petersen",
+"cc": "DEN",
+"fargo": 611,
+"rob": 2610,
+"fid": "1066199"
+},
+{
+"id": 12241780,
+"name": "Jeppe Poulsen",
+"cc": "DEN",
+"fargo": 561,
+"rob": 1276,
+"fid": "1168226"
+},
+{
+"id": 6500003943,
+"name": "Jere Virtaranta",
+"cc": "FIN",
+"fargo": 766,
+"rob": 5403,
+"fid": "978002"
+},
+{
+"id": 6500011603,
+"name": "Jeremi Nowak",
+"cc": "POL",
+"fargo": 725,
+"rob": 2540,
+"fid": "1077489"
+},
+{
+"id": 1688615,
+"name": "Jesper Schmidt",
+"cc": "DEN",
+"fargo": 670,
+"rob": 2221,
+"fid": "562170"
+},
+{
+"id": 2290194,
+"name": "Jesper Vestergaard Nielsen",
+"cc": "DEN",
+"fargo": 669,
+"rob": 2587,
+"fid": "1070310"
+},
+{
+"id": 6500013159,
+"name": "Jesse Jokitie",
+"cc": "FIN",
+"fargo": 596,
+"rob": 1053,
+"fid": "1192907"
+},
+{
+"id": 5500000434,
+"name": "Jj Faul",
+"cc": "ZAF",
+"fargo": 701,
+"rob": 3642,
+"fid": "1135635"
+},
+{
+"id": 6500013232,
+"name": "Joakim Langkås",
+"cc": "NOR",
+"fargo": 667,
+"rob": 1980,
+"fid": "1193839"
+},
+{
+"id": 6500001735,
+"name": "Joel Kartowikromo",
+"cc": "NED",
+"fargo": 739,
+"rob": 3103,
+"fid": "560828"
+},
+{
+"id": 1160823,
+"name": "Joey Van Gils",
+"cc": "SWE",
+"fargo": 579,
+"rob": 1339,
+"fid": "1077208"
+},
+{
+"id": 1281841,
+"name": "Johan Svanberg",
+"cc": "SWE",
+"fargo": 689,
+"rob": 4091,
+"fid": "991709"
+},
+{
+"id": 6114045,
+"name": "Johan Weddig",
+"cc": "SWE",
+"fargo": 617,
+"rob": 4548,
+"fid": "991703"
+},
+{
+"id": 5500000182,
+"name": "Johann Chua",
+"cc": "PHL",
+"fargo": 844,
+"rob": 6673,
+"fid": "461048"
+},
+{
+"id": 6500011577,
+"name": "Johanna Indlekofer",
+"cc": "GER",
+"fargo": 643,
+"rob": 1209,
+"fid": "998839"
+},
+{
+"id": 6500003598,
+"name": "Johanna Vartiainen",
+"cc": "FIN",
+"fargo": 555,
+"rob": 2904,
+"fid": "923811"
+},
+{
+"id": 5500000013,
+"name": "John Morra",
+"cc": "CAN",
+"fargo": 800,
+"rob": 24536,
+"fid": "10362"
+},
+{
+"id": 1006312,
+"name": "Johnny Ellingsen",
+"cc": "NOR",
+"fargo": 574,
+"rob": 1319,
+"fid": "1069375"
+},
+{
+"id": 39144,
+"name": "Jokūbas Silantjevas",
+"cc": "LIT",
+"fargo": 727,
+"rob": 3029,
+"fid": "1079398"
+},
+{
+"id": 6500005391,
+"name": "Jolien Schuurman",
+"cc": "NED",
+"fargo": 635,
+"rob": 2789,
+"fid": "1077215"
+},
+{
+"id": 6500013568,
+"name": "Jonah Kramer",
+"cc": "SWE",
+"fargo": 607,
+"rob": 1414,
+"fid": "1151746"
+},
+{
+"id": 39034855,
+"name": "Jonas Nilsson",
+"cc": "NOR",
+"fargo": 511,
+"rob": 1273,
+"fid": "992089"
+},
+{
+"id": 9990106,
+"name": "Jonas Nyman",
+"cc": "SWE",
+"fargo": 598,
+"rob": 1250,
+"fid": "1115707"
+},
+{
+"id": 2713504,
+"name": "Jonathan Gustavsson",
+"cc": "SWE",
+"fargo": 663,
+"rob": 1833,
+"fid": "991732"
+},
+{
+"id": 82076,
+"name": "Joonas Saloheimo",
+"cc": "FIN",
+"fargo": 592,
+"rob": 1049,
+"fid": "1003252"
+},
+{
+"id": 6500007119,
+"name": "Joonas Vartia",
+"cc": "FIN",
+"fargo": 687,
+"rob": 1556,
+"fid": "1069728"
+},
+{
+"id": 6500001045,
+"name": "Jorge Tinoco",
+"cc": "PRT",
+"fargo": 729,
+"rob": 1009,
+"fid": "562845"
+},
+{
+"id": 6500002229,
+"name": "Joshua Filler",
+"cc": "GER",
+"fargo": 866,
+"rob": 16030,
+"fid": "461062"
+},
+{
+"id": 1956149,
+"name": "Jouni Koivumaa",
+"cc": "SWE",
+"fargo": 489,
+"rob": 1129,
+"fid": "1053364"
+},
+{
+"id": 15762435,
+"name": "Juha Laaksonen",
+"cc": "FIN",
+"fargo": 607,
+"rob": 1200,
+"fid": "1078308"
+},
+{
+"id": 6500007522,
+"name": "Juho Teittinen",
+"cc": "FIN",
+"fargo": 732,
+"rob": 2979,
+"fid": "1107815"
+},
+{
+"id": 6500012381,
+"name": "Julia Kuutti",
+"cc": "FIN",
+"fargo": 555,
+"rob": 2754,
+"fid": "1078309"
+},
+{
+"id": 5500000047,
+"name": "Julian Serradilla",
+"cc": "SUI",
+"fargo": 770,
+"rob": 2352,
+"fid": "990793"
+},
+{
+"id": 6500002219,
+"name": "Juri Pisklov",
+"cc": "GER",
+"fargo": 789,
+"rob": 2592,
+"fid": "562482"
+},
+{
+"id": 4400,
+"name": "Juss Saska",
+"cc": "EST",
+"fargo": 651,
+"rob": 1801,
+"fid": "1079416"
+},
+{
+"id": 7979488,
+"name": "Jussi Ahde",
+"cc": "NPL",
+"fargo": 569,
+"rob": 1173,
+"fid": "1079278"
+},
+{
+"id": 5500000003,
+"name": "Justin Bergman",
+"cc": "USA",
+"fargo": 797,
+"rob": 9368,
+"fid": "1798"
+},
+{
+"id": 5500001902,
+"name": "Juuso Nuutinen",
+"cc": "FIN",
+"fargo": 734,
+"rob": 1341,
+"fid": "562335"
+},
+{
+"id": 6500001036,
+"name": "Jyri Halttu",
+"cc": "SWE",
+"fargo": 706,
+"rob": 2947,
+"fid": "561509"
+},
+{
+"id": 1006323,
+"name": "Jørn Betten",
+"cc": "NOR",
+"fargo": 607,
+"rob": 2372,
+"fid": "1078726"
+},
+{
+"id": 6500005710,
+"name": "Kai Kraft",
+"cc": "SWE",
+"fargo": 630,
+"rob": 4027,
+"fid": "991739"
+},
+{
+"id": 6500004535,
+"name": "Karl Gnadeberg",
+"cc": "EST",
+"fargo": 753,
+"rob": 9787,
+"fid": "991442"
+},
+{
+"id": 13681,
+"name": "Kasparas Budnikas",
+"cc": "LIT",
+"fargo": 696,
+"rob": 1130,
+"fid": "1234258"
+},
+{
+"id": 3239798,
+"name": "Kasper Løkka Bülow",
+"cc": "DEN",
+"fargo": 727,
+"rob": 1407,
+"fid": "1352556"
+},
+{
+"id": 6500013910,
+"name": "Katrine Sætereng",
+"cc": "NOR",
+"fargo": 535,
+"rob": 1090,
+"fid": "1262300"
+},
+{
+"id": 8600780,
+"name": "Kennedy Meyman",
+"cc": "USA",
+"fargo": 601,
+"rob": 5272,
+"fid": "1003443"
+},
+{
+"id": 2298198,
+"name": "Kenneth Mydland",
+"cc": "NOR",
+"fargo": 635,
+"rob": 1205,
+"fid": "1069378"
+},
+{
+"id": 1006333,
+"name": "Kent Hansen",
+"cc": "NOR",
+"fargo": 548,
+"rob": 3245,
+"fid": "1069379"
+},
+{
+"id": 6500003363,
+"name": "Kent Karlsson",
+"cc": "SWE",
+"fargo": 693,
+"rob": 3877,
+"fid": "628171"
+},
+{
+"id": 6500000155,
+"name": "Kevin Lannoye",
+"cc": "BEL",
+"fargo": 721,
+"rob": 4222,
+"fid": "561323"
+},
+{
+"id": 5500000367,
+"name": "Khalid Alghamdi",
+"cc": "SAU",
+"fargo": 761,
+"rob": 2779,
+"fid": "990784"
+},
+{
+"id": 6121015,
+"name": "Kim Jacobsson",
+"cc": "PHL",
+"fargo": 653,
+"rob": 1672,
+"fid": "991751"
+},
+{
+"id": 8952656,
+"name": "Kim Palmqvist",
+"cc": "SWE",
+"fargo": 587,
+"rob": 1052,
+"fid": "1132386"
+},
+{
+"id": 6500012232,
+"name": "Kim Soo Garmark",
+"cc": "NOR",
+"fargo": 677,
+"rob": 3980,
+"fid": "1078086"
+},
+{
+"id": 1435681,
+"name": "Knut Isaksen",
+"cc": "NOR",
+"fargo": 580,
+"rob": 1909,
+"fid": "1069305"
+},
+{
+"id": 6500002873,
+"name": "Konrad Juszczyszyn",
+"cc": "POL",
+"fargo": 801,
+"rob": 14331,
+"fid": "560982"
+},
+{
+"id": 6500013656,
+"name": "Konsta Kiviniemi",
+"cc": "FIN",
+"fargo": 583,
+"rob": 1231,
+"fid": "1201079"
+},
+{
+"id": 6500003059,
+"name": "Kristina Tkach",
+"cc": "RUS",
+"fargo": 751,
+"rob": 10188,
+"fid": "562728"
+},
+{
+"id": 6500002768,
+"name": "Kristina Zlateva",
+"cc": "BGR",
+"fargo": 714,
+"rob": 5863,
+"fid": "562879"
+},
+{
+"id": 5500000937,
+"name": "Landon Hollingsworth",
+"cc": "USA",
+"fargo": 741,
+"rob": 8131,
+"fid": "987693"
+},
+{
+"id": 1006360,
+"name": "Lars Harby",
+"cc": "NOR",
+"fargo": 655,
+"rob": 2887,
+"fid": "991497"
+},
+{
+"id": 2186139,
+"name": "Lasse Buhl",
+"cc": "DEN",
+"fargo": 691,
+"rob": 3063,
+"fid": "1070307"
+},
+{
+"id": 6221124,
+"name": "Laszlo Szili",
+"cc": "SWE",
+"fargo": 585,
+"rob": 4013,
+"fid": "562938"
+},
+{
+"id": 6500005776,
+"name": "Leevi Auresto",
+"cc": "FIN",
+"fargo": 705,
+"rob": 3121,
+"fid": "1078315"
+},
+{
+"id": 6500003968,
+"name": "Lena Primus",
+"cc": "AUT",
+"fargo": 654,
+"rob": 2422,
+"fid": "978230"
+},
+{
+"id": 6500005454,
+"name": "Lenni Auresto",
+"cc": "FIN",
+"fargo": 639,
+"rob": 2115,
+"fid": "1078316"
+},
+{
+"id": 4470,
+"name": "Liana Machukans",
+"cc": "EST",
+"fargo": 545,
+"rob": 1118,
+"fid": "1079383"
+},
+{
+"id": 6500007844,
+"name": "Linnea Hjalmarström",
+"cc": "SWE",
+"fargo": 659,
+"rob": 3537,
+"fid": "1053367"
+},
+{
+"id": 2713502,
+"name": "Linus Wallgren",
+"cc": "SWE",
+"fargo": 575,
+"rob": 1064,
+"fid": "991782"
+},
+{
+"id": 6500002586,
+"name": "Louise Furberg",
+"cc": "SWE",
+"fargo": 636,
+"rob": 8919,
+"fid": "561313"
+},
+{
+"id": 35004424,
+"name": "Love Arvehammar",
+"cc": "SWE",
+"fargo": 545,
+"rob": 1154,
+"fid": "1282035"
+},
+{
+"id": 6500014181,
+"name": "Lovro Bračun",
+"cc": "HRV",
+"fargo": 623,
+"rob": 2947,
+"fid": "1274418"
+},
+{
+"id": 6500004478,
+"name": "Luca Menn",
+"cc": "GER",
+"fargo": 780,
+"rob": 5118,
+"fid": "975381"
+},
+{
+"id": 6500001542,
+"name": "Luca Montanari",
+"cc": "ITA",
+"fargo": 737,
+"rob": 4236,
+"fid": "561578"
+},
+{
+"id": 6500007831,
+"name": "Luka Bugarski",
+"cc": "SRB",
+"fargo": 709,
+"rob": 2752,
+"fid": "1070624"
+},
+{
+"id": 6500003988,
+"name": "Lukas Andersson",
+"cc": "SWE",
+"fargo": 711,
+"rob": 5092,
+"fid": "981709"
+},
+{
+"id": 6222842,
+"name": "Luqman Malik",
+"cc": "SWE",
+"fargo": 557,
+"rob": 1370,
+"fid": "991786"
+},
+{
+"id": 7175041,
+"name": "Machael Yousif",
+"cc": "SWE",
+"fargo": 645,
+"rob": 1931,
+"fid": "1075813"
+},
+{
+"id": 16998,
+"name": "Maciej Trudnowski",
+"cc": "POL",
+"fargo": 647,
+"rob": 2974,
+"fid": "969306"
+},
+{
+"id": 1006367,
+"name": "Magne Saltnessand",
+"cc": "NOR",
+"fargo": 576,
+"rob": 2242,
+"fid": "991499"
+},
+{
+"id": 6288185,
+"name": "Magnus Strand",
+"cc": "SWE",
+"fargo": 639,
+"rob": 1927,
+"fid": "991787"
+},
+{
+"id": 6500000563,
+"name": "Magnus Westerlund",
+"cc": "SWE",
+"fargo": 643,
+"rob": 1343,
+"fid": "992069"
+},
+{
+"id": 6500008953,
+"name": "Mahmut Mutto",
+"cc": "SWE",
+"fargo": 693,
+"rob": 6345,
+"fid": "991436"
+},
+{
+"id": 6500005777,
+"name": "Maj Badovinac",
+"cc": "SVN",
+"fargo": 666,
+"rob": 1857,
+"fid": "1107827"
+},
+{
+"id": 6500005778,
+"name": "Maks Benko",
+"cc": "SVN",
+"fargo": 756,
+"rob": 4016,
+"fid": "1107828"
+},
+{
+"id": 6500001108,
+"name": "Manuel Pereira",
+"cc": "PRT",
+"fargo": 725,
+"rob": 1223,
+"fid": "10740"
+},
+{
+"id": 6500000920,
+"name": "Marc Bijsterbosch",
+"cc": "NED",
+"fargo": 788,
+"rob": 13623,
+"fid": "461033"
+},
+{
+"id": 5500000330,
+"name": "Marcel Price",
+"cc": "ENG",
+"fargo": 729,
+"rob": 5017,
+"fid": "971469"
+},
+{
+"id": 6500002456,
+"name": "Marco Spitzky",
+"cc": "GER",
+"fargo": 785,
+"rob": 2215,
+"fid": "562947"
+},
+{
+"id": 5500000210,
+"name": "Marco Teutscher",
+"cc": "NED",
+"fargo": 811,
+"rob": 10324,
+"fid": "461195"
+},
+{
+"id": 6500013488,
+"name": "Marcus Aarde",
+"cc": "EST",
+"fargo": 607,
+"rob": 1341,
+"fid": "1234260"
+},
+{
+"id": 6500000004,
+"name": "Marcus Chamat",
+"cc": "SWE",
+"fargo": 775,
+"rob": 10319,
+"fid": "876996"
+},
+{
+"id": 11850307,
+"name": "Marcus Mentzler",
+"cc": "DEN",
+"fargo": 633,
+"rob": 1727,
+"fid": "971600"
+},
+{
+"id": 6500000693,
+"name": "Marcus Sjöberg",
+"cc": "SWE",
+"fargo": 695,
+"rob": 5316,
+"fid": "562378"
+},
+{
+"id": 6500000851,
+"name": "Mario He",
+"cc": "AUT",
+"fargo": 817,
+"rob": 18606,
+"fid": "460017"
+},
+{
+"id": 27531,
+"name": "Mario Palumets",
+"cc": "EST",
+"fargo": 647,
+"rob": 1561,
+"fid": "1079482"
+},
+{
+"id": 1015952,
+"name": "Marius Farås",
+"cc": "NOR",
+"fargo": 542,
+"rob": 1407,
+"fid": "1069383"
+},
+{
+"id": 6500013547,
+"name": "Mariusz Gnitecki",
+"cc": "POL",
+"fargo": 681,
+"rob": 1400,
+"fid": "1246973"
+},
+{
+"id": 6500001507,
+"name": "Mariusz Skoneczny",
+"cc": "POL",
+"fargo": 789,
+"rob": 7751,
+"fid": "562147"
+},
+{
+"id": 5500001518,
+"name": "Mark Estiola",
+"cc": "PHL",
+"fargo": 783,
+"rob": 2642,
+"fid": "1172745"
+},
+{
+"id": 6736217,
+"name": "Mark Yousef",
+"cc": "SWE",
+"fargo": 723,
+"rob": 3921,
+"fid": "1066189"
+},
+{
+"id": 6500000012,
+"name": "Markus Juva",
+"cc": "FIN",
+"fargo": 733,
+"rob": 2651,
+"fid": "561470"
+},
+{
+"id": 6500002545,
+"name": "Markus Leppiaho",
+"cc": "FIN",
+"fargo": 713,
+"rob": 2622,
+"fid": "561856"
+},
+{
+"id": 6500007917,
+"name": "Markus Schleindler",
+"cc": "AUT",
+"fargo": 682,
+"rob": 1134,
+"fid": "1107807"
+},
+{
+"id": 38555,
+"name": "Mart Liigant",
+"cc": "EST",
+"fargo": 549,
+"rob": 3264,
+"fid": "930915"
+},
+{
+"id": 2285470,
+"name": "Martin Brackenbury",
+"cc": "DEN",
+"fargo": 689,
+"rob": 2783,
+"fid": "560177"
+},
+{
+"id": 1006379,
+"name": "Martin Kandola",
+"cc": "NOR",
+"fargo": 629,
+"rob": 1202,
+"fid": "1276036"
+},
+{
+"id": 5500002228,
+"name": "Martin Meintjes",
+"cc": "NOR",
+"fargo": 727,
+"rob": 1232,
+"fid": "1069385"
+},
+{
+"id": 6500002063,
+"name": "Martin Steinlage",
+"cc": "GER",
+"fargo": 727,
+"rob": 4245,
+"fid": "562966"
+},
+{
+"id": 5500000171,
+"name": "Marvin Asis",
+"cc": "PHL",
+"fargo": 802,
+"rob": 2025,
+"fid": "1198658"
+},
+{
+"id": 6500003665,
+"name": "Mats Elfroos",
+"cc": "SWE",
+"fargo": 678,
+"rob": 4142,
+"fid": "969314"
+},
+{
+"id": 27188746,
+"name": "Matthew Quick",
+"cc": "SWE",
+"fargo": 601,
+"rob": 1260,
+"fid": "1211766"
+},
+{
+"id": 6500013462,
+"name": "Mattias Marvet",
+"cc": "EST",
+"fargo": 600,
+"rob": 1673,
+"fid": "1113705"
+},
+{
+"id": 2948540,
+"name": "Mattias Widengren",
+"cc": "SWE",
+"fargo": 663,
+"rob": 3414,
+"fid": "991810"
+},
+{
+"id": 6500002044,
+"name": "Mauro Vialetto",
+"cc": "ITA",
+"fargo": 687,
+"rob": 1474,
+"fid": "562929"
+},
+{
+"id": 5500000183,
+"name": "Max Eberle",
+"cc": "USA",
+"fargo": 759,
+"rob": 9420,
+"fid": "13349"
+},
+{
+"id": 5500000243,
+"name": "Max Lechner",
+"cc": "AUT",
+"fargo": 817,
+"rob": 9663,
+"fid": "561899"
+},
+{
+"id": 36366844,
+"name": "Mehmet Dursun",
+"cc": "DEN",
+"fargo": 599,
+"rob": 1270,
+"fid": "1352571"
+},
+{
+"id": 6500001568,
+"name": "Meric Reshat",
+"cc": "GER",
+"fargo": 715,
+"rob": 1057,
+"fid": "924133"
+},
+{
+"id": 5500000161,
+"name": "Michael Baoanan",
+"cc": "PHL",
+"fargo": 789,
+"rob": 2296,
+"fid": "1017315"
+},
+{
+"id": 5500000557,
+"name": "Michael Feliciano",
+"cc": "PHL",
+"fargo": 795,
+"rob": 3985,
+"fid": "610038"
+},
+{
+"id": 6500002990,
+"name": "Michael Schneider",
+"cc": "SUI",
+"fargo": 776,
+"rob": 16505,
+"fid": "562549"
+},
+{
+"id": 6500011860,
+"name": "Michael Thorn",
+"cc": "GER",
+"fargo": 625,
+"rob": 2288,
+"fid": "1165369"
+},
+{
+"id": 5500000260,
+"name": "Mickey Krause",
+"cc": "DEN",
+"fargo": 798,
+"rob": 11896,
+"fid": "991438"
+},
+{
+"id": 6500001028,
+"name": "Miguel Silva",
+"cc": "PRT",
+"fargo": 776,
+"rob": 5414,
+"fid": "683833"
+},
+{
+"id": 4367,
+"name": "Mihkel Rehepapp",
+"cc": "EST",
+"fargo": 747,
+"rob": 3422,
+"fid": "969077"
+},
+{
+"id": 5500001780,
+"name": "Miikka Hirvonen",
+"cc": "FIN",
+"fargo": 699,
+"rob": 2088,
+"fid": "561148"
+},
+{
+"id": 6500000198,
+"name": "Mika Riikonen",
+"cc": "FIN",
+"fargo": 707,
+"rob": 2857,
+"fid": "562150"
+},
+{
+"id": 6500004169,
+"name": "Mika Van Berkel",
+"cc": "NED",
+"fargo": 744,
+"rob": 10076,
+"fid": "999046"
+},
+{
+"id": 18507676,
+"name": "Mikael Bringmyr",
+"cc": "SWE",
+"fargo": 605,
+"rob": 1737,
+"fid": "1159707"
+},
+{
+"id": 6165336,
+"name": "Mikael Wiszniewski",
+"cc": "SWE",
+"fargo": 731,
+"rob": 1833,
+"fid": "992070"
+},
+{
+"id": 60005,
+"name": "Mikk Pettai",
+"cc": "EST",
+"fargo": 617,
+"rob": 1453,
+"fid": "1246868"
+},
+{
+"id": 7195567,
+"name": "Mikko Kauppinen",
+"cc": "FIN",
+"fargo": 641,
+"rob": 1337,
+"fid": "1303754"
+},
+{
+"id": 85517,
+"name": "Mindaugas Jomantas",
+"cc": "LIT",
+"fargo": 574,
+"rob": 1555,
+"fid": "1069343"
+},
+{
+"id": 4407,
+"name": "Mirko Raid",
+"cc": "EST",
+"fargo": 635,
+"rob": 3398,
+"fid": "1082164"
+},
+{
+"id": 6500012324,
+"name": "Miro Bagge",
+"cc": "FIN",
+"fargo": 611,
+"rob": 1577,
+"fid": "1267922"
+},
+{
+"id": 14518276,
+"name": "Mohamad Badreddine",
+"cc": "LBN",
+"fargo": 541,
+"rob": 1813,
+"fid": "1139799"
+},
+{
+"id": 6500012361,
+"name": "Mohamed Salkiny",
+"cc": "SYR",
+"fargo": 623,
+"rob": 1292,
+"fid": "1192923"
+},
+{
+"id": 6500013445,
+"name": "Mohammad Al Asfar",
+"cc": "SYR",
+"fargo": 695,
+"rob": 3470,
+"fid": "1206145"
+},
+{
+"id": 6500003871,
+"name": "Mohammad Soufi",
+"cc": "SYR",
+"fargo": 794,
+"rob": 5759,
+"fid": "998884"
+},
+{
+"id": 6500007443,
+"name": "Morgan Norberg",
+"cc": "SWE",
+"fargo": 662,
+"rob": 5992,
+"fid": "991831"
+},
+{
+"id": 5500000001,
+"name": "Moritz Neuhausen",
+"cc": "GER",
+"fargo": 822,
+"rob": 9193,
+"fid": "998885"
+},
+{
+"id": 4743665,
+"name": "Morten Bakken",
+"cc": "NOR",
+"fargo": 619,
+"rob": 1594,
+"fid": "1069386"
+},
+{
+"id": 11685355,
+"name": "Morten Rakfjord",
+"cc": "NOR",
+"fargo": 609,
+"rob": 1415,
+"fid": "1193821"
+},
+{
+"id": 21281635,
+"name": "Morten Sjø",
+"cc": "NOR",
+"fargo": 601,
+"rob": 1234,
+"fid": "1211970"
+},
+{
+"id": 6500002623,
+"name": "Mustafa Alnar",
+"cc": "TCY",
+"fargo": 782,
+"rob": 6109,
+"fid": "560171"
+},
+{
+"id": 6500007531,
+"name": "Mykola Moroz",
+"cc": "UKR",
+"fargo": 740,
+"rob": 3361,
+"fid": "1107842"
+},
+{
+"id": 5500000232,
+"name": "Naoyuki Oi",
+"cc": "JPN",
+"fargo": 829,
+"rob": 11400,
+"fid": "687130"
+},
+{
+"id": 8940308,
+"name": "Nashwan Qardak",
+"cc": "SWE",
+"fargo": 581,
+"rob": 2318,
+"fid": "1108627"
+},
+{
+"id": 6500003106,
+"name": "Nathalie Rohmer",
+"cc": "FRA",
+"fargo": 563,
+"rob": 1303,
+"fid": "562179"
+},
+{
+"id": 5500000223,
+"name": "Nathan Childress",
+"cc": "USA",
+"fargo": 744,
+"rob": 8357,
+"fid": "563513"
+},
+{
+"id": 6500013835,
+"name": "Nevzat Yesil",
+"cc": "NOR",
+"fargo": 617,
+"rob": 1346,
+"fid": "1078372"
+},
+{
+"id": 5500000166,
+"name": "Nicholas Tan",
+"cc": "SGP",
+"fargo": 762,
+"rob": 1691,
+"fid": "1218907"
+},
+{
+"id": 72855022,
+"name": "Nicklas Carlson",
+"cc": "SWE",
+"fargo": 637,
+"rob": 1431,
+"fid": "991838"
+},
+{
+"id": 2305184,
+"name": "Nicklas Johansson",
+"cc": "SWE",
+"fargo": 551,
+"rob": 3904,
+"fid": "991839"
+},
+{
+"id": 6140340,
+"name": "Niclas Martinsson",
+"cc": "SWE",
+"fargo": 397,
+"rob": 1150,
+"fid": "992105"
+},
+{
+"id": 6500012239,
+"name": "Nico Granat",
+"cc": "FIN",
+"fargo": 713,
+"rob": 2174,
+"fid": "1069781"
+},
+{
+"id": 6500011583,
+"name": "Nidal Hadzibajric",
+"cc": "BIH",
+"fargo": 658,
+"rob": 5750,
+"fid": "1246772"
+},
+{
+"id": 6500000001,
+"name": "Niels Feijen",
+"cc": "NED",
+"fargo": 824,
+"rob": 16353,
+"fid": "460012"
+},
+{
+"id": 2292119,
+"name": "Niels Kronborg Pedersen",
+"cc": "DEN",
+"fargo": 583,
+"rob": 1320,
+"fid": "1070324"
+},
+{
+"id": 6500013741,
+"name": "Nikita Smirnov",
+"cc": "EST",
+"fargo": 594,
+"rob": 2119,
+"fid": "1079386"
+},
+{
+"id": 6500004279,
+"name": "Niklas Dohr",
+"cc": "GER",
+"fargo": 762,
+"rob": 4192,
+"fid": "1070270"
+},
+{
+"id": 40576,
+"name": "Nils Luhavee",
+"cc": "EST",
+"fargo": 555,
+"rob": 2604,
+"fid": "1027550"
+},
+{
+"id": 6500004006,
+"name": "Nina Torvund",
+"cc": "NOR",
+"fargo": 641,
+"rob": 5076,
+"fid": "929202"
+},
+{
+"id": 1006418,
+"name": "Ole Eidsheim",
+"cc": "NOR",
+"fargo": 637,
+"rob": 1028,
+"fid": "929188"
+},
+{
+"id": 9018,
+"name": "Oliver Lepp",
+"cc": "EST",
+"fargo": 656,
+"rob": 1422,
+"fid": "1176770"
+},
+{
+"id": 6500002555,
+"name": "Oliwia Zalewska",
+"cc": "POL",
+"fargo": 701,
+"rob": 5371,
+"fid": "1080318"
+},
+{
+"id": 6500013401,
+"name": "Omar Fidalgo",
+"cc": "ESP",
+"fargo": 674,
+"rob": 2709,
+"fid": "1234273"
+},
+{
+"id": 6500014210,
+"name": "Onni Sirenius",
+"cc": "FIN",
+"fargo": 619,
+"rob": 1832,
+"fid": "1303913"
+},
+{
+"id": 6500000887,
+"name": "Onuc Altur",
+"cc": "TCY",
+"fargo": 669,
+"rob": 1218,
+"fid": "925421"
+},
+{
+"id": 24838603,
+"name": "Oscar Winterqvist",
+"cc": "SWE",
+"fargo": 619,
+"rob": 1044,
+"fid": "1187891"
+},
+{
+"id": 6500012295,
+"name": "Otto Olkkonen",
+"cc": "FIN",
+"fargo": 717,
+"rob": 1817,
+"fid": "1113708"
+},
+{
+"id": 2945194,
+"name": "Patrik Blomberg",
+"cc": "SWE",
+"fargo": 563,
+"rob": 1509,
+"fid": "991861"
+},
+{
+"id": 6500006398,
+"name": "Patrik Enbom",
+"cc": "SWE",
+"fargo": 663,
+"rob": 4270,
+"fid": "991863"
+},
+{
+"id": 5500000704,
+"name": "Paul Song",
+"cc": "USA",
+"fargo": 722,
+"rob": 3958,
+"fid": "360637"
+},
+{
+"id": 3036622,
+"name": "Paul Tseng",
+"cc": "SWE",
+"fargo": 595,
+"rob": 1422,
+"fid": "991871"
+},
+{
+"id": 5500000229,
+"name": "Payne Mcbride",
+"cc": "USA",
+"fargo": 711,
+"rob": 8175,
+"fid": "1033974"
+},
+{
+"id": 20765683,
+"name": "Pekka Sirenius",
+"cc": "FIN",
+"fargo": 608,
+"rob": 1118,
+"fid": "1027552"
+},
+{
+"id": 6500005819,
+"name": "Per Lindgren",
+"cc": "SWE",
+"fargo": 687,
+"rob": 2758,
+"fid": "991878"
+},
+{
+"id": 8953417,
+"name": "Per Wikström",
+"cc": "SWE",
+"fargo": 546,
+"rob": 1517,
+"fid": "1119495"
+},
+{
+"id": 3218663,
+"name": "Peter Lundgren",
+"cc": "SWE",
+"fargo": 508,
+"rob": 1406,
+"fid": "992099"
+},
+{
+"id": 2128089,
+"name": "Peter Skough",
+"cc": "SWE",
+"fargo": 571,
+"rob": 1689,
+"fid": "991898"
+},
+{
+"id": 6500004045,
+"name": "Petr Urban",
+"cc": "CZE",
+"fargo": 749,
+"rob": 5601,
+"fid": "923790"
+},
+{
+"id": 6500000138,
+"name": "Petri Makkonen",
+"cc": "FIN",
+"fargo": 801,
+"rob": 13510,
+"fid": "461128"
+},
+{
+"id": 6500003331,
+"name": "Pia Filler",
+"cc": "GER",
+"fargo": 729,
+"rob": 8310,
+"fid": "640154"
+},
+{
+"id": 5500000208,
+"name": "Pierfrancesco Garzia",
+"cc": "ITA",
+"fargo": 714,
+"rob": 4112,
+"fid": "560879"
+},
+{
+"id": 4381,
+"name": "Pijus Labutis",
+"cc": "LIT",
+"fargo": 817,
+"rob": 10309,
+"fid": "610335"
+},
+{
+"id": 5500000270,
+"name": "Pius Baier",
+"cc": "GER",
+"fargo": 655,
+"rob": 1380,
+"fid": "1150670"
+},
+{
+"id": 6500004038,
+"name": "Quinten Pongers",
+"cc": "NED",
+"fargo": 748,
+"rob": 8810,
+"fid": "990788"
+},
+{
+"id": 6500013700,
+"name": "Rachelle Enfroy",
+"cc": "FRA",
+"fargo": 635,
+"rob": 1555,
+"fid": "1220136"
+},
+{
+"id": 6500000019,
+"name": "Radoslaw Babica",
+"cc": "POL",
+"fargo": 783,
+"rob": 10731,
+"fid": "460005"
+},
+{
+"id": 6500012585,
+"name": "Rainer Biermann",
+"cc": "GER",
+"fargo": 591,
+"rob": 1922,
+"fid": "1082507"
+},
+{
+"id": 4414,
+"name": "Rainer Laar",
+"cc": "EST",
+"fargo": 670,
+"rob": 3761,
+"fid": "990777"
+},
+{
+"id": 6500000013,
+"name": "Ralf Souquet",
+"cc": "GER",
+"fargo": 795,
+"rob": 17451,
+"fid": "360638"
+},
+{
+"id": 6500001173,
+"name": "Ramazan Akdag",
+"cc": "TUR",
+"fargo": 757,
+"rob": 3789,
+"fid": "560097"
+},
+{
+"id": 6500000116,
+"name": "Raymond Hauge",
+"cc": "NOR",
+"fargo": 707,
+"rob": 1325,
+"fid": "561419"
+},
+{
+"id": 1006445,
+"name": "Raymond Kandola",
+"cc": "NOR",
+"fargo": 570,
+"rob": 1950,
+"fid": "1069392"
+},
+{
+"id": 5500000580,
+"name": "Raymond Linares",
+"cc": "USA",
+"fargo": 719,
+"rob": 5111,
+"fid": "18289"
+},
+{
+"id": 6500001416,
+"name": "Reda Belhaj",
+"cc": "FRA",
+"fargo": 664,
+"rob": 2393,
+"fid": "560439"
+},
+{
+"id": 1006446,
+"name": "Reidar Rundsveen",
+"cc": "NOR",
+"fargo": 695,
+"rob": 1008,
+"fid": "929201"
+},
+{
+"id": 34105,
+"name": "Rene Pärnpuu",
+"cc": "EST",
+"fargo": 563,
+"rob": 2635,
+"fid": "1094869"
+},
+{
+"id": 6500013668,
+"name": "Renzo Sierra",
+"cc": "ESP",
+"fargo": 669,
+"rob": 3917,
+"fid": "1102922"
+},
+{
+"id": 6500007858,
+"name": "Revo Maimre",
+"cc": "EST",
+"fargo": 693,
+"rob": 5589,
+"fid": "1027554"
+},
+{
+"id": 6500002267,
+"name": "Riccardo Sini",
+"cc": "ITA",
+"fargo": 690,
+"rob": 2753,
+"fid": "562190"
+},
+{
+"id": 2084028,
+"name": "Riikka Saaranen",
+"cc": "FIN",
+"fargo": 559,
+"rob": 1713,
+"fid": "562185"
+},
+{
+"id": 6500004499,
+"name": "Riikka Väyrynen",
+"cc": "FIN",
+"fargo": 577,
+"rob": 3654,
+"fid": "1035250"
+},
+{
+"id": 6500005344,
+"name": "Riku Romppanen",
+"cc": "FIN",
+"fargo": 759,
+"rob": 4394,
+"fid": "1078337"
+},
+{
+"id": 2267365,
+"name": "Roar Edvardsen",
+"cc": "NOR",
+"fargo": 463,
+"rob": 1001,
+"fid": "1078209"
+},
+{
+"id": 5500000011,
+"name": "Robbie Capito",
+"cc": "HKG",
+"fargo": 829,
+"rob": 7350,
+"fid": "461035"
+},
+{
+"id": 6500006790,
+"name": "Robert Dimmlich",
+"cc": "SWE",
+"fargo": 652,
+"rob": 2953,
+"fid": "991921"
+},
+{
+"id": 1006450,
+"name": "Robert Farinetti",
+"cc": "ITA",
+"fargo": 666,
+"rob": 1791,
+"fid": "560702"
+},
+{
+"id": 4768110,
+"name": "Robert Sandersson",
+"cc": "SWE",
+"fargo": 649,
+"rob": 2531,
+"fid": "991925"
+},
+{
+"id": 6500003134,
+"name": "Roberto Bartol",
+"cc": "HRV",
+"fargo": 763,
+"rob": 10087,
+"fid": "560083"
+},
+{
+"id": 6500000077,
+"name": "Robin Heber",
+"cc": "GER",
+"fargo": 681,
+"rob": 4010,
+"fid": "561487"
+},
+{
+"id": 6500000024,
+"name": "Roger Lysholm",
+"cc": "NOR",
+"fargo": 734,
+"rob": 2124,
+"fid": "561760"
+},
+{
+"id": 5500002023,
+"name": "Roger Rasmussen",
+"cc": "NOR",
+"fargo": 704,
+"rob": 2993,
+"fid": "562285"
+},
+{
+"id": 57371,
+"name": "Roland Maimre",
+"cc": "EST",
+"fargo": 523,
+"rob": 1534,
+"fid": "1079391"
+},
+{
+"id": 6500000011,
+"name": "Roman Hybler",
+"cc": "CZE",
+"fargo": 779,
+"rob": 13548,
+"fid": "461092"
+},
+{
+"id": 28628,
+"name": "Roman Kuzemko",
+"cc": "EST",
+"fargo": 592,
+"rob": 1990,
+"fid": "1079392"
+},
+{
+"id": 1006464,
+"name": "Ronny Kraft",
+"cc": "NOR",
+"fargo": 669,
+"rob": 1477,
+"fid": "1078409"
+},
+{
+"id": 6500000063,
+"name": "Ronny Oldervik",
+"cc": "NOR",
+"fargo": 745,
+"rob": 2857,
+"fid": "621655"
+},
+{
+"id": 5500002227,
+"name": "Roy Steffensen",
+"cc": "NOR",
+"fargo": 659,
+"rob": 1189,
+"fid": "14418"
+},
+{
+"id": 6500001608,
+"name": "Sakari Alanen",
+"cc": "FIN",
+"fargo": 623,
+"rob": 1611,
+"fid": "560330"
+},
+{
+"id": 6500002636,
+"name": "Saki Kanatlar",
+"cc": "TUR",
+"fargo": 733,
+"rob": 2720,
+"fid": "561301"
+},
+{
+"id": 2946063,
+"name": "Sam Baradaran",
+"cc": "SWE",
+"fargo": 639,
+"rob": 1766,
+"fid": "991943"
+},
+{
+"id": 5500000530,
+"name": "Sam Henderson",
+"cc": "USA",
+"fargo": 739,
+"rob": 4915,
+"fid": "988626"
+},
+{
+"id": 6500006859,
+"name": "Sam Wetzel",
+"cc": "LUX",
+"fargo": 718,
+"rob": 2277,
+"fid": "998983"
+},
+{
+"id": 6500007874,
+"name": "Sambor Stachowiak",
+"cc": "POL",
+"fargo": 735,
+"rob": 3190,
+"fid": "1077485"
+},
+{
+"id": 6500002104,
+"name": "Sami Karttunen",
+"cc": "FIN",
+"fargo": 705,
+"rob": 3533,
+"fid": "561152"
+},
+{
+"id": 8972289,
+"name": "Samir Saciri",
+"cc": "DEN",
+"fargo": 723,
+"rob": 2305,
+"fid": "991440"
+},
+{
+"id": 6500005358,
+"name": "Sander Kont",
+"cc": "EST",
+"fargo": 671,
+"rob": 3608,
+"fid": "1027557"
+},
+{
+"id": 6500012226,
+"name": "Sander Tamm",
+"cc": "EST",
+"fargo": 651,
+"rob": 3356,
+"fid": "1079513"
+},
+{
+"id": 6500002580,
+"name": "Sandra Baumgartner",
+"cc": "AUT",
+"fargo": 675,
+"rob": 2046,
+"fid": "560199"
+},
+{
+"id": 6500002420,
+"name": "Sanjin Pehlivanovic",
+"cc": "BIH",
+"fargo": 814,
+"rob": 11920,
+"fid": "562433"
+},
+{
+"id": 6500002803,
+"name": "Sara Iannini",
+"cc": "ITA",
+"fargo": 587,
+"rob": 2144,
+"fid": "560841"
+},
+{
+"id": 6500001899,
+"name": "Sara Rocha",
+"cc": "PRT",
+"fargo": 677,
+"rob": 3761,
+"fid": "562294"
+},
+{
+"id": 26405677,
+"name": "Sara Trangärd",
+"cc": "SWE",
+"fargo": 598,
+"rob": 1693,
+"fid": "562748"
+},
+{
+"id": 6500012227,
+"name": "Sari Laitinen",
+"cc": "FIN",
+"fargo": 551,
+"rob": 2503,
+"fid": "1069816"
+},
+{
+"id": 6500000184,
+"name": "Sascha Specchia",
+"cc": "SUI",
+"fargo": 739,
+"rob": 4012,
+"fid": "563103"
+},
+{
+"id": 6500006072,
+"name": "Sasu Raudas",
+"cc": "FIN",
+"fargo": 685,
+"rob": 1607,
+"fid": "1079342"
+},
+{
+"id": 8156,
+"name": "Saulius Vaitukaitis",
+"cc": "LIT",
+"fargo": 658,
+"rob": 1123,
+"fid": "1027558"
+},
+{
+"id": 5500001546,
+"name": "Savannah Easton",
+"cc": "USA",
+"fargo": 679,
+"rob": 9596,
+"fid": "1103576"
+},
+{
+"id": 6500011988,
+"name": "Sebastian Meininger",
+"cc": "GER",
+"fargo": 691,
+"rob": 1613,
+"fid": "1182127"
+},
+{
+"id": 6500013566,
+"name": "Sebastian Simonsson Fälldin",
+"cc": "SWE",
+"fargo": 619,
+"rob": 2455,
+"fid": "1151768"
+},
+{
+"id": 6500002175,
+"name": "Senharip Azar",
+"cc": "SWE",
+"fargo": 749,
+"rob": 9390,
+"fid": "560241"
+},
+{
+"id": 5500000403,
+"name": "Seo Seoa",
+"cc": "KOR",
+"fargo": 768,
+"rob": 2865,
+"fid": "1014285"
+},
+{
+"id": 5500000249,
+"name": "Shane Van Boening",
+"cc": "USA",
+"fargo": 847,
+"rob": 27382,
+"fid": "937"
+},
+{
+"id": 6500004307,
+"name": "Shirin Volery",
+"cc": "SUI",
+"fargo": 575,
+"rob": 4551,
+"fid": "999152"
+},
+{
+"id": 6500004569,
+"name": "Silvan Starkermann",
+"cc": "SUI",
+"fargo": 749,
+"rob": 6194,
+"fid": "999153"
+},
+{
+"id": 18375517,
+"name": "Silviana Lu",
+"cc": "IDN",
+"fargo": 709,
+"rob": 1969,
+"fid": "1059972"
+},
+{
+"id": 6500007011,
+"name": "Simo Korpela",
+"cc": "FIN",
+"fargo": 701,
+"rob": 1281,
+"fid": "1303657"
+},
+{
+"id": 7010,
+"name": "Simona Milisauskaite",
+"cc": "LIT",
+"fargo": 545,
+"rob": 1173,
+"fid": "640159"
+},
+{
+"id": 5500000194,
+"name": "Skyler Woodward",
+"cc": "USA",
+"fargo": 811,
+"rob": 17076,
+"fid": "11385"
+},
+{
+"id": 5500000836,
+"name": "Sofia Mast",
+"cc": "USA",
+"fargo": 679,
+"rob": 7662,
+"fid": "1072658"
+},
+{
+"id": 11955,
+"name": "Stanislav Saiov",
+"cc": "EST",
+"fargo": 677,
+"rob": 3354,
+"fid": "562032"
+},
+{
+"id": 1688637,
+"name": "Stanislav Stanev",
+"cc": "BGR",
+"fargo": 659,
+"rob": 1670,
+"fid": "1070303"
+},
+{
+"id": 1282698,
+"name": "Stefan Ericson",
+"cc": "SWE",
+"fargo": 675,
+"rob": 8823,
+"fid": "560735"
+},
+{
+"id": 6500003217,
+"name": "Stefan Huber",
+"cc": "AUT",
+"fargo": 723,
+"rob": 3077,
+"fid": "561083"
+},
+{
+"id": 6500012371,
+"name": "Stefan Kasper",
+"cc": "GER",
+"fargo": 805,
+"rob": 3902,
+"fid": "975354"
+},
+{
+"id": 1006493,
+"name": "Steinar Moe",
+"cc": "NOR",
+"fargo": 531,
+"rob": 1121,
+"fid": "1069402"
+},
+{
+"id": 6500003076,
+"name": "Stella Julien",
+"cc": "FRA",
+"fargo": 546,
+"rob": 1154,
+"fid": "561545"
+},
+{
+"id": 1524570,
+"name": "Stig Berntsen",
+"cc": "NOR",
+"fargo": 555,
+"rob": 1084,
+"fid": "1078411"
+},
+{
+"id": 1024799,
+"name": "Stig Nesvik",
+"cc": "NOR",
+"fargo": 489,
+"rob": 2636,
+"fid": "1069404"
+},
+{
+"id": 5500000247,
+"name": "Sullivan Clark",
+"cc": "NZL",
+"fargo": 752,
+"rob": 6894,
+"fid": "1031943"
+},
+{
+"id": 6500007863,
+"name": "Svit Pavlinjek",
+"cc": "SVN",
+"fargo": 653,
+"rob": 1185,
+"fid": "1107830"
+},
+{
+"id": 6500004542,
+"name": "Szymon Kural",
+"cc": "POL",
+"fargo": 797,
+"rob": 7196,
+"fid": "1003192"
+},
+{
+"id": 2285471,
+"name": "Søren Rydlund",
+"cc": "DEN",
+"fargo": 610,
+"rob": 1689,
+"fid": "1070316"
+},
+{
+"id": 6500014443,
+"name": "Tarvo Piip",
+"cc": "EST",
+"fargo": 614,
+"rob": 1923,
+"fid": "1079409"
+},
+{
+"id": 84354,
+"name": "Tauno Markovskis",
+"cc": "EST",
+"fargo": 607,
+"rob": 2118,
+"fid": "1079458"
+},
+{
+"id": 95586,
+"name": "Tauri Imsi",
+"cc": "EST",
+"fargo": 645,
+"rob": 1361,
+"fid": "1269719"
+},
+{
+"id": 6500013735,
+"name": "Terje Kristoffersen",
+"cc": "NOR",
+"fargo": 525,
+"rob": 1978,
+"fid": "1069406"
+},
+{
+"id": 1104967,
+"name": "Tex Larsson",
+"cc": "SWE",
+"fargo": 555,
+"rob": 2176,
+"fid": "991980"
+},
+{
+"id": 6500004076,
+"name": "Thomas Arnold",
+"cc": "GER",
+"fargo": 664,
+"rob": 1149,
+"fid": "998930"
+},
+{
+"id": 2017724,
+"name": "Thomas Ekwall",
+"cc": "SWE",
+"fargo": 599,
+"rob": 1471,
+"fid": "991985"
+},
+{
+"id": 1006514,
+"name": "Thomas Pedersen",
+"cc": "NOR",
+"fargo": 627,
+"rob": 1857,
+"fid": "1069407"
+},
+{
+"id": 6500002315,
+"name": "Thomas Stadler",
+"cc": "SWE",
+"fargo": 635,
+"rob": 4022,
+"fid": "563037"
+},
+{
+"id": 9304639,
+"name": "Thorgny Lindqvist",
+"cc": "SWE",
+"fargo": 648,
+"rob": 2570,
+"fid": "991989"
+},
+{
+"id": 5500000007,
+"name": "Thorsten Hohmann",
+"cc": "USA",
+"fargo": 795,
+"rob": 16355,
+"fid": "17462"
+},
+{
+"id": 6500003601,
+"name": "Tianfang Zhang",
+"cc": "SWE",
+"fargo": 725,
+"rob": 6552,
+"fid": "924142"
+},
+{
+"id": 6500003710,
+"name": "Tim Jonkman",
+"cc": "NED",
+"fargo": 743,
+"rob": 5184,
+"fid": "930898"
+},
+{
+"id": 36821509,
+"name": "Timo Kera",
+"cc": "EST",
+"fargo": 575,
+"rob": 1232,
+"fid": "1262347"
+},
+{
+"id": 6500013898,
+"name": "Timo Wolff",
+"cc": "FIN",
+"fargo": 623,
+"rob": 1129,
+"fid": "1079323"
+},
+{
+"id": 6500013238,
+"name": "Timothei Furko",
+"cc": "SVK",
+"fargo": 715,
+"rob": 1394,
+"fid": "1248424"
+},
+{
+"id": 6500002858,
+"name": "Tina Vogelmann",
+"cc": "GER",
+"fargo": 657,
+"rob": 3232,
+"fid": "562661"
+},
+{
+"id": 2946016,
+"name": "Tobias Andersson",
+"cc": "SWE",
+"fargo": 583,
+"rob": 1059,
+"fid": "991990"
+},
+{
+"id": 15472816,
+"name": "Tobias Appelbäck",
+"cc": "SWE",
+"fargo": 516,
+"rob": 1022,
+"fid": "1139803"
+},
+{
+"id": 6500002646,
+"name": "Tobias Bongers",
+"cc": "GER",
+"fargo": 804,
+"rob": 8120,
+"fid": "461034"
+},
+{
+"id": 6500001035,
+"name": "Tom Eksell",
+"cc": "SWE",
+"fargo": 603,
+"rob": 5609,
+"fid": "1078807"
+},
+{
+"id": 3532613,
+"name": "Tom Kristiansen",
+"cc": "NOR",
+"fargo": 583,
+"rob": 2280,
+"fid": "1069408"
+},
+{
+"id": 1115120,
+"name": "Tomas Larsson",
+"cc": "SWE",
+"fargo": 733,
+"rob": 7426,
+"fid": "461119"
+},
+{
+"id": 1951252,
+"name": "Tomas Svensson",
+"cc": "SWE",
+"fargo": 511,
+"rob": 1068,
+"fid": "991994"
+},
+{
+"id": 6500004044,
+"name": "Tomasz Bak",
+"cc": "POL",
+"fargo": 702,
+"rob": 1216,
+"fid": "990790"
+},
+{
+"id": 6500000026,
+"name": "Tomasz Kaplan",
+"cc": "POL",
+"fargo": 783,
+"rob": 9263,
+"fid": "461104"
+},
+{
+"id": 6500001700,
+"name": "Tomasz Malinowski",
+"cc": "POL",
+"fargo": 659,
+"rob": 2248,
+"fid": "561851"
+},
+{
+"id": 6500001652,
+"name": "Tomi Ahonen",
+"cc": "FIN",
+"fargo": 695,
+"rob": 2436,
+"fid": "560187"
+},
+{
+"id": 6500015078,
+"name": "Tommi Harmaala",
+"cc": "SWE",
+"fargo": 671,
+"rob": 2690,
+"fid": "991997"
+},
+{
+"id": 5500000414,
+"name": "Tommy Tokoph",
+"cc": "USA",
+"fargo": 734,
+"rob": 8452,
+"fid": "11102"
+},
+{
+"id": 1577952,
+"name": "Tony Bjorkenius",
+"cc": "SWE",
+"fargo": 605,
+"rob": 3588,
+"fid": "992005"
+},
+{
+"id": 6500013473,
+"name": "Tony Maimre",
+"cc": "EST",
+"fargo": 547,
+"rob": 1047,
+"fid": "1234261"
+},
+{
+"id": 6500007977,
+"name": "Tony Mikkola",
+"cc": "FIN",
+"fargo": 703,
+"rob": 1834,
+"fid": "1078349"
+},
+{
+"id": 6126769,
+"name": "Toraj Larki",
+"cc": "IRN",
+"fargo": 638,
+"rob": 4275,
+"fid": "991470"
+},
+{
+"id": 6500014452,
+"name": "Torvald Asplund",
+"cc": "SWE",
+"fargo": 613,
+"rob": 2009,
+"fid": "1132385"
+},
+{
+"id": 10402996,
+"name": "Tuomas Koponen",
+"cc": "FIN",
+"fargo": 600,
+"rob": 1052,
+"fid": "1303695"
+},
+{
+"id": 49803100,
+"name": "Turo Peltonen",
+"cc": "FIN",
+"fargo": 621,
+"rob": 1065,
+"fid": "1304031"
+},
+{
+"id": 6500014438,
+"name": "Tuuli Virtanen",
+"cc": "FIN",
+"fargo": 496,
+"rob": 1011,
+"fid": "1303605"
+},
+{
+"id": 6500003660,
+"name": "Tuuliina Panula",
+"cc": "FIN",
+"fargo": 534,
+"rob": 3181,
+"fid": "930940"
+},
+{
+"id": 5500000241,
+"name": "Tyler Styer",
+"cc": "USA",
+"fargo": 794,
+"rob": 14474,
+"fid": "311875"
+},
+{
+"id": 6238529,
+"name": "Ulf Collert",
+"cc": "SWE",
+"fargo": 519,
+"rob": 1987,
+"fid": "992014"
+},
+{
+"id": 6853943,
+"name": "Ulf Lysmark",
+"cc": "SWE",
+"fargo": 585,
+"rob": 1791,
+"fid": "1066188"
+},
+{
+"id": 6500002781,
+"name": "Ulrika Andersson",
+"cc": "SWE",
+"fargo": 599,
+"rob": 2977,
+"fid": "560047"
+},
+{
+"id": 6500013594,
+"name": "Valentin Schmitz",
+"cc": "GER",
+"fargo": 713,
+"rob": 1244,
+"fid": "1178218"
+},
+{
+"id": 6500000216,
+"name": "Valtteri Virtanen",
+"cc": "FIN",
+"fargo": 737,
+"rob": 1905,
+"fid": "562835"
+},
+{
+"id": 6500001040,
+"name": "Vania Franco",
+"cc": "PRT",
+"fargo": 645,
+"rob": 3079,
+"fid": "621678"
+},
+{
+"id": 10585213,
+"name": "Veejay Adriano",
+"cc": "PHL",
+"fargo": 663,
+"rob": 1042,
+"fid": "1193822"
+},
+{
+"id": 3302231,
+"name": "Victor Hellberg",
+"cc": "SWE",
+"fargo": 507,
+"rob": 1026,
+"fid": "1053392"
+},
+{
+"id": 6500007117,
+"name": "Vili Kokkonen",
+"cc": "FIN",
+"fargo": 683,
+"rob": 1251,
+"fid": "1069846"
+},
+{
+"id": 6500014209,
+"name": "Viljo Auresto",
+"cc": "FIN",
+"fargo": 651,
+"rob": 1244,
+"fid": "1304143"
+},
+{
+"id": 6500011984,
+"name": "Ville Borgström",
+"cc": "FIN",
+"fargo": 657,
+"rob": 1472,
+"fid": "1176915"
+},
+{
+"id": 6500003599,
+"name": "Ville Hämäläinen",
+"cc": "FIN",
+"fargo": 720,
+"rob": 2761,
+"fid": "1079520"
+},
+{
+"id": 5500000945,
+"name": "Vitaliy Patsura",
+"cc": "UKR",
+"fargo": 793,
+"rob": 8808,
+"fid": "562048"
+},
+{
+"id": 6500005448,
+"name": "Walter Laikre",
+"cc": "SWE",
+"fargo": 757,
+"rob": 7694,
+"fid": "1053393"
+},
+{
+"id": 6500014145,
+"name": "Wiktor Kaczmarek",
+"cc": "POL",
+"fargo": 675,
+"rob": 1551,
+"fid": "1284064"
+},
+{
+"id": 6500003223,
+"name": "Wiktor Zielinski",
+"cc": "POL",
+"fargo": 831,
+"rob": 12331,
+"fid": "610328"
+},
+{
+"id": 6500001850,
+"name": "Wojciech Szewczyk",
+"cc": "POL",
+"fargo": 838,
+"rob": 14019,
+"fid": "461182"
+},
+{
+"id": 6500004470,
+"name": "Yannick Pongers",
+"cc": "NED",
+"fargo": 777,
+"rob": 10674,
+"fid": "999078"
+},
+{
+"id": 17915836,
+"name": "Yuki Hiraguchi",
+"cc": "JPN",
+"fargo": 722,
+"rob": 3526,
+"fid": "933696"
+},
+{
+"id": 2354421,
+"name": "Yuzhou Li",
+"cc": "SWE",
+"fargo": 629,
+"rob": 1901,
+"fid": "992027"
+}
+]
+}
