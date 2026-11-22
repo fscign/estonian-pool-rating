@@ -35,6 +35,7 @@ CS_ESTONIAN = set(OV.get('estonian', []))
 CS_LATVIAN = set(OV.get('latvian', []))      # CueScore profiles with a wrong flag that are Latvian (same list as the Latvian site)    # CueScore profiles with a wrong flag that are Estonian (overrides.json 'estonian')
 CS_EXCLUDE = set(OV['exclude_cs_players'])   # CueScore profiles that are not real players
 CS_MATCH_OFFSET = 1_000_000_000
+for _k in CS_EXCLUDE: P.pop(_k, None)   # not real players, also Tournament Service profiles (e.g. '1 Qualifier', Aleksandrs 22 Nov 2026)
 CS_CC = {'LTU': 'LIT', 'GBR': 'ENG', 'DEU': 'GER', 'NLD': 'NED', 'CHE': 'SUI', 'DNK': 'DEN', 'LVA': 'LAT'}   # CueScore codes -> Tournament Service codes
 CC_SUFFIX = {'estonia': '', 'latvia': ' (LAT)', 'lithuania': ' (LIT)', 'finland': ' (FIN)', 'sweden': ' (SWE)', 'denmark': ' (DEN)', 'norway': ' (NOR)'}
 CLUB = {}              # CueScore id -> club the player represents (collector stores it)
