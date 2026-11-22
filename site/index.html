@@ -305,7 +305,7 @@ a.vs{margin-left:4px;color:var(--muted);text-decoration:none;font-size:13px}a.vs
 <style>
 /* Three design options for the Estonian site (test only: switch at the bottom left). 22 Nov 2026.
    A "Lipp"    flag colours: black top band with the blue-black-white stripe, white page, flag blue for links and highlights, Archivo type.
-   B "Laud"    the blue tournament cloth: deep cloth blue page, chalk-white text, cue-ball chips, the yellow of the 1-ball for highlights, Barlow type.
+   B "Laud"    the blue tournament cloth: dark = deep cloth blue page, chalk-white text; light = white page with a cloth-blue top band and table heads; yellow of the 1-ball for highlights, Barlow type.
    C "Ajaleht" a sports page: white paper, black ink, hairline rules instead of boxes, serif headlines (Spectral), blue only for links. */
 
 /* ---------- A: Lipp ---------- */
@@ -370,11 +370,26 @@ html:root[data-skin="c"] .chip.on{background:var(--fg);color:var(--bg)}
 html:root[data-skin="c"] input,html:root[data-skin="c"] select{border-radius:2px}
 html:root[data-skin="c"] .card{border-radius:0}
 
+html:root[data-skin="b"]:not(.sysdark){--bg:#ffffff;--surface:#ffffff;--fg:#0b2a45;--muted:#557089;--line:#d5e0ea;--soft:#eef3f8;
+  --accent:#0e3557;--accent-soft:#fff4cf;--chart:#0e3557;--chart2:#9fb4c8;--win:#1d7a4c;--loss:#b3332a;color-scheme:light}
+html:root[data-skin="b"]:not(.sysdark) body{background:var(--bg)}
+html:root[data-skin="b"]:not(.sysdark) header.top{background:#0e3557;border-bottom:4px solid #f2c230}
+html:root[data-skin="b"]:not(.sysdark) .brand,html:root[data-skin="b"]:not(.sysdark) nav a{color:#e6eef5}
+html:root[data-skin="b"]:not(.sysdark) nav a.on{background:#f4f7fa;color:#0e3557}
+html:root[data-skin="b"]:not(.sysdark) .tablebox{background:#fff;border-color:#d5e0ea}
+html:root[data-skin="b"]:not(.sysdark) th{background:#0e3557;color:#e6eef5}
+html:root[data-skin="b"]:not(.sysdark) td.rt{color:#0e3557}
+html:root[data-skin="b"]:not(.sysdark) tbody tr:hover{background:#eef3f8}
+html:root[data-skin="b"]:not(.sysdark) .chip{background:#fff;border-color:#c5d3e0;color:#0b2a45}
+html:root[data-skin="b"]:not(.sysdark) .chip.on{background:#0e3557;border-color:#0e3557;color:#fff;box-shadow:none}
+html:root[data-skin="b"]:not(.sysdark) input,html:root[data-skin="b"]:not(.sysdark) select{background:#fff;border-color:#c5d3e0;color:#0b2a45}
+html:root[data-skin="b"]:not(.sysdark) .star.on{color:#d9a400}
 /* switch (test site only) */
 #skinsw{position:fixed;left:12px;bottom:12px;z-index:50;display:flex;align-items:center;gap:4px;padding:5px 6px;border-radius:999px;background:#111;color:#fff;font:600 12px/1 system-ui,sans-serif;box-shadow:0 4px 18px rgba(0,0,0,.25)}
 #skinsw span{padding:0 6px;opacity:.75}
 #skinsw button{font:inherit;border:0;border-radius:999px;padding:7px 10px;background:transparent;color:#fff;cursor:pointer;min-width:34px}
 #skinsw button.on{background:#0072ce}
+#skinsw i{width:1px;align-self:stretch;margin:2px 4px;background:#444}
 </style>
 </head>
 <body>
@@ -392,14 +407,18 @@ html:root[data-skin="c"] .card{border-radius:0}
   <div class="lang" role="group" aria-label="Language"><button id="l-en" data-l="en">EN</button><button id="l-et" data-l="et">ET</button></div>
 </div></header>
 <main class="wrap" id="app"><div class="empty">Loading ratings…</div></main>
-<div id="skinsw" role="group" aria-label="Design"><span>Design</span><button data-skin="a">A</button><button data-skin="b">B</button><button data-skin="c">C</button></div>
+<div id="skinsw" role="group" aria-label="Design"><span>Design</span><button data-skin="a">A</button><button data-skin="b">B</button><button data-skin="c">C</button><i></i><button data-mode="light" title="Light">☀</button><button data-mode="dark" title="Dark">☾</button></div>
 <script>
 {const R=document.documentElement, mq=matchMedia('(prefers-color-scheme: dark)');
  const dark=()=>R.classList.toggle('sysdark',R.dataset.theme==='dark'||(!R.dataset.theme&&mq.matches));
  dark(); mq.addEventListener('change',dark); new MutationObserver(dark).observe(R,{attributes:true,attributeFilter:['data-theme']});
  let k='a'; try{k=localStorage.getItem('skin')||'a'}catch(e){}
- const set=v=>{R.dataset.skin=v;try{localStorage.setItem('skin',v)}catch(e){};document.querySelectorAll('#skinsw button').forEach(b=>b.classList.toggle('on',b.dataset.skin===v))};
- set(k); document.querySelectorAll('#skinsw button').forEach(b=>b.onclick=()=>set(b.dataset.skin));}
+ const set=v=>{R.dataset.skin=v;try{localStorage.setItem('skin',v)}catch(e){};document.querySelectorAll('#skinsw [data-skin]').forEach(b=>b.classList.toggle('on',b.dataset.skin===v))};
+ document.querySelectorAll('#skinsw [data-skin]').forEach(b=>b.onclick=()=>set(b.dataset.skin));
+ let md='light'; try{md=localStorage.getItem('mode')||(mq.matches?'dark':'light')}catch(e){}
+ const setM=v=>{R.dataset.theme=v;try{localStorage.setItem('mode',v)}catch(e){};document.querySelectorAll('#skinsw [data-mode]').forEach(b=>b.classList.toggle('on',b.dataset.mode===v))};
+ document.querySelectorAll('#skinsw [data-mode]').forEach(b=>b.onclick=()=>setM(b.dataset.mode));
+ set(k); setM(md);}
 </script>
 <footer class="site-foot wrap"><span data-t="footer">Made by Aleksandrs Horsuns · data from CueScore, Tournament Service, EPBF, Matchroom and PBS</span></footer>
 
@@ -428,7 +447,7 @@ en:{
  findPlayer:'Find player', playerName:'Player name',
  playedWithin:'Played within', last1y:'Last year', last2y:'Last 2 years', last5y:'Last 5 years', anyTime:'All time',
  matchesPlayed:'Racks played', sexLbl:'Show', men:'Men', women:'Women', any:'Any', orMore:n=>`${n} or more`, custom:'Custom…', atLeast:'At least',
- lgLbl:'League', lgTip:'League by the Estonian Billiard Association classification. Players not on the list play Rahvaliiga.', clubLbl:'Club', clubAll:'All clubs', clubNone:'No club',
+ lgLbl:'League', lgAll:'All leagues', lgTip:'League by the Estonian Billiard Association classification. Players not on the list play Rahvaliiga.', clubLbl:'Club', clubAll:'All clubs', clubNone:'No club',
  thPlayer:'Player', thRating:'Rating', th12:'12 mo', thRacks:'Racks', thMatches:'Matches', thLast:'Last played',
  noPlayers:'No players match these filters.', showAll:n=>`Show all ${n} players`, inactiveNote:'Inactive players keep their last rating. <sup>?</sup> = provisional rating, based on fewer than 200 racks.', provTip:'Provisional: based on fewer than 200 racks', provShort:'provisional, under 200 racks', calcOn:d=>`Last calculated on ${d}.`,
  back:'← Ranking', since:(n,d)=>`${n} matches since ${d}`, rating:'Rating', ratedRacks:'Rated racks', uncomf:'Most uncomfortable opponent', fav:'Favourite opponent', oppSub:(w,l,rw,rl,d)=>`${w}–${l} in matches · ${Math.round(rw)}:${Math.round(rl)} in racks · ${Math.abs(d)} racks ${d<0?'below':'above'} expected`, oppNote:'In 8-ball, 9-ball and 10-ball matches. Most played opponent: all time. Uncomfortable and favourite opponent: among players met at least 5 times who were active in the last 5 years.', mostOpp:'Most played opponent', mostSub:(n,w,l,rw,rl)=>`${n} matches · ${w}–${l} · ${Math.round(rw)}:${Math.round(rl)} in racks`, rank:'Rank',
@@ -482,7 +501,7 @@ et:{
  findPlayer:'Leia mängija', playerName:'Mängija nimi',
  playedWithin:'Mänginud viimase', last1y:'aasta jooksul', last2y:'2 aasta jooksul', last5y:'5 aasta jooksul', anyTime:'Kogu aeg',
  matchesPlayed:'Mängitud raame', sexLbl:'Näita', men:'Mehed', women:'Naised', any:'Ükskõik', orMore:n=>`${n} või rohkem`, custom:'Muu…', atLeast:'Vähemalt',
- lgLbl:'Liiga', lgTip:'Liiga Eesti Piljardiliidu liigitamise järgi. Nimekirjast puuduvad mängijad mängivad Rahvaliigas.', clubLbl:'Klubi', clubAll:'Kõik klubid', clubNone:'Klubita',
+ lgLbl:'Liiga', lgAll:'Kõik liigad', lgTip:'Liiga Eesti Piljardiliidu liigitamise järgi. Nimekirjast puuduvad mängijad mängivad Rahvaliigas.', clubLbl:'Klubi', clubAll:'Kõik klubid', clubNone:'Klubita',
  thPlayer:'Mängija', thRating:'Reiting', th12:'12 kuud', thRacks:'Raamid', thMatches:'Mängud', thLast:'Viimati mänginud',
  noPlayers:'Nende filtritega mängijaid ei leitud.', showAll:n=>`Näita kõiki ${n} mängijat`, inactiveNote:'Mitteaktiivsed mängijad säilitavad oma viimase reitingu. <sup>?</sup> = esialgne reiting, alla 200 raami.', provTip:'Esialgne: põhineb vähem kui 200 raamil', provShort:'esialgne, alla 200 raami', calcOn:d=>`Viimati arvutatud ${d}.`,
  back:'← Reiting', since:(n,d)=>`${n} mängu alates ${d}`, rating:'Reiting', ratedRacks:'Hinnatud raamid', uncomf:'Kõige ebamugavam vastane', fav:'Lemmikvastane', oppSub:(w,l,rw,rl,d)=>`${w}–${l} mängudes · ${Math.round(rw)}:${Math.round(rl)} raamides · ${Math.abs(d)} raami ${d<0?'alla':'üle'} ootuse`, oppNote:'8-palli, 9-palli ja 10-palli mängudes. Enim mängitud vastane: kogu aeg. Ebamugavam ja lemmikvastane: vähemalt 5 korda kohatud mängijate seast, kes on olnud aktiivsed viimase 5 aasta jooksul.', mostOpp:'Enim mängitud vastane', mostSub:(n,w,l,rw,rl)=>`${n} mängu · ${w}–${l} · ${Math.round(rw)}:${Math.round(rl)} raamides`, rank:'Koht',
@@ -585,7 +604,7 @@ const cc=c=>c&&c!=='EST'?`<span class="cc">${esc(c)}</span>`:'';
 function histAt(id,monthsBack){const h=D.history[id];if(!h)return null;const lastIdx=D.months.length-1-monthsBack;const i=lastIdx-h[0]+1;return (i>=1&&i<h.length&&h[i])?h[i]:null}
 
 /* ---------------- ranking ---------------- */
-const RS=Object.assign({q:'',active:'12',minm:'200',minc:'',sx:'mf',lg:'ML EL TL RL',club:'',sort:'r',dir:-1,lim:100},store('rk-ee1')||{});
+const RS=Object.assign({q:'',active:'12',minm:'200',minc:'',sx:'mf',lg:'',club:'',sort:'r',dir:-1,lim:100},store('rk-ee2')||{});
 const LGS=['ML','EL','TL','RL'], LGN={ML:'Meistriliiga',EL:'Esiliiga',TL:'Teine liiga',RL:'Rahvaliiga'};
 function ranking(){
   const presets=['0','200','500','1000'];
@@ -599,7 +618,7 @@ function ranking(){
       <option value="0">${t('any')}</option><option value="200">${t('orMore',200)}</option><option value="500">${t('orMore',500)}</option><option value="1000">${t('orMore',1000)}</option><option value="custom">${t('custom')}</option></select>
       <input id="minc" type="number" min="0" step="1" inputmode="numeric" placeholder="${t('atLeast')}" value="${esc(RS.minc)}" aria-label="${t('atLeast')}"></span></label>
     <div class="clabel">${t('sexLbl')}<span class="chips"><button class="chip${RS.sx.includes('m')?' on':''}" data-sx="m">${t('men')}</button><button class="chip${RS.sx.includes('f')?' on':''}" data-sx="f">${t('women')}</button></span></div>
-    <div class="clabel" title="${esc(t('lgTip'))}">${t('lgLbl')}<span class="chips">${LGS.map(k=>`<button class="chip${RS.lg.includes(k)?' on':''}" data-lg="${k}" title="${LGN[k]}">${k}</button>`).join('')}</span></div>
+    <label title="${esc(t('lgTip'))}">${t('lgLbl')}<select id="lg"><option value="">${t('lgAll')}</option>${LGS.map(k=>`<option value="${k}">${LGN[k]} (${k})</option>`).join('')}</select></label>
     <label>${t('clubLbl')}<select id="club"><option value="">${t('clubAll')}</option>${[...new Set(Object.values(PL).filter(p=>p.lv&&p.club).map(p=>p.club))].sort((a,b)=>a.localeCompare(b)).map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('')}<option value="-">${t('clubNone')}</option></select></label>
   </div>
   <div class="tablebox"><table class="rank"><thead><tr>
@@ -612,7 +631,8 @@ function ranking(){
   <p class="note">${t('inactiveNote')} ${t('calcOn',fmtD(isoToNum(GEN)))}</p>`;
   $('#club').value=RS.club; if($('#club').value!==RS.club){RS.club='';$('#club').value=''}
   $('#club').onchange=e=>{RS.club=e.target.value;RS.lim=100;drawRank()};
-  document.querySelectorAll('[data-lg]').forEach(b=>b.onclick=()=>{const k=b.dataset.lg;let v=RS.lg.split(' ').filter(Boolean);v=v.includes(k)?v.filter(x=>x!==k):[...v,k];if(!v.length)v=[k];RS.lg=LGS.filter(x=>v.includes(x)).join(' ');document.querySelectorAll('[data-lg]').forEach(x=>x.classList.toggle('on',RS.lg.includes(x.dataset.lg)));RS.lim=100;drawRank()});
+  if(!LGS.includes(RS.lg)) RS.lg=''; $('#lg').value=RS.lg;
+  $('#lg').onchange=e=>{RS.lg=e.target.value;RS.lim=100;drawRank()};
   $('#act').value=RS.active; $('#minm').value=presets.includes(RS.minm)?RS.minm:'custom'; $('#minc').hidden=$('#minm').value!=='custom';
   $('#q').oninput=e=>{RS.q=e.target.value;RS.lim=100;drawRank()};
   if(RS.active==='custom') RS.active='24';
@@ -625,8 +645,8 @@ function ranking(){
   drawRank();
 }
 function drawRank(){
-  store('rk-ee1',{active:RS.active,minm:RS.minm,minc:RS.minc,sx:RS.sx,lg:RS.lg,club:RS.club,sort:RS.sort,dir:RS.dir});
-  const okP=p=>p.lv&&RS.sx.includes(p.sx)&&RS.lg.includes(p.lg||'RL')&&(!RS.club||(RS.club==='-'?!p.club:p.club===RS.club));
+  store('rk-ee2',{active:RS.active,minm:RS.minm,minc:RS.minc,sx:RS.sx,lg:RS.lg,club:RS.club,sort:RS.sort,dir:RS.dir});
+  const okP=p=>p.lv&&RS.sx.includes(p.sx)&&(!RS.lg||(p.lg||'RL')===RS.lg)&&(!RS.club||(RS.club==='-'?!p.club:p.club===RS.club));
   const minM=RS.minm==='custom'?(+RS.minc||0):+RS.minm;
   const cut=+RS.active?yearsAgo(+RS.active/12):0, q=sfold(RS.q.trim());
   let rows;
