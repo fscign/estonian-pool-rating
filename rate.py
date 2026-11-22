@@ -1,5 +1,5 @@
 """Fargo-style rack-based ratings with 2-year half-life, placed on the FargoRate scale with a set of reference ratings."""
-import sqlite3, numpy as np, datetime, json, sys
+import sqlite3, numpy as np, datetime, json, sys, collections
 
 DB = 'ee_pool.sqlite'
 HALF_LIFE_Y = 2.0
@@ -14,7 +14,7 @@ ANCHORS = {'Grabe Denis': 811, 'Mägi Mark': 787, 'Gnadeberg Karl': 753, 'Rehepa
            'Ventsel Illimar': 663, 'Jermikimov Aleksandr': 656, 'Gnadeberg Gert': 628, 'Ventsel Harry': 583, 'Maimre Roland': 523}
 
 db = sqlite3.connect(DB)
-pl = db.execute('SELECT id, last_name, first_name, shown FROM players').fetchall()
+pl = db.execute('SELECT id, last_name, first_name, shown, country FROM players').fetchall()
 pids = [p[0] for p in pl]; idx = {p: i for i, p in enumerate(pids)}; N = len(pids)
 M = db.execute('SELECT date, player_a, player_b, score_a, score_b, game FROM matches ORDER BY date').fetchall()
 dates = np.array([datetime.date.fromisoformat(m[0]).toordinal() for m in M])
@@ -38,23 +38,30 @@ for ln_fn, val in ANCHORS.items():
     else: print('anchor not found', ln_fn, file=sys.stderr)
 
 LV = np.array([bool(p[3]) for p in pl])   # shown (Estonian) players
+# Newcomer pull per country (22 Nov 2026): every other country has its own group average, so weak Latvian club players are not
+# pulled towards the average of all foreigners (EPBF / Matchroom pros, Finns ...), which lifted the whole Latvian pool by about 60.
+_n = collections.Counter(p[4] or '?' for p in pl if not p[3])
+_cc = {}
+GRP = np.array([0 if p[3] else _cc.setdefault((p[4] or '?') if _n[p[4] or '?'] >= 100 else 'other', len(_cc) + 1) for p in pl])   # small countries share one group
+NG = len(_cc) + 1
 # Newcomer prior: a player is pulled (3 virtual racks won and lost) towards the average of his own group.
 # Latvians and foreign players get separate group averages, so strong foreign BPL players do not lift the
 # point that Latvian club players are pulled towards. The Latvian group average stays at 0 on the solver scale.
-def solve(upto_ord, r0=None, prior_mu=0.0, iters=400, mu_f=0.0):
+def solve(upto_ord, r0=None, prior_mu=0.0, iters=400, mu_f=None):
     sel = dates <= upto_ord
     a, b, wa, wb = A[sel], B[sel], WA[sel], WB[sel]
     age = (upto_ord - dates[sel]) / 365.25
     w = 0.5 ** (age / HALF_LIFE_Y)
     r = np.zeros(N) if r0 is None else r0.copy()
     active = np.zeros(N, bool); active[a] = True; active[b] = True
+    mu_g = np.zeros(NG) if mu_f is None else np.array(mu_f, float).copy()
     n = wa + wb
     for _ in range(iters):
         p = 1 / (1 + np.exp(-K * (r[a] - r[b])))           # P(a wins a rack)
         ga = w * (wa - n * p); h = w * n * p * (1 - p) * K
         g = np.bincount(a, ga, N) - np.bincount(b, ga, N)
         H = np.bincount(a, h, N) + np.bincount(b, h, N)
-        mu = np.where(LV, prior_mu, mu_f)
+        mu = np.where(LV, prior_mu, mu_g[GRP])
         pp = 1 / (1 + np.exp(-K * (r - mu)))
         gp = PRIOR_RACKS - 2 * PRIOR_RACKS * pp; hp = 2 * PRIOR_RACKS * pp * (1 - pp) * K
         g += gp; H += hp
@@ -67,13 +74,15 @@ def solve(upto_ord, r0=None, prior_mu=0.0, iters=400, mu_f=0.0):
         al, af = active & LV, active & ~LV
         shift = float(np.clip(gp[al].sum() / hp[al].sum(), -60, 60)) if al.any() else 0.0
         r[active] += shift
-        dmf = float(np.clip(-gp[af].sum() / hp[af].sum(), -60, 60)) if af.any() else 0.0
-        mu_f += dmf
-        if np.abs(step).max() < 0.005 and abs(shift) < 0.005 and abs(dmf) < 0.005: break
+        # each foreign country's average follows its own active players
+        sg = np.bincount(GRP[af], -gp[af], NG); sh = np.bincount(GRP[af], hp[af], NG)
+        dmg = np.where(sh > 0, np.clip(sg / np.where(sh > 0, sh, 1), -60, 60), 0.0); dmg[0] = 0.0
+        mu_g += dmg; dmf = float(np.abs(dmg).max())
+        if np.abs(step).max() < 0.005 and abs(shift) < 0.005 and dmf < 0.02: break
     nr = NR[sel]
     racks = np.bincount(a, nr, N) + np.bincount(b, nr, N)   # rack games only (no 14.1)
     eff = np.bincount(a, w * n, N) + np.bincount(b, w * n, N)
-    solve.mu_f = mu_f
+    solve.mu_f = mu_g
     return r, active, racks, eff
 
 # Determine offset (unanchored -> anchored) with prior mean consistent with NEWCOMER
@@ -83,7 +92,7 @@ r, active, racks, eff = solve(today, None, prior_mu=0.0, iters=3000)
 ai = list(anchor_idx); offset = float(np.mean([anchor_idx[i] - r[i] for i in ai]))
 print('newcomer pull point on the anchored scale:', round(offset))
 final = r + offset
-print('offset', round(offset, 1), 'foreign newcomer point', round(solve.mu_f + offset))
+print('offset', round(offset, 1), 'newcomer points by country', {k: round(solve.mu_f[v] + offset) for k, v in _cc.items() if k in ('LAT', 'LIT', 'FIN', 'SWE', 'NOR', 'DEN', 'GER', 'POL')})
 print('anchor check:', [(pl[i][1], anchor_idx[i], round(final[i])) for i in anchor_idx])
 
 # current ratings table
@@ -110,7 +119,7 @@ snap = []
 # a player's history starts once he has 100 racks within 2 years; before that the rating is mostly the newcomer starting level
 MIN_RACKS = 100
 started = np.zeros(N, bool)
-y, mth = 2011, 12; rr = None; mf = 0.0
+y, mth = 2011, 12; rr = None; mf = None
 while (y, mth) <= (TODAY.year, TODAY.month):
     nm = datetime.date(y + (mth == 12), mth % 12 + 1, 1)
     end = min(nm - datetime.timedelta(days=1), TODAY)
