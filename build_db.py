@@ -330,6 +330,10 @@ C = lambda k: find(k)
 def country(k): return P[k][2]
 eligible = set(C(k) for k in cnt)
 SHOWN = {k for k in eligible if country(k) == 'EST' and k not in EXCLUDE_PLAYERS}
+# players with another flag who play in Estonia and are shown (overrides 'estonian', any profile id; Aleksandrs 22 Nov 2026:
+# Phil Mathias, Michael Kirsch, Anton Bobkov)
+FORCE_EST = {C(k) for k in OV.get('estonian', []) if k in P and C(k) in eligible}
+SHOWN |= {k for k in FORCE_EST if k not in EXCLUDE_PLAYERS}
 
 # ---------- final matches; a tournament entry that repeats another entry (>=50% same results) is a duplicate ----------
 def rkey(m, a, b): return tuple(sorted([(a, m['sa']), (b, m['sb'])]))
@@ -376,7 +380,7 @@ if os.path.exists(DB): os.remove(DB)
 db = sqlite3.connect(DB)
 db.executescript('''
 CREATE TABLE players(id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, country TEXT, city TEXT, birth TEXT, sex TEXT,
-  ts_id INTEGER, cuescore_id INTEGER, fargo_id INTEGER, shown INTEGER, club TEXT);
+  ts_id INTEGER, cuescore_id INTEGER, fargo_id INTEGER, shown INTEGER, club TEXT, league TEXT);
 CREATE TABLE player_profiles(source TEXT, source_id TEXT, player_id INTEGER, name_on_source TEXT, PRIMARY KEY(source, source_id));
 CREATE TABLE tournaments(id INTEGER PRIMARY KEY, source TEXT, source_id TEXT, name TEXT, date TEXT, city TEXT, club TEXT,
   game TEXT, discipline_raw TEXT, organizer TEXT, excluded_reason TEXT, url TEXT);
@@ -435,6 +439,20 @@ def sex_of(k, first, last):
     if any(P[x][5] == 'f' and x not in CSIDS for x in group[k]): return 'f'
     f = (plain(first).split() or [''])[0]; l = plain(last)
     return 'f' if f[-1:] in ('a', 'e') and f not in MALE_A and l[-1:] in ('a', 'e') else 'm'
+# ---------- skill league (federation list, leagues.json; anyone not listed is Rahvaliiga) ----------
+LG = json.load(open('leagues.json', encoding='utf-8')) if os.path.exists('leagues.json') else {}
+LG_FOLD, LG_PH = {}, {}
+for code in ('ML', 'EL', 'TL'):
+    for n in LG.get(code, []):
+        LG_FOLD[fold_name(n)] = code
+        w = n.split(); LG_PH[tuple(sorted([ph(w[0]), ph(w[-1])]))] = code
+LG_FOUND = set()
+def league_of(k, first, last):
+    names = [(first, last)] + [(s(P[x][1]), s(P[x][0])) for x in group[k]]
+    for f_, l_ in names:
+        c = LG_FOLD.get(fold_name(f_ + l_)) or LG_PH.get(tuple(sorted([ph((f_.split() or [''])[0]), ph((l_.split() or [''])[-1])])))
+        if c: LG_FOUND.add(c + ':' + f_ + ' ' + l_); return c
+    return 'RL'
 for k in sorted(used, key=int):
     v = P[k]; first, last = display(k)
     v = list(v); v[5] = sex_of(k, first, last)
@@ -446,8 +464,10 @@ for k in sorted(used, key=int):
     cs_id = next((int(x) for x in group[k] if x in CSIDS), None)
     ts_id = int(k) if k not in CSIDS else None
     clubs = sorted(CLUB[x] for x in group[k] if x in CLUB)   # newest club the player represented on CueScore
-    db.execute('INSERT INTO players VALUES(?,?,?,?,?,?,?,?,?,NULL,?,?)', (int(k), first, last, v[2], city, birth, v[5], ts_id, cs_id, int(k in SHOWN),
-               clubs[-1][1] if clubs else None))
+    if k in FORCE_EST: v = list(v); v[2] = 'EST'
+    lg = league_of(k, first, last) if k in SHOWN else None
+    db.execute('INSERT INTO players VALUES(?,?,?,?,?,?,?,?,?,NULL,?,?,?)', (int(k), first, last, v[2], city, birth, v[5], ts_id, cs_id, int(k in SHOWN),
+               clubs[-1][1] if clubs else None, lg))
 for k, v in P.items():
     if is_person(v) and C(k) in used:
         db.execute('INSERT INTO player_profiles VALUES(?,?,?,?)', ('cuescore' if k in CSIDS else 'tournamentservice', k, int(C(k)), f'{s(v[1])} {s(v[0])}'))
@@ -469,6 +489,7 @@ print('raw valid', len(raw_valid), 'final matches', len(matches), 'players', len
 print('shown (Estonian) players', sum(1 for k in used if k in SHOWN), 'background players', sum(1 for k in used if k not in SHOWN))
 print('merged profiles', sum(1 for k in canon if canon[k] != k))
 print('games', collections.Counter(T[m['tid']]['game'] for m in matches))
+print('league list names found', len(LG_FOUND), 'of', sum(len(LG.get(c, [])) for c in ('ML', 'EL', 'TL')))
 json.dump(NAME_REVIEW, open('name_review.json', 'w', encoding='utf-8'), ensure_ascii=False)   # read by report.py
 # duplicate pairs for the admin panel (export_admin.py): every caught or forced pair and the pairs still to review
 def _pair(t1, t2):

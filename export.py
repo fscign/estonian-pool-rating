@@ -7,10 +7,10 @@ SHOWN = {r[0] for r in db.execute('SELECT id FROM players WHERE shown=1')}
 EM = [r for r in db.execute('SELECT date, tournament_id, player_a, player_b, score_a, score_b, stage FROM matches ORDER BY date DESC, id DESC') if r[2] in SHOWN or r[3] in SHOWN]
 need = SHOWN | {r[2] for r in EM} | {r[3] for r in EM}
 players = []
-for r in db.execute('''SELECT p.id, p.first_name, p.last_name, p.country, p.city, r.rating, r.racks, r.matches, r.last_played, r.eff_racks, p.ts_id, p.cuescore_id, p.shown, p.sex, p.club
+for r in db.execute('''SELECT p.id, p.first_name, p.last_name, p.country, p.city, r.rating, r.racks, r.matches, r.last_played, r.eff_racks, p.ts_id, p.cuescore_id, p.shown, p.sex, p.club, p.league
                        FROM players p JOIN ratings r ON r.player_id=p.id ORDER BY r.rating DESC'''):
     if r[0] not in need: continue
-    players.append([r[0], r[1], r[2], r[3], r[4], round(r[5], 1), r[6], r[7], r[8], round(r[9]), r[10], r[11], r[12], 1 if r[13] == 'f' else 0, r[14] or ''])
+    players.append([r[0], r[1], r[2], r[3], r[4], round(r[5], 1), r[6], r[7], r[8], round(r[9]), r[10], r[11], r[12], 1 if r[13] == 'f' else 0, r[14] or '', r[15] or ''])
 used_t = {r[1] for r in EM}
 import re
 # short venue names for the site (the same club is written in several ways on the two sites)
