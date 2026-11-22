@@ -66,6 +66,12 @@ for cc_file in ('ee', 'lv', 'lt', 'fi', 'se', 'dk', 'no'):
         ts_ = int(datetime.datetime(*map(int, date.split('-')), 12).timestamp()) if date else 0
         d['matches'].append([tid, CS_MATCH_OFFSET + mid, str(a), str(b), str(sa), str(sb), race, ts_, rnd, ''])
 
+# Newest club read from each Estonian's latest CueScore event (clubs_latest.json, one-time read 22 Nov 2026; the collector keeps
+# clubs up to date from then on). For each player the club from the newest event wins.
+if os.path.exists('clubs_latest.json'):
+    for cid, (day, club) in json.load(open('clubs_latest.json', encoding='utf-8')).items():
+        if club and (cid not in CLUB or day >= CLUB[cid][0]): CLUB[cid] = (day, club)
+
 # ---------- EPBF and Matchroom (WNT): all matches; players join others by name and country ----------
 EP_T, EP_P, WN_T, WN_P = 6_000_000_000, 6_500_000_000, 5_000_000_000, 5_500_000_000
 A2 = dict(lv='LVA', ee='EST', lt='LTU', fi='FIN', se='SWE', no='NOR', dk='DNK', de='DEU', pl='POL', gb='GBR', us='USA', nl='NLD', be='BEL', fr='FRA',
@@ -380,7 +386,7 @@ if os.path.exists(DB): os.remove(DB)
 db = sqlite3.connect(DB)
 db.executescript('''
 CREATE TABLE players(id INTEGER PRIMARY KEY, first_name TEXT, last_name TEXT, country TEXT, city TEXT, birth TEXT, sex TEXT,
-  ts_id INTEGER, cuescore_id INTEGER, fargo_id INTEGER, shown INTEGER, club TEXT, league TEXT);
+  ts_id INTEGER, cuescore_id INTEGER, fargo_id INTEGER, shown INTEGER, club TEXT, league TEXT, sex_hint TEXT);
 CREATE TABLE player_profiles(source TEXT, source_id TEXT, player_id INTEGER, name_on_source TEXT, PRIMARY KEY(source, source_id));
 CREATE TABLE tournaments(id INTEGER PRIMARY KEY, source TEXT, source_id TEXT, name TEXT, date TEXT, city TEXT, club TEXT,
   game TEXT, discipline_raw TEXT, organizer TEXT, excluded_reason TEXT, url TEXT);
@@ -442,8 +448,21 @@ FEMALE_EE = {'kart', 'liis', 'liisi', 'liise', 'heidy', 'heidi', 'kristel', 'kri
              'evelin', 'evelyn', 'karmen', 'kerttu', 'marit', 'merit', 'piia', 'raili', 'sandra', 'sille', 'stella', 'terje', 'tuuli',
              'vivian', 'yvonne', 'iris', 'irene', 'alice', 'agnes', 'ester', 'ruth', 'olga', 'karoliine', 'kristel-ly', 'emma', 'mia'}
 def plain(x): return ''.join(c for c in unicodedata.normalize('NFKD', x.lower()) if not unicodedata.combining(c)).strip()
+# Women (Aleksandrs 22 Nov 2026): players who played a women's event (Naisteliiga, Eesti MV naised, BPL / Latvian / Lithuanian /
+# EPBF / Nordic women's events); anyone else only by hand (overrides 'sex'). Name rules below are only a hint for the review list.
+WOMEN_EV = re.compile(r'naiste|naised|\bwomen|\bladies|sieviet|moter|\bdamen|\bnaiset|\bnaisten|\bdam(?:er|or)\b|female', re.I)
+MIXED_EV = re.compile(r'senior|veteran|meistar|oldboy|&', re.I)
+women_t = {t[0] for t in d['tournaments'] if WOMEN_EV.search(s(t[1])) and not MIXED_EV.search(s(t[1]))}
+women_p = set()
+for m in d['matches']:
+    if m[0] in women_t: women_p.update((m[2], m[3]))
+SEX_HINT = {}   # player -> 'f' by the old name rule, for the review list
 def sex_of(k, first, last):
     if k in SEX_OVERRIDE: return SEX_OVERRIDE[k]
+    if any(x in women_p for x in group[k]): return 'f'
+    SEX_HINT[k] = sex_by_name(k, first, last)
+    return 'm'
+def sex_by_name(k, first, last):
     if any(P[x][5] == 'f' and x not in CSIDS for x in group[k]): return 'f'
     f = (plain(first).replace('-', ' ').split() or [''])[0]; l = plain(last)
     if country(k) in ('LAT', 'LIT'):   # Latvian / Lithuanian names: first name and surname both end in -a/-e
@@ -482,8 +501,8 @@ for k in sorted(used, key=int):
     clubs = sorted(CLUB[x] for x in group[k] if x in CLUB)   # newest club the player represented on CueScore
     if k in FORCE_EST: v = list(v); v[2] = 'EST'
     lg = league_of(k, first, last) if k in SHOWN else None
-    db.execute('INSERT INTO players VALUES(?,?,?,?,?,?,?,?,?,NULL,?,?,?)', (int(k), first, last, v[2], city, birth, v[5], ts_id, cs_id, int(k in SHOWN),
-               clubs[-1][1] if clubs else None, lg))
+    db.execute('INSERT INTO players VALUES(?,?,?,?,?,?,?,?,?,NULL,?,?,?,?)', (int(k), first, last, v[2], city, birth, v[5], ts_id, cs_id, int(k in SHOWN),
+               clubs[-1][1] if clubs else None, lg, SEX_HINT.get(k)))
 for k, v in P.items():
     if is_person(v) and C(k) in used:
         db.execute('INSERT INTO player_profiles VALUES(?,?,?,?)', ('cuescore' if k in CSIDS else 'tournamentservice', k, int(C(k)), f'{s(v[1])} {s(v[0])}'))
