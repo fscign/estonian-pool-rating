@@ -257,6 +257,14 @@ for x in d['matches']:
     if w is None: continue
     stage_all[(x[0], x[8])] += 1
     if w >= 3: stage_long[(x[0], x[8])] += 1
+# A match recorded as x:0 that ends before the race its round was played to (most common winner score; the stored race for
+# rounds of 1-2 matches) is a walkover written as a score, e.g. 3:0 in a race-to-5 round (Aleksandrs 22 Nov 2026): not counted
+stage_race = collections.defaultdict(collections.Counter)
+for x in d['matches']:
+    w = played(x)
+    if w: stage_race[(x[0], x[8])][w] += 1
+    if w and str(x[6]).isdigit(): stage_race[(x[0], 'race', int(x[6]))][w] += 1   # same stored race in the whole event
+WALKOVER = collections.Counter(); SHORT_NOT_ZERO = collections.Counter(); WALKOVER_EX = []
 odd_long = collections.Counter()
 raw_valid = []
 for x in d['matches']:
@@ -268,6 +276,20 @@ for x in d['matches']:
     if fx is None: continue
     if fx: sc = fx
     if t['game'] == '14.1' and max(sc) < 50: continue   # straight pool: matches to 50 points or longer only (Aleksandrs 20 Nov 2026)
+    if t['game'] != '14.1' and not fx:
+        # the race actually played in the round (most common winner score) decides; the stored race only for rounds of 1-2 matches
+        # (a stored race is sometimes wrong for a whole event, e.g. 'race to 4' where every match ended 3:x)
+        # a match that reached its own stored race is complete (rounds can mix races)
+        sr = stage_race[(x[0], x[8])]; own = int(x[6]) if str(x[6]).isdigit() else 0
+        if sum(sr.values()) < 3 and own:   # small round (final, semifinals): matches with the same stored race in the event
+            sr = stage_race[(x[0], 'race', own)]
+        race = max(sr.items(), key=lambda kv: kv[1])[0] if sum(sr.values()) >= 3 or not own else own
+        if max(sc) < race and (not own or max(sc) < own):
+            if min(sc) == 0:
+                WALKOVER[x[0]] += 1
+                if len(WALKOVER_EX) < 40: WALKOVER_EX.append((t['name'], str(t['date']), x[8], sc, race))
+                continue
+            SHORT_NOT_ZERO[x[0]] += 1
     k = (x[0], x[8])
     if x[0] not in SOURCE and t['game'] != '14.1' and stage_long[k] < 0.5 * stage_all[k]:
         odd_long[x[0]] += 1; continue
@@ -531,6 +553,8 @@ for m in matches:
 db.commit()
 print('tournaments total', len(T), 'used', len({m['tid'] for m in matches}))
 print('excluded', collections.Counter(t['excl'] for t in T.values()))
+print('walkovers written as a score (x:0 short of the race), not counted:', sum(WALKOVER.values()), 'in', len(WALKOVER), 'events; short of the race but not x:0 (kept):', sum(SHORT_NOT_ZERO.values()))
+for _w in WALKOVER_EX: print('  walkover', _w)
 print('dropped odd long matches', sum(odd_long.values()), 'in', len(odd_long), 'events')
 print('raw valid', len(raw_valid), 'final matches', len(matches), 'players', len(used))
 print('shown (Estonian) players', sum(1 for k in used if k in SHOWN), 'background players', sum(1 for k in used if k not in SHOWN))
