@@ -18,6 +18,19 @@ def tier_of(text):
     return CODES.get(t) or CODES.get(t.replace(' ', ''))
 
 def parse(page):
+    """The page's table rows are name, league, name, league (seen 22 Nov 2026): each name is followed by its code.
+    If no such pairs are found, fall back to columns headed by a league code (parse_columns)."""
+    soup = BeautifulSoup(page, 'lxml')
+    out = {'ML': [], 'EL': [], 'TL': []}
+    for tr in soup.find_all('tr'):
+        cells = [' '.join(c.get_text(' ', strip=True).split()) for c in tr.find_all(['td', 'th'])]
+        for i in range(len(cells) - 1):
+            tier = tier_of(cells[i + 1])
+            if tier and NAME.match(cells[i]) and len(cells[i].split()) >= 2 and not tier_of(cells[i]):
+                if cells[i] not in out[tier]: out[tier].append(cells[i])
+    return out if any(out.values()) else parse_columns(page)
+
+def parse_columns(page):
     """Column-aware: every table cell is assigned to the league named last in its column (headers may repeat further down,
     and leagues may sit side by side). Cells that are not names (numbers, empty) are skipped."""
     soup = BeautifulSoup(page, 'lxml')
