@@ -618,8 +618,8 @@ function ranking(){
       <option value="0">${t('any')}</option><option value="200">${t('orMore',200)}</option><option value="500">${t('orMore',500)}</option><option value="1000">${t('orMore',1000)}</option><option value="custom">${t('custom')}</option></select>
       <input id="minc" type="number" min="0" step="1" inputmode="numeric" placeholder="${t('atLeast')}" value="${esc(RS.minc)}" aria-label="${t('atLeast')}"></span></label>
     <div class="clabel">${t('sexLbl')}<span class="chips"><button class="chip${RS.sx.includes('m')?' on':''}" data-sx="m">${t('men')}</button><button class="chip${RS.sx.includes('f')?' on':''}" data-sx="f">${t('women')}</button></span></div>
-    <label title="${esc(t('lgTip'))}">${t('lgLbl')}<select id="lg"><option value="">${t('lgAll')}</option>${LGS.map(k=>`<option value="${k}">${LGN[k]} (${k})</option>`).join('')}</select></label>
-    <label>${t('clubLbl')}<select id="club"><option value="">${t('clubAll')}</option>${[...new Set(Object.values(PL).filter(p=>p.lv&&p.club).map(p=>p.club))].sort((a,b)=>a.localeCompare(b)).map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('')}<option value="-">${t('clubNone')}</option></select></label>
+    <label title="${esc(t('lgTip'))}">${t('lgLbl')}<select id="lg"></select></label>
+    <label>${t('clubLbl')}<select id="club"></select></label>
   </div>
   <div class="tablebox"><table class="rank"><thead><tr>
     <th class="num">#</th><th class="sort" data-s="name">${t('thPlayer')}</th><th class="sort num" data-s="r">${t('thRating')}</th>
@@ -629,9 +629,8 @@ function ranking(){
   <div class="more" id="more"></div>
   <p class="starhint" id="starhint"></p>
   <p class="note">${t('inactiveNote')} ${t('calcOn',fmtD(isoToNum(GEN)))}</p>`;
-  $('#club').value=RS.club; if($('#club').value!==RS.club){RS.club='';$('#club').value=''}
   $('#club').onchange=e=>{RS.club=e.target.value;RS.lim=100;drawRank()};
-  if(!LGS.includes(RS.lg)) RS.lg=''; $('#lg').value=RS.lg;
+  if(!LGS.includes(RS.lg)) RS.lg='';
   $('#lg').onchange=e=>{RS.lg=e.target.value;RS.lim=100;drawRank()};
   $('#act').value=RS.active; $('#minm').value=presets.includes(RS.minm)?RS.minm:'custom'; $('#minc').hidden=$('#minm').value!=='custom';
   $('#q').oninput=e=>{RS.q=e.target.value;RS.lim=100;drawRank()};
@@ -646,9 +645,18 @@ function ranking(){
 }
 function drawRank(){
   store('rk-ee2',{active:RS.active,minm:RS.minm,minc:RS.minc,sx:RS.sx,lg:RS.lg,club:RS.club,sort:RS.sort,dir:RS.dir});
-  const okP=p=>p.lv&&RS.sx.includes(p.sx)&&(!RS.lg||(p.lg||'RL')===RS.lg)&&(!RS.club||(RS.club==='-'?!p.club:p.club===RS.club));
   const minM=RS.minm==='custom'?(+RS.minc||0):+RS.minm;
   const cut=+RS.active?yearsAgo(+RS.active/12):0, q=sfold(RS.q.trim());
+  // dropdowns list only what returns somebody with the other filters (Aleksandrs 22 Nov 2026); players without a club are in no club option
+  const base=p=>p.lv&&RS.sx.includes(p.sx)&&isoToNum(p.last_played)>=cut&&p.racks>=minM;
+  const okLg=p=>!RS.lg||(p.lg||'RL')===RS.lg, okClub=p=>!RS.club||p.club===RS.club;
+  const clubs=[...new Set(Object.values(PL).filter(p=>base(p)&&okLg(p)&&p.club).map(p=>p.club))].sort((a,b)=>a.localeCompare(b));
+  if(RS.club&&!clubs.includes(RS.club)) RS.club='';
+  const lgs=LGS.filter(k=>Object.values(PL).some(p=>base(p)&&okClub(p)&&(p.lg||'RL')===k));
+  if(RS.lg&&!lgs.includes(RS.lg)) RS.lg='';
+  $('#club').innerHTML=`<option value="">${t('clubAll')}</option>`+clubs.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join(''); $('#club').value=RS.club;
+  $('#lg').innerHTML=`<option value="">${t('lgAll')}</option>`+lgs.map(k=>`<option value="${k}">${LGN[k]} (${k})</option>`).join(''); $('#lg').value=RS.lg;
+  const okP=p=>p.lv&&RS.sx.includes(p.sx)&&okLg(p)&&okClub(p);
   let rows;
   rows=Object.values(PL).filter(p=>okP(p)&&isoToNum(p.last_played)>=cut&&p.racks>=minM);
   rows.sort((a,b)=>b.rs-a.rs); rows.forEach((p,i)=>p.rank=i+1);

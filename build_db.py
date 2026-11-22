@@ -39,6 +39,7 @@ for _k in CS_EXCLUDE: P.pop(_k, None)   # not real players, also Tournament Serv
 CS_CC = {'LTU': 'LIT', 'GBR': 'ENG', 'DEU': 'GER', 'NLD': 'NED', 'CHE': 'SUI', 'DNK': 'DEN', 'LVA': 'LAT'}   # CueScore codes -> Tournament Service codes
 CC_SUFFIX = {'estonia': '', 'latvia': ' (LAT)', 'lithuania': ' (LIT)', 'finland': ' (FIN)', 'sweden': ' (SWE)', 'denmark': ' (DEN)', 'norway': ' (NOR)'}
 CLUB = {}              # CueScore id -> club the player represents (collector stores it)
+CLUB_MEMBER = {}       # CueScore id -> (club, flag), all collected countries: tells Estonian clubs from foreign ones
 T_CTRY = {}            # tournament id -> country code of the venue (for the site)
 for cc_file in ('ee', 'lv', 'lt', 'fi', 'se', 'dk', 'no'):
     cs = load(f'data/{cc_file}_cuescore_raw.json.gz')
@@ -53,6 +54,7 @@ for cc_file in ('ee', 'lv', 'lt', 'fi', 'se', 'dk', 'no'):
         SOURCE[tid] = 'cuescore'; new_t.add(tid); T_CTRY[tid] = ctry
     for cid, v in cs['players'].items():
         fn, ln, cc = v[:3]
+        if len(v) > 3 and v[3] and len(v[3]) > 3: CLUB_MEMBER.setdefault(cid, (v[3], cc))
         if cid in CS_EXCLUDE: continue
         if cid in P:
             if not nordic: CS_NORDIC.discard(cid)
@@ -68,6 +70,12 @@ for cc_file in ('ee', 'lv', 'lt', 'fi', 'se', 'dk', 'no'):
         ts_ = int(datetime.datetime(*map(int, date.split('-')), 12).timestamp()) if date else 0
         d['matches'].append([tid, CS_MATCH_OFFSET + mid, str(a), str(b), str(sa), str(sb), race, ts_, rnd, ''])
 
+# Only Estonian clubs are shown (Aleksandrs 22 Nov 2026): a club counts as Estonian when at least half of its CueScore members
+# in all collected countries have the Estonian flag (Stockholms Biljardsällskap, Kville, Vesterålen are not); a player whose
+# newest club is foreign has no club on the site
+_cm_t, _cm_e = collections.Counter(), collections.Counter()
+for _c, _cc in CLUB_MEMBER.values(): _cm_t[_c] += 1; _cm_e[_c] += _cc == 'EST'
+EE_CLUB = {c for c in _cm_t if _cm_e[c] * 2 >= _cm_t[c]}
 # Newest club read from each Estonian's latest CueScore event (clubs_latest.json, one-time read 22 Nov 2026; the collector keeps
 # clubs up to date from then on). For each player the club from the newest event wins.
 if os.path.exists('clubs_latest.json'):
@@ -506,7 +514,7 @@ for k in sorted(used, key=int):
     if k in FORCE_LAT: v = list(v); v[2] = 'LAT'
     lg = league_of(k, first, last) if k in SHOWN else None
     db.execute('INSERT INTO players VALUES(?,?,?,?,?,?,?,?,?,NULL,?,?,?,?)', (int(k), first, last, v[2], city, birth, v[5], ts_id, cs_id, int(k in SHOWN),
-               clubs[-1][1] if clubs else None, lg, SEX_HINT.get(k)))
+               clubs[-1][1] if clubs and clubs[-1][1] in EE_CLUB else None, lg, SEX_HINT.get(k)))
 for k, v in P.items():
     if is_person(v) and C(k) in used:
         db.execute('INSERT INTO player_profiles VALUES(?,?,?,?)', ('cuescore' if k in CSIDS else 'tournamentservice', k, int(C(k)), f'{s(v[1])} {s(v[0])}'))
