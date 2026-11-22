@@ -1,0 +1,8 @@
+data/
+status/
+*.sqlite
+previous_data.json
+*_log.txt
+name_review.json
+admin_dups.json
+__pycache__/

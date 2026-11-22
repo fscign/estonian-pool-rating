@@ -1,0 +1,2913 @@
+{
+ "_about": "Every manual decision for the Latvian Pool Rating. build_db.py reads this file at every run; the admin panel (poolrating.horsuns.eu/admin) edits it. Moved here from build_db.py and name_overrides.json on 20 Nov 2026. 'duplicates': copy id -> the id that counts. 'dup_review': pairs still to look at in the panel.",
+ "names": {
+  "1496": {
+   "first": "Aleksandrs",
+   "last": "Iljins",
+   "note": "confirmed spelling, was Aleksandr Il'in",
+   "date": "2026-11-20"
+  },
+  "1526": {
+   "first": "Edvīns",
+   "last": "Piļka",
+   "note": "",
+   "date": ""
+  },
+  "4373": {
+   "first": "Pēteris",
+   "last": "Ermansons",
+   "note": "confirmed spelling, was Peteris Ermansons",
+   "date": "2026-11-20"
+  },
+  "4392": {
+   "first": "Vladislavs",
+   "last": "Beļkovs",
+   "note": "confirmed spelling, was Vladislavs Belkovs",
+   "date": "2026-11-20"
+  },
+  "4404": {
+   "first": "Aleksejs",
+   "last": "Mališevs",
+   "note": "confirmed spelling, was Aleksejs Malishevs",
+   "date": "2026-11-20"
+  },
+  "4410": {
+   "first": "Oļegs",
+   "last": "Demjanovs",
+   "note": "confirmed spelling, was Oleg Demjanov",
+   "date": "2026-11-20"
+  },
+  "4418": {
+   "first": "Oskars",
+   "last": "Siliņš",
+   "note": "confirmed spelling, was Oskars Silinsh",
+   "date": "2026-11-20"
+  },
+  "4419": {
+   "first": "Ivo",
+   "last": "Šmits",
+   "note": "confirmed spelling, was Ivo Shmits",
+   "date": "2026-11-20"
+  },
+  "4464": {
+   "first": "Alberta",
+   "last": "Šimkevičiūtė",
+   "note": "",
+   "date": ""
+  },
+  "4473": {
+   "first": "Anna",
+   "last": "Prisjažņuka",
+   "note": "confirmed spelling, was Anna Prisjazhnuka",
+   "date": "2026-11-20"
+  },
+  "4560": {
+   "first": "Sergejs",
+   "last": "Koļcovs",
+   "note": "confirmed spelling, was Sergey Kolcov",
+   "date": "2026-11-20"
+  },
+  "4563": {
+   "first": "Māris",
+   "last": "Volajs",
+   "note": "confirmed spelling, was Maris Volajs",
+   "date": "2026-11-20"
+  },
+  "4567": {
+   "first": "Māris",
+   "last": "Kaļva",
+   "note": "confirmed spelling, was Maris Kaļva",
+   "date": "2026-11-20"
+  },
+  "4572": {
+   "first": "Ivars",
+   "last": "Mežulis",
+   "note": "confirmed spelling, was Ivars Mezhulis",
+   "date": "2026-11-20"
+  },
+  "4582": {
+   "first": "Verners",
+   "last": "Šēnbergs",
+   "note": "confirmed spelling, was Verners Shenbergs",
+   "date": "2026-11-20"
+  },
+  "5099": {
+   "first": "Rodions",
+   "last": "Judins",
+   "note": "confirmed spelling, was Rodion Judin",
+   "date": "2026-11-20"
+  },
+  "6992": {
+   "first": "Kęstutis",
+   "last": "Žadeikis",
+   "note": "",
+   "date": ""
+  },
+  "8882": {
+   "first": "Jānis",
+   "last": "Lēmanis",
+   "note": "confirmed spelling, was Janis Lemanis",
+   "date": "2026-11-20"
+  },
+  "8883": {
+   "first": "Kristaps",
+   "last": "Lēmanis",
+   "note": "confirmed spelling, was Kristaps Lemanis",
+   "date": "2026-11-20"
+  },
+  "8969": {
+   "first": "Jēkabs",
+   "last": "Andrusaitis",
+   "note": "confirmed spelling, was Jekabs Andrusaitis",
+   "date": "2026-11-20"
+  },
+  "9030": {
+   "first": "Artis",
+   "last": "Bārtulis",
+   "note": "confirmed spelling, was Artis Bartulis",
+   "date": "2026-11-20"
+  },
+  "9031": {
+   "first": "Artūrs",
+   "last": "Dučko",
+   "note": "confirmed spelling, was Arturs Duchko",
+   "date": "2026-11-20"
+  },
+  "9036": {
+   "first": "Artūrs",
+   "last": "Klindžāns",
+   "note": "confirmed spelling, was Arturs Klindžāns",
+   "date": "2026-11-20"
+  },
+  "9037": {
+   "first": "Mārtiņš",
+   "last": "Ozols",
+   "note": "confirmed spelling, was Martinsh Ozols",
+   "date": "2026-11-20"
+  },
+  "9038": {
+   "first": "Jānis",
+   "last": "Trubačs-Boginskis",
+   "note": "confirmed spelling, was Janis Trubačs-Boginskis",
+   "date": "2026-11-20"
+  },
+  "9299": {
+   "first": "Raitis",
+   "last": "Ozoliņš",
+   "note": "confirmed spelling, was Raitis Ozolinsh",
+   "date": "2026-11-20"
+  },
+  "9301": {
+   "first": "Artūrs",
+   "last": "Neilands",
+   "note": "confirmed spelling, was Arturs Neilands",
+   "date": "2026-11-20"
+  },
+  "9305": {
+   "first": "Ojārs",
+   "last": "Blezūrs",
+   "note": "confirmed spelling, was Ojars Blezurs",
+   "date": "2026-11-20"
+  },
+  "10247": {
+   "first": "Genādijs",
+   "last": "Kaminskis",
+   "note": "confirmed spelling, was Genadijs Kaminskis",
+   "date": "2026-11-20"
+  },
+  "10249": {
+   "first": "Vitālijs",
+   "last": "Špaks",
+   "note": "confirmed spelling, was Vitalijs Shpaks",
+   "date": "2026-11-20"
+  },
+  "10485": {
+   "first": "Guntars",
+   "last": "Grīnums",
+   "note": "confirmed spelling, was Guntars Grinums",
+   "date": "2026-11-20"
+  },
+  "10499": {
+   "first": "Konstantīns",
+   "last": "Kompa",
+   "note": "confirmed spelling, was Konstantins Kompa",
+   "date": "2026-11-20"
+  },
+  "10500": {
+   "first": "Andrejs",
+   "last": "Dučko",
+   "note": "confirmed spelling, was Andrejs Duchko",
+   "date": "2026-11-20"
+  },
+  "10502": {
+   "first": "Ēriks",
+   "last": "Skurjats",
+   "note": "confirmed spelling, was Eriks Skurjats",
+   "date": "2026-11-20"
+  },
+  "10569": {
+   "first": "Linda",
+   "last": "Guķe",
+   "note": "confirmed spelling, was Linda Guke",
+   "date": "2026-11-20"
+  },
+  "10579": {
+   "first": "Mārtiņš",
+   "last": "Ozoliņš",
+   "note": "confirmed spelling, was Martinsh Ozoliņš",
+   "date": "2026-11-20"
+  },
+  "10583": {
+   "first": "Artūrs",
+   "last": "Ļannijs",
+   "note": "confirmed spelling, was Arturs Ļannijs",
+   "date": "2026-11-20"
+  },
+  "10585": {
+   "first": "Mārtiņš",
+   "last": "Urtāns",
+   "note": "confirmed spelling, was Martinsh Urtāns",
+   "date": "2026-11-20"
+  },
+  "11313": {
+   "first": "Renārs",
+   "last": "Veidemanis",
+   "note": "confirmed spelling, was Renars Veidemanis",
+   "date": "2026-11-20"
+  },
+  "11315": {
+   "first": "Artūrs",
+   "last": "Gusevs",
+   "note": "confirmed spelling, was Arturs Gusevs",
+   "date": "2026-11-20"
+  },
+  "11321": {
+   "first": "Andrejs",
+   "last": "Grigolunovičs",
+   "note": "confirmed spelling, was Andrejs Grigolunovichs",
+   "date": "2026-11-20"
+  },
+  "11322": {
+   "first": "Jelena",
+   "last": "Grigolunoviča",
+   "note": "confirmed spelling, was Jelena Grigolunovicha",
+   "date": "2026-11-20"
+  },
+  "11720": {
+   "first": "Aleksandrs",
+   "last": "Vasiļjevs",
+   "note": "confirmed spelling, was Aleksandrs Vasiljevs",
+   "date": "2026-11-20"
+  },
+  "11952": {
+   "first": "Jānis",
+   "last": "Kaugurs",
+   "note": "confirmed spelling, was Janis Kaugurs",
+   "date": "2026-11-20"
+  },
+  "12334": {
+   "first": "Jānis",
+   "last": "Urbāns",
+   "note": "confirmed spelling, was Janis Urbāns",
+   "date": "2026-11-20"
+  },
+  "12335": {
+   "first": "Aleksandrs",
+   "last": "Kučmins",
+   "note": "confirmed spelling, was Aleksandrs Kuchmins",
+   "date": "2026-11-20"
+  },
+  "13659": {
+   "first": "Vitālijs",
+   "last": "Grigorjevs",
+   "note": "confirmed spelling, was Vitalijs Grigorjevs",
+   "date": "2026-11-20"
+  },
+  "13664": {
+   "first": "Viktors",
+   "last": "Šersts",
+   "note": "confirmed spelling, was Viktors Shersts",
+   "date": "2026-11-20"
+  },
+  "13665": {
+   "first": "Artūrs",
+   "last": "Babahins",
+   "note": "confirmed spelling, was Arturs Babahins",
+   "date": "2026-11-20"
+  },
+  "13666": {
+   "first": "Ernests",
+   "last": "Rimševics",
+   "note": "confirmed spelling, was Ernests Rimshevics",
+   "date": "2026-11-20"
+  },
+  "13683": {
+   "first": "Jānis",
+   "last": "Sproģis",
+   "note": "confirmed spelling, was Janis Sproģis",
+   "date": "2026-11-20"
+  },
+  "13735": {
+   "first": "Artūrs",
+   "last": "Kokorevič",
+   "note": "confirmed spelling, was Arturs Kokorevich",
+   "date": "2026-11-20"
+  },
+  "13857": {
+   "first": "Gunārs",
+   "last": "Pūce",
+   "note": "confirmed spelling, was Gunars Puce",
+   "date": "2026-11-20"
+  },
+  "13866": {
+   "first": "Fernando",
+   "last": "Blūmentāls",
+   "note": "confirmed spelling, was Fernando Blumentals",
+   "date": "2026-11-20"
+  },
+  "13981": {
+   "first": "Rūdolfs",
+   "last": "Zvaigzne",
+   "note": "confirmed spelling, was Rudolfs Zvaigzne",
+   "date": "2026-11-20"
+  },
+  "14823": {
+   "first": "Ziedonis",
+   "last": "Ruķeris",
+   "note": "confirmed spelling, was Ziedonis Rukeris",
+   "date": "2026-11-20"
+  },
+  "15523": {
+   "first": "Jānis",
+   "last": "Čilipāns",
+   "note": "confirmed spelling, was Janis Chilipans",
+   "date": "2026-11-20"
+  },
+  "15525": {
+   "first": "Arnis",
+   "last": "Legzdiņš",
+   "note": "confirmed spelling, was Arnis Legzdinsh",
+   "date": "2026-11-20"
+  },
+  "16564": {
+   "first": "Taņa",
+   "last": "Lāce",
+   "note": "confirmed spelling, was Tana Lace",
+   "date": "2026-11-20"
+  },
+  "16566": {
+   "first": "Artūrs",
+   "last": "Knoks",
+   "note": "confirmed spelling, was Arturs Knoks",
+   "date": "2026-11-20"
+  },
+  "16855": {
+   "first": "Vitālijs",
+   "last": "Baļčūns",
+   "note": "confirmed spelling, was Vitalijs Balchuns",
+   "date": "2026-11-20"
+  },
+  "16996": {
+   "first": "Vitālijs",
+   "last": "Sozontovs",
+   "note": "confirmed spelling, was Vitalijs Sozontovs",
+   "date": "2026-11-20"
+  },
+  "19304": {
+   "first": "Sandis",
+   "last": "Siliņš",
+   "note": "confirmed spelling, was Sandis Silinsh",
+   "date": "2026-11-20"
+  },
+  "19305": {
+   "first": "Kārlis",
+   "last": "Melecis",
+   "note": "confirmed spelling, was Karlis Melecis",
+   "date": "2026-11-20"
+  },
+  "19341": {
+   "first": "Artūrs",
+   "last": "Šabazovs",
+   "note": "confirmed spelling, was Arturs Šabazovs",
+   "date": "2026-11-20"
+  },
+  "20896": {
+   "first": "Kaspars",
+   "last": "Livčāns",
+   "note": "confirmed spelling, was Kaspars Livchans",
+   "date": "2026-11-20"
+  },
+  "20897": {
+   "first": "Jānis",
+   "last": "Ēvele",
+   "note": "confirmed spelling, was Janis Ēvele",
+   "date": "2026-11-20"
+  },
+  "21142": {
+   "first": "Kārlis",
+   "last": "Bergmanis",
+   "note": "confirmed spelling, was Karlis Bergmanis",
+   "date": "2026-11-20"
+  },
+  "22168": {
+   "first": "Vitālijs",
+   "last": "Rukšāns",
+   "note": "confirmed spelling, was Vitalijs Rukšāns",
+   "date": "2026-11-20"
+  },
+  "22169": {
+   "first": "Artūrs",
+   "last": "Čeksteris",
+   "note": "confirmed spelling, was Arturs Čeksteris",
+   "date": "2026-11-20"
+  },
+  "22432": {
+   "first": "Renārs",
+   "last": "Lēmanis",
+   "note": "confirmed spelling, was Renars Lemanis",
+   "date": "2026-11-20"
+  },
+  "23700": {
+   "first": "Jānis",
+   "last": "Baldis",
+   "note": "confirmed spelling, was Janis Baldis",
+   "date": "2026-11-20"
+  },
+  "24407": {
+   "first": "Dmitrijs",
+   "last": "Naļivko",
+   "note": "confirmed spelling, was Dmitriy Naļivko",
+   "date": "2026-11-20"
+  },
+  "24408": {
+   "first": "Sergejs",
+   "last": "Torčuks",
+   "note": "confirmed spelling, was Sergey Torčuks",
+   "date": "2026-11-20"
+  },
+  "25174": {
+   "first": "Mārtiņš",
+   "last": "Rūsis",
+   "note": "confirmed spelling, was Martinsh Rusis",
+   "date": "2026-11-20"
+  },
+  "25175": {
+   "first": "Sergejs",
+   "last": "Meļeskevičs",
+   "note": "confirmed spelling, was Sergey Meļeskevičs",
+   "date": "2026-11-20"
+  },
+  "25176": {
+   "first": "Edgars",
+   "last": "Garkulis-Gurevičs",
+   "note": "confirmed spelling, was Edgars Garkulis-Gurevichs",
+   "date": "2026-11-20"
+  },
+  "26010": {
+   "first": "Artemijs",
+   "last": "Žižins",
+   "note": "confirmed spelling, was Artemijs Zhizhins",
+   "date": "2026-11-20"
+  },
+  "26225": {
+   "first": "Sergejs",
+   "last": "Ignatjevs",
+   "note": "confirmed spelling, was Sergey Ignatjevs",
+   "date": "2026-11-20"
+  },
+  "26611": {
+   "first": "Jānis",
+   "last": "Mūrnieks",
+   "note": "confirmed spelling, was Janis Mūrnieks",
+   "date": "2026-11-20"
+  },
+  "27188": {
+   "first": "Jevgenijs",
+   "last": "Rabinovičs",
+   "note": "confirmed spelling, was Jevgēnijs Rabinovičs",
+   "date": "2026-11-20"
+  },
+  "27197": {
+   "first": "Vladimirs",
+   "last": "Siņicins",
+   "note": "confirmed spelling, was Vladimirs Sinicins",
+   "date": "2026-11-20"
+  },
+  "27905": {
+   "first": "Jānis",
+   "last": "Meiers",
+   "note": "confirmed spelling, was Janis Meiers",
+   "date": "2026-11-20"
+  },
+  "28770": {
+   "first": "Artūrs",
+   "last": "Pētersons",
+   "note": "confirmed spelling, was Arturs Petersons",
+   "date": "2026-11-20"
+  },
+  "29515": {
+   "first": "Artūrs",
+   "last": "Vītols",
+   "note": "confirmed spelling, was Arturs Vītols",
+   "date": "2026-11-20"
+  },
+  "29516": {
+   "first": "Aigars",
+   "last": "Grīnbergs",
+   "note": "confirmed spelling, was Aigars Grinbergs",
+   "date": "2026-11-20"
+  },
+  "30823": {
+   "first": "Gatis",
+   "last": "Bērziņš",
+   "note": "confirmed spelling, was Gatis Berzinsh",
+   "date": "2026-11-20"
+  },
+  "31730": {
+   "first": "Pāvels",
+   "last": "Mališevs",
+   "note": "confirmed spelling, was Pavels Malishevs",
+   "date": "2026-11-20"
+  },
+  "31731": {
+   "first": "Edgars",
+   "last": "Šudjajevs",
+   "note": "confirmed spelling, was Edgars Shudjajevs",
+   "date": "2026-11-20"
+  },
+  "31806": {
+   "first": "Māris",
+   "last": "Vartiks",
+   "note": "confirmed spelling, was Maris Vartiks",
+   "date": "2026-11-20"
+  },
+  "32125": {
+   "first": "Filips",
+   "last": "Kalniņš",
+   "note": "confirmed spelling, was Filips Kalninsh",
+   "date": "2026-11-20"
+  },
+  "32283": {
+   "first": "Jevgēņijs",
+   "last": "Ivanovs",
+   "note": "confirmed spelling, was Jevgenijs Ivanovs",
+   "date": "2026-11-20"
+  },
+  "32366": {
+   "first": "Artūrs",
+   "last": "Ķeņģis",
+   "note": "confirmed spelling, was Arturs Kenģis",
+   "date": "2026-11-20"
+  },
+  "32459": {
+   "first": "Artūrs",
+   "last": "Stavro",
+   "note": "confirmed spelling, was Arturs Stavro",
+   "date": "2026-11-20"
+  },
+  "36774": {
+   "first": "Karl",
+   "last": "Gnadeberg",
+   "note": "",
+   "date": ""
+  },
+  "37419": {
+   "first": "Krišjānis",
+   "last": "Vallers",
+   "note": "confirmed spelling, was Krishjanis Vallers",
+   "date": "2026-11-20"
+  },
+  "39289": {
+   "first": "Egidijs",
+   "last": "Baļčūns",
+   "note": "",
+   "date": ""
+  },
+  "39405": {
+   "first": "Jānis",
+   "last": "Vorza",
+   "note": "confirmed spelling, was Janis Vorza",
+   "date": "2026-11-20"
+  },
+  "41602": {
+   "first": "Kristaps",
+   "last": "Podzinš",
+   "note": "confirmed spelling, was Kristaps Podziņš",
+   "date": "2026-11-20"
+  },
+  "42315": {
+   "first": "Edvards",
+   "last": "Ķeņģis",
+   "note": "confirmed spelling, was Edvards Kenģis",
+   "date": "2026-11-20"
+  },
+  "43298": {
+   "first": "Druvis",
+   "last": "Mazmačs",
+   "note": "confirmed spelling, was Druvis Mazmachs",
+   "date": "2026-11-20"
+  },
+  "45017": {
+   "first": "Salvis",
+   "last": "Blāķis",
+   "note": "confirmed spelling, was Salvis Blakis",
+   "date": "2026-11-20"
+  },
+  "45411": {
+   "first": "Artūrs",
+   "last": "Kraujiņš",
+   "note": "confirmed spelling, was Arturs Kraujiņš",
+   "date": "2026-11-20"
+  },
+  "45476": {
+   "first": "Kristīne",
+   "last": "Lēmane",
+   "note": "confirmed spelling, was Kristine Lemane",
+   "date": "2026-11-20"
+  },
+  "45542": {
+   "first": "Mārtiņš",
+   "last": "Ziemelis",
+   "note": "confirmed spelling, was Martinsh Ziemelis",
+   "date": "2026-11-20"
+  },
+  "45544": {
+   "first": "Juris",
+   "last": "Kārkliņš",
+   "note": "confirmed spelling, was Juris Karklins",
+   "date": "2026-11-20"
+  },
+  "45852": {
+   "first": "Vilmārs",
+   "last": "Lucāns",
+   "note": "confirmed spelling, was Vilmars Lucans",
+   "date": "2026-11-20"
+  },
+  "46052": {
+   "first": "Jānis",
+   "last": "Lūsars",
+   "note": "confirmed spelling, was Janis Lūsars",
+   "date": "2026-11-20"
+  },
+  "46640": {
+   "first": "Dāvis",
+   "last": "Balodis",
+   "note": "confirmed spelling, was Davis Balodis",
+   "date": "2026-11-20"
+  },
+  "47954": {
+   "first": "Kaspars",
+   "last": "Kūriņš",
+   "note": "confirmed spelling, was Kaspars Kurinsh",
+   "date": "2026-11-20"
+  },
+  "48988": {
+   "first": "Pāvels",
+   "last": "Cokurovs",
+   "note": "confirmed spelling, was Pavels Cokurovs",
+   "date": "2026-11-20"
+  },
+  "48997": {
+   "first": "Kārlis",
+   "last": "Bukšs",
+   "note": "confirmed spelling, was Karlis Bukšs",
+   "date": "2026-11-20"
+  },
+  "49927": {
+   "first": "Aleksandrs",
+   "last": "Šeinins",
+   "note": "confirmed spelling, was Aleksandrs Sheinins",
+   "date": "2026-11-20"
+  },
+  "51025": {
+   "first": "Renārs",
+   "last": "Procenko",
+   "note": "confirmed spelling, was Renars Procenko",
+   "date": "2026-11-20"
+  },
+  "51027": {
+   "first": "Alīna",
+   "last": "Stašane",
+   "note": "confirmed spelling, was Alina Stashane",
+   "date": "2026-11-20"
+  },
+  "51466": {
+   "first": "Nikita",
+   "last": "Bazilevičs",
+   "note": "confirmed spelling, was Nikita Bazilevichs",
+   "date": "2026-11-20"
+  },
+  "51732": {
+   "first": "Igors",
+   "last": "Rižko",
+   "note": "confirmed spelling, was Igors Rizhko",
+   "date": "2026-11-20"
+  },
+  "52291": {
+   "first": "Romāns",
+   "last": "Koļcovs",
+   "note": "confirmed spelling, was Romans Koļcovs",
+   "date": "2026-11-20"
+  },
+  "52637": {
+   "first": "Jānis",
+   "last": "Dzirkalis",
+   "note": "confirmed spelling, was Janis Dzirkalis",
+   "date": "2026-11-20"
+  },
+  "52702": {
+   "first": "Artūrs",
+   "last": "Hāns",
+   "note": "confirmed spelling, was Arturs Hans",
+   "date": "2026-11-20"
+  },
+  "53089": {
+   "first": "Rūdolfs",
+   "last": "Klintsons",
+   "note": "confirmed spelling, was Rudolfs Klintsons",
+   "date": "2026-11-20"
+  },
+  "53091": {
+   "first": "Mārcis",
+   "last": "Vegners",
+   "note": "confirmed spelling, was Marcis Vegners",
+   "date": "2026-11-20"
+  },
+  "53093": {
+   "first": "Rūdolfs",
+   "last": "Freimanis",
+   "note": "confirmed spelling, was Rudolfs Freimanis",
+   "date": "2026-11-20"
+  },
+  "53094": {
+   "first": "Elmārs",
+   "last": "Klintsons",
+   "note": "confirmed spelling, was Elmars Klintsons",
+   "date": "2026-11-20"
+  },
+  "53096": {
+   "first": "Ralfs",
+   "last": "Jurševskis",
+   "note": "confirmed spelling, was Ralfs Jurshevskis",
+   "date": "2026-11-20"
+  },
+  "53774": {
+   "first": "Agris",
+   "last": "Bēmers",
+   "note": "confirmed spelling, was Agris Bemers",
+   "date": "2026-11-20"
+  },
+  "53777": {
+   "first": "Emīls",
+   "last": "Dupušs",
+   "note": "confirmed spelling, was Emils Dupushs",
+   "date": "2026-11-20"
+  },
+  "53778": {
+   "first": "Aivis",
+   "last": "Kursītis",
+   "note": "confirmed spelling, was Aivis Kursitis",
+   "date": "2026-11-20"
+  },
+  "53783": {
+   "first": "Jānis",
+   "last": "Šostaks",
+   "note": "confirmed spelling, was Janis Shostaks",
+   "date": "2026-11-20"
+  },
+  "53788": {
+   "first": "Mareks",
+   "last": "Siliņš",
+   "note": "confirmed spelling, was Mareks Silinsh",
+   "date": "2026-11-20"
+  },
+  "54994": {
+   "first": "Raimonds",
+   "last": "Ozoliņš",
+   "note": "confirmed spelling, was Raimonds Ozolinsh",
+   "date": "2026-11-20"
+  },
+  "55184": {
+   "first": "Krišjānis",
+   "last": "Lielais",
+   "note": "confirmed spelling, was Krishjanis Lielais",
+   "date": "2026-11-20"
+  },
+  "55330": {
+   "first": "Ronalds",
+   "last": "Pētersons",
+   "note": "confirmed spelling, was Ronalds Petersons",
+   "date": "2026-11-20"
+  },
+  "55764": {
+   "first": "Kęstutis",
+   "last": "Žadeikis",
+   "note": "",
+   "date": ""
+  },
+  "57002": {
+   "first": "Erlens",
+   "last": "Tērs",
+   "note": "confirmed spelling, was Erlens Ters",
+   "date": "2026-11-20"
+  },
+  "57218": {
+   "first": "Hella Madara",
+   "last": "Šabaka",
+   "note": "confirmed spelling, was Hella Madara Shabaka",
+   "date": "2026-11-20"
+  },
+  "57386": {
+   "first": "Vladimirs",
+   "last": "Skadiņš",
+   "note": "confirmed spelling, was Vladimirs Skadinsh",
+   "date": "2026-11-20"
+  },
+  "57387": {
+   "first": "Jekaterina",
+   "last": "Skadiņa",
+   "note": "confirmed spelling, was Jekaterina Skadina",
+   "date": "2026-11-20"
+  },
+  "57902": {
+   "first": "Maksims",
+   "last": "Jakovļevs",
+   "note": "confirmed spelling, was Maksims Jakovlevs",
+   "date": "2026-11-20"
+  },
+  "58542": {
+   "first": "Madara",
+   "last": "Pētersone",
+   "note": "confirmed spelling, was Madara Petersone",
+   "date": "2026-11-20"
+  },
+  "58968": {
+   "first": "Andris",
+   "last": "Irbiņš",
+   "note": "confirmed spelling, was Andris Irbinsh",
+   "date": "2026-11-20"
+  },
+  "59480": {
+   "first": "Vladimir",
+   "last": "Afanasevič",
+   "note": "confirmed spelling, was Vladimir Afanasevich",
+   "date": "2026-11-20"
+  },
+  "59676": {
+   "first": "Kristaps",
+   "last": "Bukšs",
+   "note": "confirmed spelling, was Kristaps Bukshs",
+   "date": "2026-11-20"
+  },
+  "59845": {
+   "first": "Beate",
+   "last": "Jurševska",
+   "note": "confirmed spelling, was Beate Jurshevska",
+   "date": "2026-11-20"
+  },
+  "59846": {
+   "first": "Linda",
+   "last": "Lēmane",
+   "note": "confirmed spelling, was Linda Lemane",
+   "date": "2026-11-20"
+  },
+  "59978": {
+   "first": "Igors",
+   "last": "Minkevičs",
+   "note": "confirmed spelling, was Igors Minkevichs",
+   "date": "2026-11-20"
+  },
+  "59979": {
+   "first": "Arvīds",
+   "last": "Andrejevs",
+   "note": "confirmed spelling, was Arvids Andrejevs",
+   "date": "2026-11-20"
+  },
+  "60161": {
+   "first": "Sergejs",
+   "last": "Zil",
+   "note": "confirmed spelling, was Sergey Zil",
+   "date": "2026-11-20"
+  },
+  "60892": {
+   "first": "Niklāvs",
+   "last": "Jakobijs",
+   "note": "confirmed spelling, was Niklavs Jakobijs",
+   "date": "2026-11-20"
+  },
+  "61155": {
+   "first": "Matīss",
+   "last": "Kūla",
+   "note": "confirmed spelling, was Matiss Kula",
+   "date": "2026-11-20"
+  },
+  "61219": {
+   "first": "Edgars",
+   "last": "Silinevičs",
+   "note": "confirmed spelling, was Edgars Silinevichs",
+   "date": "2026-11-20"
+  },
+  "61220": {
+   "first": "Harijs",
+   "last": "Melbārzdis",
+   "note": "confirmed spelling, was Harijs Melbarzdis",
+   "date": "2026-11-20"
+  },
+  "61222": {
+   "first": "Andris",
+   "last": "Sarbantovičs",
+   "note": "confirmed spelling, was Andris Sarbantovichs",
+   "date": "2026-11-20"
+  },
+  "61224": {
+   "first": "Linards",
+   "last": "Ābelīte",
+   "note": "confirmed spelling, was Linards Abelite",
+   "date": "2026-11-20"
+  },
+  "61225": {
+   "first": "Elisa",
+   "last": "Daukšta",
+   "note": "confirmed spelling, was Elisa Daukshta",
+   "date": "2026-11-20"
+  },
+  "61226": {
+   "first": "Artjoms",
+   "last": "Latišenko",
+   "note": "confirmed spelling, was Artjoms Latishenko",
+   "date": "2026-11-20"
+  },
+  "61227": {
+   "first": "Maksims",
+   "last": "Daņiļičiks",
+   "note": "confirmed spelling, was Maksims Daniļichiks",
+   "date": "2026-11-20"
+  },
+  "61230": {
+   "first": "Raitis",
+   "last": "Bērziņš",
+   "note": "confirmed spelling, was Raitis Berzinsh",
+   "date": "2026-11-20"
+  },
+  "61231": {
+   "first": "Jānis",
+   "last": "Bērziņš",
+   "note": "confirmed spelling, was Janis Berzinsh",
+   "date": "2026-11-20"
+  },
+  "61232": {
+   "first": "Vladimirs",
+   "last": "Šašins",
+   "note": "confirmed spelling, was Vladimirs Shashins",
+   "date": "2026-11-20"
+  },
+  "61233": {
+   "first": "Mārtiņš",
+   "last": "Lipskis",
+   "note": "confirmed spelling, was Martinsh Lipskis",
+   "date": "2026-11-20"
+  },
+  "61235": {
+   "first": "Kristīne",
+   "last": "Čupova",
+   "note": "confirmed spelling, was Kristine Chupova",
+   "date": "2026-11-20"
+  },
+  "61377": {
+   "first": "Pāvels",
+   "last": "Šaplavskis",
+   "note": "confirmed spelling, was Pavels Shaplavskis",
+   "date": "2026-11-20"
+  },
+  "61783": {
+   "first": "Rihards",
+   "last": "Rudovičs",
+   "note": "confirmed spelling, was Rihards Rudovichs",
+   "date": "2026-11-20"
+  },
+  "61785": {
+   "first": "Konstantīns",
+   "last": "Dubrovskis",
+   "note": "confirmed spelling, was Konstantins Dubrovskis",
+   "date": "2026-11-20"
+  },
+  "61789": {
+   "first": "Pēteris",
+   "last": "Bāliņs",
+   "note": "confirmed spelling, was Peteris Balins",
+   "date": "2026-11-20"
+  },
+  "61888": {
+   "first": "Mārtiņš",
+   "last": "Rutenbergs",
+   "note": "confirmed spelling, was Martinsh Rutenbergs",
+   "date": "2026-11-20"
+  },
+  "62190": {
+   "first": "Andrejs",
+   "last": "Šegeļskis",
+   "note": "confirmed spelling, was Andrejs Shegeļskijs",
+   "date": "2026-11-20"
+  },
+  "62209": {
+   "first": "Māris",
+   "last": "Voldins",
+   "note": "confirmed spelling, was Maris Voldins",
+   "date": "2026-11-20"
+  },
+  "62872": {
+   "first": "Vitālijs",
+   "last": "Meļeckij",
+   "note": "confirmed spelling, was Vitalijs Meļeckij",
+   "date": "2026-11-20"
+  },
+  "62962": {
+   "first": "Emīls",
+   "last": "Osis",
+   "note": "confirmed spelling, was Emils Osis",
+   "date": "2026-11-20"
+  },
+  "62972": {
+   "first": "Aldis",
+   "last": "Āboltiņš",
+   "note": "",
+   "date": ""
+  },
+  "63003": {
+   "first": "Edgars",
+   "last": "Kišuro",
+   "note": "confirmed spelling, was Edgars Kishuro",
+   "date": "2026-11-20"
+  },
+  "63148": {
+   "first": "Kārlis",
+   "last": "Vīksna",
+   "note": "confirmed spelling, was Karlis Viksna",
+   "date": "2026-11-20"
+  },
+  "64001": {
+   "first": "Jevgēnijs",
+   "last": "Šašins",
+   "note": "confirmed spelling, was Jevgenijs Shashins",
+   "date": "2026-11-20"
+  },
+  "64245": {
+   "first": "Ilgmārs",
+   "last": "Stopiņš",
+   "note": "confirmed spelling, was Ilgmars Stopinsh",
+   "date": "2026-11-20"
+  },
+  "64425": {
+   "first": "Voldemārs",
+   "last": "Plaudis",
+   "note": "confirmed spelling, was Voldemars Plaudis",
+   "date": "2026-11-20"
+  },
+  "64862": {
+   "first": "Aleksejs",
+   "last": "Poņakovs",
+   "note": "confirmed spelling, was Aleksejs Ponakovs",
+   "date": "2026-11-20"
+  },
+  "65171": {
+   "first": "Artūrs",
+   "last": "Rudzko",
+   "note": "confirmed spelling, was Arturs Rudzko",
+   "date": "2026-11-20"
+  },
+  "65235": {
+   "first": "Kārlis",
+   "last": "Zemītis",
+   "note": "confirmed spelling, was Karlis Zemitis",
+   "date": "2026-11-20"
+  },
+  "65534": {
+   "first": "Ritvars",
+   "last": "Stalidzāns",
+   "note": "confirmed spelling, was Ritvars Stalidzans",
+   "date": "2026-11-20"
+  },
+  "65535": {
+   "first": "Vilis",
+   "last": "Švābe",
+   "note": "confirmed spelling, was Vilis Shvabe",
+   "date": "2026-11-20"
+  },
+  "65702": {
+   "first": "Artūrs",
+   "last": "Prokopovičs",
+   "note": "confirmed spelling, was Arturs Prokopovichs",
+   "date": "2026-11-20"
+  },
+  "66045": {
+   "first": "Artūrs",
+   "last": "Broņušs",
+   "note": "confirmed spelling, was Arturs Bronušs",
+   "date": "2026-11-20"
+  },
+  "67290": {
+   "first": "Elizabete",
+   "last": "Staškuna",
+   "note": "confirmed spelling, was Elizabete Staskuna",
+   "date": "2026-11-20"
+  },
+  "67361": {
+   "first": "Mārtiņš",
+   "last": "Pārpucis",
+   "note": "confirmed spelling, was Martinsh Parpucis",
+   "date": "2026-11-20"
+  },
+  "67451": {
+   "first": "Pauls",
+   "last": "Strazdiņš",
+   "note": "confirmed spelling, was Pauls Strazdins",
+   "date": "2026-11-20"
+  },
+  "69444": {
+   "first": "Imants",
+   "last": "Bišers",
+   "note": "confirmed spelling, was Imants Bisers",
+   "date": "2026-11-20"
+  },
+  "69697": {
+   "first": "Valentīns",
+   "last": "Grabovskis",
+   "note": "confirmed spelling, was Valentins Grabovskis",
+   "date": "2026-11-20"
+  },
+  "70054": {
+   "first": "Artūrs",
+   "last": "Grass",
+   "note": "confirmed spelling, was Arturs Grass",
+   "date": "2026-11-20"
+  },
+  "70055": {
+   "first": "Ainārs",
+   "last": "Kalniņš",
+   "note": "confirmed spelling, was Ainars Kalninsh",
+   "date": "2026-11-20"
+  },
+  "70056": {
+   "first": "Andris",
+   "last": "Vīksniņš",
+   "note": "confirmed spelling, was Andris Viksninsh",
+   "date": "2026-11-20"
+  },
+  "70237": {
+   "first": "Egīls",
+   "last": "Drabe",
+   "note": "confirmed spelling, was Egils Drabe",
+   "date": "2026-11-20"
+  },
+  "70238": {
+   "first": "Imants",
+   "last": "Endželis",
+   "note": "confirmed spelling, was Imants Endzhelis",
+   "date": "2026-11-20"
+  },
+  "70388": {
+   "first": "Mārtiņš",
+   "last": "Elsons",
+   "note": "confirmed spelling, was Martinsh Elsons",
+   "date": "2026-11-20"
+  },
+  "70746": {
+   "first": "Kārlis",
+   "last": "Ulpe",
+   "note": "confirmed spelling, was Karlis Ulpe",
+   "date": "2026-11-20"
+  },
+  "71284": {
+   "first": "Artjoms",
+   "last": "Rubaško",
+   "note": "confirmed spelling, was Artjoms Rubashko",
+   "date": "2026-11-20"
+  },
+  "71331": {
+   "first": "Jānis",
+   "last": "Bebris",
+   "note": "confirmed spelling, was Janis Bebris",
+   "date": "2026-11-20"
+  },
+  "71508": {
+   "first": "Maksims",
+   "last": "Dolbna",
+   "note": "confirmed spelling, was Maksim Dolbna",
+   "date": "2026-11-20"
+  },
+  "71735": {
+   "first": "Nikita",
+   "last": "Ševeljovs",
+   "note": "confirmed spelling, was Nikita Sheveljovs",
+   "date": "2026-11-20"
+  },
+  "71895": {
+   "first": "Katerīna",
+   "last": "Marahovska",
+   "note": "confirmed spelling, was Katrina Marahovskaja",
+   "date": "2026-11-20"
+  },
+  "71946": {
+   "first": "Jevgenijs",
+   "last": "Čebajevskis",
+   "note": "confirmed spelling, was Jevgenijs Chebajevskis",
+   "date": "2026-11-20"
+  },
+  "72283": {
+   "first": "Rodrigo",
+   "last": "Kalvāns",
+   "note": "confirmed spelling, was Rodrigo Kalvans",
+   "date": "2026-11-20"
+  },
+  "72291": {
+   "first": "Mārtiņš",
+   "last": "Vēzis",
+   "note": "confirmed spelling, was Martinsh Vezis",
+   "date": "2026-11-20"
+  },
+  "72407": {
+   "first": "Aigars",
+   "last": "Trukšs",
+   "note": "confirmed spelling, was Aigars Trukshs",
+   "date": "2026-11-20"
+  },
+  "77122": {
+   "first": "Jānis",
+   "last": "Spilbergs",
+   "note": "confirmed spelling, was Janis Spilbergs",
+   "date": "2026-11-20"
+  },
+  "77195": {
+   "first": "Renāts",
+   "last": "Agajevs",
+   "note": "confirmed spelling, was Renats Agajevs",
+   "date": "2026-11-20"
+  },
+  "77772": {
+   "first": "Edgars",
+   "last": "Klodāns",
+   "note": "confirmed spelling, was Edgars Klodans",
+   "date": "2026-11-20"
+  },
+  "78184": {
+   "first": "Emīls",
+   "last": "Ūdris",
+   "note": "confirmed spelling, was Emils Udris",
+   "date": "2026-11-20"
+  },
+  "78963": {
+   "first": "Didzis",
+   "last": "Pētersons",
+   "note": "confirmed spelling, was Didzis Petersons",
+   "date": "2026-11-20"
+  },
+  "79431": {
+   "first": "Aleksejs",
+   "last": "Grigoļunovičs",
+   "note": "confirmed spelling, was Aleksejs Grigoļunovichs",
+   "date": "2026-11-20"
+  },
+  "79675": {
+   "first": "Henrijs",
+   "last": "Lapiņš",
+   "note": "confirmed spelling, was Henrijs Lapinsh",
+   "date": "2026-11-20"
+  },
+  "79871": {
+   "first": "Artūrs",
+   "last": "Broničs",
+   "note": "confirmed spelling, was Arturs Bronichs",
+   "date": "2026-11-20"
+  },
+  "80013": {
+   "first": "Sandris",
+   "last": "Elēns",
+   "note": "confirmed spelling, was Sandris Elens",
+   "date": "2026-11-20"
+  },
+  "80439": {
+   "first": "Kārlis",
+   "last": "Didrihsons",
+   "note": "confirmed spelling, was Karlis Didrihsons",
+   "date": "2026-11-20"
+  },
+  "80440": {
+   "first": "Jēkabs",
+   "last": "Šmitiņš",
+   "note": "confirmed spelling, was Jekabs Shmitinsh",
+   "date": "2026-11-20"
+  },
+  "80923": {
+   "first": "Vitālijs",
+   "last": "Petrovs",
+   "note": "confirmed spelling, was Vitalijs Petrovs",
+   "date": "2026-11-20"
+  },
+  "81186": {
+   "first": "Emīls",
+   "last": "Siliņš",
+   "note": "confirmed spelling, was Emils Silinsh",
+   "date": "2026-11-20"
+  },
+  "81263": {
+   "first": "Jānis",
+   "last": "Brisons",
+   "note": "confirmed spelling, was Janis Brisons",
+   "date": "2026-11-20"
+  },
+  "81266": {
+   "first": "Aleksandrs",
+   "last": "Vaguščenko",
+   "note": "confirmed spelling, was Aleksandrs Vagushchenko",
+   "date": "2026-11-20"
+  },
+  "81428": {
+   "first": "Martins",
+   "last": "Puriņš",
+   "note": "confirmed spelling, was Martins Purinsh",
+   "date": "2026-11-20"
+  },
+  "81466": {
+   "first": "Māris",
+   "last": "Janelsiņš",
+   "note": "confirmed spelling, was Maris Janelsinsh",
+   "date": "2026-11-20"
+  },
+  "81595": {
+   "first": "Rodžers",
+   "last": "Bārtulis",
+   "note": "confirmed spelling, was Rodzhers Bartulis",
+   "date": "2026-11-20"
+  },
+  "81671": {
+   "first": "Imants",
+   "last": "Ozoliņš",
+   "note": "confirmed spelling, was Imants Ozolins",
+   "date": "2026-11-20"
+  },
+  "81832": {
+   "first": "Jūlija",
+   "last": "Florence",
+   "note": "confirmed spelling, was Julija Florence",
+   "date": "2026-11-20"
+  },
+  "81981": {
+   "first": "Artūrs",
+   "last": "Ļotčkovs",
+   "note": "confirmed spelling, was Arturs Ļotchkovs",
+   "date": "2026-11-20"
+  },
+  "81990": {
+   "first": "Jānis",
+   "last": "Lisovskis",
+   "note": "confirmed spelling, was Janis Lisovskis",
+   "date": "2026-11-20"
+  },
+  "82033": {
+   "first": "Kristiāns",
+   "last": "Liepiņš",
+   "note": "confirmed spelling, was Kristians Liepinsh",
+   "date": "2026-11-20"
+  },
+  "82084": {
+   "first": "Daņila",
+   "last": "Žņakins",
+   "note": "confirmed spelling, was Danila Zhnakins",
+   "date": "2026-11-20"
+  },
+  "82281": {
+   "first": "Vitālijs",
+   "last": "Topčijevs",
+   "note": "confirmed spelling, was Vitalijs Topchijevs",
+   "date": "2026-11-20"
+  },
+  "82550": {
+   "first": "Rolands",
+   "last": "Čukurs",
+   "note": "confirmed spelling, was Rolands Chukurs",
+   "date": "2026-11-20"
+  },
+  "83022": {
+   "first": "Helvijs",
+   "last": "Bernāts",
+   "note": "confirmed spelling, was Helvijs Bernats",
+   "date": "2026-11-20"
+  },
+  "83223": {
+   "first": "Vitālijs",
+   "last": "Sadovskis",
+   "note": "confirmed spelling, was Vitalijs Sadovskis",
+   "date": "2026-11-20"
+  },
+  "83224": {
+   "first": "Germans",
+   "last": "Škutans",
+   "note": "confirmed spelling, was Germans Shkutans",
+   "date": "2026-11-20"
+  },
+  "83253": {
+   "first": "Konstantīns",
+   "last": "Horoškins",
+   "note": "confirmed spelling, was Konstantins Horoshkins",
+   "date": "2026-11-20"
+  },
+  "83467": {
+   "first": "Jānis",
+   "last": "Puķītis",
+   "note": "confirmed spelling, was Janis Pukitis",
+   "date": "2026-11-20"
+  },
+  "83823": {
+   "first": "Edvards",
+   "last": "Rīgerts",
+   "note": "confirmed spelling, was Edvards Rigerts",
+   "date": "2026-11-20"
+  },
+  "84250": {
+   "first": "Eduards",
+   "last": "Mačevskis",
+   "note": "confirmed spelling, was Eduards Machevskis",
+   "date": "2026-11-20"
+  },
+  "84382": {
+   "first": "Kaspars",
+   "last": "Lukša",
+   "note": "confirmed spelling, was Kaspars Luksha",
+   "date": "2026-11-20"
+  },
+  "84383": {
+   "first": "Jevgēnijs",
+   "last": "Sivcovs",
+   "note": "confirmed spelling, was Jevgenijs Sivcovs",
+   "date": "2026-11-20"
+  },
+  "84643": {
+   "first": "Voldemārs",
+   "last": "Musajevs",
+   "note": "confirmed spelling, was Voldemars Musajevs",
+   "date": "2026-11-20"
+  },
+  "84644": {
+   "first": "Andrejs",
+   "last": "Čuhrovs",
+   "note": "confirmed spelling, was Andrejs Chuhrovs",
+   "date": "2026-11-20"
+  },
+  "84645": {
+   "first": "Vladislavs",
+   "last": "Klēģeris",
+   "note": "confirmed spelling, was Vladislavs Kleģeris",
+   "date": "2026-11-20"
+  },
+  "84714": {
+   "first": "Mihails",
+   "last": "Vasiļjevs",
+   "note": "confirmed spelling, was Mihails Vasiljevs",
+   "date": "2026-11-20"
+  },
+  "85087": {
+   "first": "Niks",
+   "last": "Auškāps",
+   "note": "confirmed spelling, was Niks Aushkaps",
+   "date": "2026-11-20"
+  },
+  "85102": {
+   "first": "Jurģis",
+   "last": "Plažio",
+   "note": "confirmed spelling, was Jurģis Plazhio",
+   "date": "2026-11-20"
+  },
+  "85592": {
+   "first": "Artūrs",
+   "last": "Kvitka",
+   "note": "confirmed spelling, was Arturs Kvitka",
+   "date": "2026-11-20"
+  },
+  "85909": {
+   "first": "Arsens",
+   "last": "Bataševs",
+   "note": "confirmed spelling, was Arsens Batashevs",
+   "date": "2026-11-20"
+  },
+  "85910": {
+   "first": "Aivars",
+   "last": "Zahārovs",
+   "note": "confirmed spelling, was Aivars Zaharovs",
+   "date": "2026-11-20"
+  },
+  "85942": {
+   "first": "Andris",
+   "last": "Bārtulis",
+   "note": "confirmed spelling, was Andris Bartulis",
+   "date": "2026-11-20"
+  },
+  "86543": {
+   "first": "Mārtiņš",
+   "last": "Dziļums",
+   "note": "confirmed spelling, was Martinsh Dziļums",
+   "date": "2026-11-20"
+  },
+  "86547": {
+   "first": "Mārtiņš",
+   "last": "Ķepīts",
+   "note": "confirmed spelling, was Martinsh Kepits",
+   "date": "2026-11-20"
+  },
+  "86550": {
+   "first": "Krišjānis",
+   "last": "Salenieks",
+   "note": "confirmed spelling, was Krishjanis Salenieks",
+   "date": "2026-11-20"
+  },
+  "86551": {
+   "first": "Ernests",
+   "last": "Stūre",
+   "note": "confirmed spelling, was Ernests Sture",
+   "date": "2026-11-20"
+  },
+  "86590": {
+   "first": "Iļja",
+   "last": "Likovs",
+   "note": "confirmed spelling, was Ilja Likovs",
+   "date": "2026-11-20"
+  },
+  "86920": {
+   "first": "Igors",
+   "last": "Mašals",
+   "note": "confirmed spelling, was Igors Mashals",
+   "date": "2026-11-20"
+  },
+  "87212": {
+   "first": "Aleksandrs",
+   "last": "Čuhrovs",
+   "note": "confirmed spelling, was Aleksandrs Chuhrovs",
+   "date": "2026-11-20"
+  },
+  "87508": {
+   "first": "Liene",
+   "last": "Cīrule",
+   "note": "confirmed spelling, was Liene Cirule",
+   "date": "2026-11-20"
+  },
+  "87511": {
+   "first": "Markuss",
+   "last": "Kalniņš",
+   "note": "confirmed spelling, was Markuss Kalninsh",
+   "date": "2026-11-20"
+  },
+  "87531": {
+   "first": "Antons",
+   "last": "Začests",
+   "note": "confirmed spelling, was Antons Zachests",
+   "date": "2026-11-20"
+  },
+  "87751": {
+   "first": "Romans Maksimilians",
+   "last": "Hotņanskis",
+   "note": "confirmed spelling, was Romans Maksimilians Hotnanskis",
+   "date": "2026-11-20"
+  },
+  "87752": {
+   "first": "Timurs Leonards",
+   "last": "Hotņanskis",
+   "note": "confirmed spelling, was Timurs Leonards Hotnanskis",
+   "date": "2026-11-20"
+  },
+  "88092": {
+   "first": "Romāns",
+   "last": "Aleksejevs",
+   "note": "confirmed spelling, was Romans Aleksejevs",
+   "date": "2026-11-20"
+  },
+  "88108": {
+   "first": "Konstantīns",
+   "last": "Ostrovskis",
+   "note": "confirmed spelling, was Konstantins Ostrovskis",
+   "date": "2026-11-20"
+  },
+  "88447": {
+   "first": "Jānis",
+   "last": "Stalbovs",
+   "note": "confirmed spelling, was Janis Stalbovs",
+   "date": "2026-11-20"
+  },
+  "88677": {
+   "first": "Mārtiņš",
+   "last": "Vērdiņš",
+   "note": "confirmed spelling, was Martinsh Verdinsh",
+   "date": "2026-11-20"
+  },
+  "88992": {
+   "first": "Dārta",
+   "last": "Rolova",
+   "note": "confirmed spelling, was Darta Rolova",
+   "date": "2026-11-20"
+  },
+  "88995": {
+   "first": "Sandija",
+   "last": "Jozēna",
+   "note": "confirmed spelling, was Sandija Jozena",
+   "date": "2026-11-20"
+  },
+  "88996": {
+   "first": "Dita",
+   "last": "Ruķere",
+   "note": "confirmed spelling, was Dita Rukere",
+   "date": "2026-11-20"
+  },
+  "89090": {
+   "first": "Dāvis",
+   "last": "Sērmūkšs",
+   "note": "confirmed spelling, was Davis Sermukshs",
+   "date": "2026-11-20"
+  },
+  "89401": {
+   "first": "Modris",
+   "last": "Račiks",
+   "note": "confirmed spelling, was Modris Rachiks",
+   "date": "2026-11-20"
+  },
+  "89843": {
+   "first": "Rihards",
+   "last": "Švarcs",
+   "note": "confirmed spelling, was Rihards Shvarcs",
+   "date": "2026-11-20"
+  },
+  "89844": {
+   "first": "Mārtiņš",
+   "last": "Kļava",
+   "note": "confirmed spelling, was Martinsh Klava",
+   "date": "2026-11-20"
+  },
+  "91585": {
+   "first": "Jānis",
+   "last": "Prodnieks",
+   "note": "confirmed spelling, was Janis Prodnieks",
+   "date": "2026-11-20"
+  },
+  "91771": {
+   "first": "Jurģis",
+   "last": "Ozols",
+   "note": "confirmed spelling, was Jurgis Ozols",
+   "date": "2026-11-20"
+  },
+  "92090": {
+   "first": "Iļja",
+   "last": "Hromiševs",
+   "note": "confirmed spelling, was Ilja Hromiishevs",
+   "date": "2026-11-20"
+  },
+  "92265": {
+   "first": "Kaspars",
+   "last": "Zelčš",
+   "note": "confirmed spelling, was Kaspars Zelchsh",
+   "date": "2026-11-20"
+  },
+  "92376": {
+   "first": "Mārtiņš",
+   "last": "Lejnieks",
+   "note": "confirmed spelling, was Martinsh Lejnieks",
+   "date": "2026-11-20"
+  },
+  "93389": {
+   "first": "Maksims",
+   "last": "Ričkovs",
+   "note": "confirmed spelling, was Maksims Richkovs",
+   "date": "2026-11-20"
+  },
+  "93811": {
+   "first": "Kristīne",
+   "last": "Amtmane",
+   "note": "confirmed spelling, was Kristine Amtmane",
+   "date": "2026-11-20"
+  },
+  "93825": {
+   "first": "Artūrs",
+   "last": "Jegorovs",
+   "note": "confirmed spelling, was Arturs Jegorovs",
+   "date": "2026-11-20"
+  },
+  "93848": {
+   "first": "Artūrs",
+   "last": "Silvestrs",
+   "note": "confirmed spelling, was Arturs Silvestrs",
+   "date": "2026-11-20"
+  },
+  "93852": {
+   "first": "Vitālijs",
+   "last": "Ivo",
+   "note": "confirmed spelling, was Vitalijs Ivo",
+   "date": "2026-11-20"
+  },
+  "93855": {
+   "first": "Renārs",
+   "last": "Rudolfs",
+   "note": "confirmed spelling, was Renars Rudolfs",
+   "date": "2026-11-20"
+  },
+  "94380": {
+   "first": "Vitālijs",
+   "last": "Korsaks",
+   "note": "confirmed spelling, was Vitalijs Korsaks",
+   "date": "2026-11-20"
+  },
+  "95712": {
+   "first": "Ervīns",
+   "last": "Saulītis",
+   "note": "confirmed spelling, was Ervins Saulitis",
+   "date": "2026-11-20"
+  },
+  "96227": {
+   "first": "Andrejs",
+   "last": "Dragūns",
+   "note": "confirmed spelling, was Andrejs Draguns",
+   "date": "2026-11-20"
+  },
+  "96438": {
+   "first": "Kaspars",
+   "last": "Krēķis",
+   "note": "confirmed spelling, was Kaspars Krekis",
+   "date": "2026-11-20"
+  },
+  "98019": {
+   "first": "Artūrs",
+   "last": "Krivoručko",
+   "note": "confirmed spelling, was Arturs Krivoruchko",
+   "date": "2026-11-20"
+  },
+  "98191": {
+   "first": "Leons",
+   "last": "Kiseļs",
+   "note": "confirmed spelling, was Leons Kisels",
+   "date": "2026-11-20"
+  },
+  "99148": {
+   "first": "Pāvels",
+   "last": "Žerebkovs",
+   "note": "confirmed spelling, was Pavels Zherebkovs",
+   "date": "2026-11-20"
+  },
+  "99149": {
+   "first": "Ivans",
+   "last": "Pavļiks",
+   "note": "confirmed spelling, was Ivans Pavliks",
+   "date": "2026-11-20"
+  },
+  "99451": {
+   "first": "Annija",
+   "last": "Glaudāne",
+   "note": "confirmed spelling, was Annija Glaudane",
+   "date": "2026-11-20"
+  },
+  "99472": {
+   "first": "Astrīda",
+   "last": "Ozoliņa",
+   "note": "confirmed spelling, was Astrida Ozolina",
+   "date": "2026-11-20"
+  },
+  "99487": {
+   "first": "Ita",
+   "last": "Matuseviča",
+   "note": "confirmed spelling, was Ita Matusevicha",
+   "date": "2026-11-20"
+  },
+  "100112": {
+   "first": "Anastasija",
+   "last": "Voložaninova",
+   "note": "confirmed spelling, was Anastasija Volozhaninova",
+   "date": "2026-11-20"
+  },
+  "102273": {
+   "first": "Oskars",
+   "last": "Lemeševskis",
+   "note": "confirmed spelling, was Oskars Lemeshevskis",
+   "date": "2026-11-20"
+  },
+  "102274": {
+   "first": "Vitālijs",
+   "last": "Afanasjevs",
+   "note": "confirmed spelling, was Vitalijs Afanasjevs",
+   "date": "2026-11-20"
+  },
+  "102282": {
+   "first": "Vladimirs",
+   "last": "Šims",
+   "note": "confirmed spelling, was Vladimirs Shims",
+   "date": "2026-11-20"
+  },
+  "104502": {
+   "first": "Mārtiņš",
+   "last": "Cinis",
+   "note": "confirmed spelling, was Martinsh Cinis",
+   "date": "2026-11-20"
+  },
+  "104797": {
+   "first": "Markus",
+   "last": "Bērziņu",
+   "note": "confirmed spelling, was Markus Berzinu",
+   "date": "2026-11-20"
+  },
+  "105378": {
+   "first": "Dmitrijs",
+   "last": "Neņišins",
+   "note": "confirmed spelling, was Dmitrijs Nnishins",
+   "date": "2026-11-20"
+  },
+  "105709": {
+   "first": "Rihards",
+   "last": "Rāzna",
+   "note": "confirmed spelling, was Rihards Razna",
+   "date": "2026-11-20"
+  },
+  "105710": {
+   "first": "Romāns",
+   "last": "Zbitkovskis",
+   "note": "confirmed spelling, was Romans Zbitkovskis",
+   "date": "2026-11-20"
+  },
+  "106687": {
+   "first": "Jānis",
+   "last": "Smoļenkovs",
+   "note": "confirmed spelling, was Janis Smolenkovs",
+   "date": "2026-11-20"
+  },
+  "107321": {
+   "first": "Andis",
+   "last": "Grīnbergs",
+   "note": "confirmed spelling, was Andis Grinbergs",
+   "date": "2026-11-20"
+  },
+  "107447": {
+   "first": "Artūrs",
+   "last": "Silvestrs",
+   "note": "TS 93848 had first and last name swapped (Aleksandrs 20 Nov 2026)",
+   "date": ""
+  },
+  "107544": {
+   "first": "Timofejs",
+   "last": "Jevtjuhovs",
+   "note": "keep the TS spelling (Aleksandrs 20 Nov 2026)",
+   "date": ""
+  },
+  "107545": {
+   "first": "Karīna",
+   "last": "Mitrohina",
+   "note": "confirmed spelling, was Karina Mitrohina",
+   "date": "2026-11-20"
+  },
+  "6813421": {
+   "first": "Vladislavs",
+   "last": "Golubev",
+   "note": "confirmed spelling, was Vladislav Golubev",
+   "date": "2026-11-20"
+  },
+  "7086551": {
+   "first": "Eduards",
+   "last": "Sarkisovs",
+   "note": "TS spelling (20 Nov 2026)",
+   "date": ""
+  },
+  "11700424": {
+   "first": "Gundars",
+   "last": "Sproģis",
+   "note": "confirmed spelling, was Gundars Sprogis",
+   "date": "2026-11-20"
+  },
+  "16039870": {
+   "first": "Aleksandrs",
+   "last": "Gračjov",
+   "note": "confirmed spelling, was Aleksandr Grachjov",
+   "date": "2026-11-20"
+  },
+  "16126516": {
+   "first": "Sergejs",
+   "last": "Arharov",
+   "note": "confirmed spelling, was Sergej Arharov",
+   "date": "2026-11-20"
+  },
+  "34781869": {
+   "first": "Oļegs",
+   "last": "Podtinnijs",
+   "note": "confirmed spelling, was Olegs Podtinnijs",
+   "date": "2026-11-20"
+  },
+  "41598427": {
+   "first": "Matīss",
+   "last": "Uplejs",
+   "note": "confirmed spelling, was Matiss Uplejs",
+   "date": "2026-11-20"
+  },
+  "43085134": {
+   "first": "Alberta",
+   "last": "Šimkevičiūtė",
+   "note": "",
+   "date": ""
+  },
+  "44929477": {
+   "first": "Jegors",
+   "last": "Jemeļjanovs",
+   "note": "TS spelling (20 Nov 2026)",
+   "date": ""
+  },
+  "46651888": {
+   "first": "Andrejs",
+   "last": "Borodins",
+   "note": "TS spelling (20 Nov 2026)",
+   "date": ""
+  },
+  "46679938": {
+   "first": "Mihails",
+   "last": "Bašmakov",
+   "note": "confirmed spelling, was Mikhail Bashmakov",
+   "date": "2026-11-20"
+  },
+  "56704963": {
+   "first": "Karīna",
+   "last": "Jukova",
+   "note": "confirmed spelling, was Karina Jukova",
+   "date": "2026-11-20"
+  },
+  "57625078": {
+   "first": "Krišjānis",
+   "last": "Ozols",
+   "note": "confirmed spelling, was Krisjanis Ozols",
+   "date": "2026-11-20"
+  },
+  "60505405": {
+   "first": "Eduards",
+   "last": "Mališevs",
+   "note": "confirmed spelling, was Eduard Malishev",
+   "date": "2026-11-20"
+  },
+  "64036255": {
+   "first": "Kirills",
+   "last": "Borisovs",
+   "note": "confirmed spelling, was Kirill Borisov",
+   "date": "2026-11-20"
+  },
+  "64041088": {
+   "first": "Mihails",
+   "last": "Bog",
+   "note": "confirmed spelling, was Mihail Bog",
+   "date": "2026-11-20"
+  },
+  "64405150": {
+   "first": "Genādijs",
+   "last": "Lidvenko",
+   "note": "confirmed spelling, was Genadijs Lidvenko",
+   "date": "2026-11-20"
+  },
+  "64421341": {
+   "first": "Pēteris",
+   "last": "Licitis",
+   "note": "confirmed spelling, was Peteris Licitis",
+   "date": "2026-11-20"
+  },
+  "66279382": {
+   "first": "Vladislavs",
+   "last": "Golikov",
+   "note": "confirmed spelling, was Vladislav Golikov",
+   "date": "2026-11-20"
+  },
+  "70759639": {
+   "first": "Dāvis",
+   "last": "V",
+   "note": "confirmed spelling, was Davis V",
+   "date": "2026-11-20"
+  },
+  "73096243": {
+   "first": "Ņikita",
+   "last": "Vasarovskis",
+   "note": "confirmed spelling, was Nikita Vasarovskis",
+   "date": "2026-11-20"
+  },
+  "76118383": {
+   "first": "Artūrs",
+   "last": "Abramovskis",
+   "note": "confirmed spelling, was Arturs Abramovskis",
+   "date": "2026-11-20"
+  },
+  "81378988": {
+   "first": "Valērijs",
+   "last": "Dmitrijevs",
+   "note": "",
+   "date": ""
+  },
+  "84739981": {
+   "first": "Eduards",
+   "last": "Strautiņš",
+   "note": "confirmed spelling, was Eduards Strautins",
+   "date": "2026-11-20"
+  },
+  "86170855": {
+   "first": "Valērijs",
+   "last": "Dmitrijevs",
+   "note": "",
+   "date": ""
+  },
+  "88791541": {
+   "first": "Uģis",
+   "last": "Gauja",
+   "note": "confirmed spelling, was Ugis Gauja",
+   "date": "2026-11-20"
+  },
+  "88843000": {
+   "first": "Sanita",
+   "last": "Kalniņa",
+   "note": "confirmed spelling, was Sanita Kalnina",
+   "date": "2026-11-20"
+  },
+  "88851334": {
+   "first": "Ivo",
+   "last": "Šķēle",
+   "note": "confirmed spelling, was Ivo Sķēle",
+   "date": "2026-11-20"
+  },
+  "93072988": {
+   "first": "Artūrs",
+   "last": "Silvestrs",
+   "note": "TS 93848 had first and last name swapped (Aleksandrs 20 Nov 2026)",
+   "date": ""
+  },
+  "93140767": {
+   "first": "Timofejs",
+   "last": "Jevtjuhovs",
+   "note": "keep the TS spelling (Aleksandrs 20 Nov 2026)",
+   "date": ""
+  },
+  "980900001": {
+   "first": "Rihards",
+   "last": "Ozoliņš",
+   "note": "confirmed spelling, was Rihards Ozolinsh",
+   "date": "2026-11-20"
+  }
+ },
+ "merges": [
+  {
+   "keep": "13666",
+   "merge": "51159",
+   "stage": "manual",
+   "note": "Rimshevics Ernests / Rimshevich Ernest",
+   "date": ""
+  },
+  {
+   "keep": "13735",
+   "merge": "57223",
+   "stage": "manual",
+   "note": "Kokarevičs / Kokorevich Arturs",
+   "date": ""
+  },
+  {
+   "keep": "61154",
+   "merge": "61786",
+   "stage": "manual",
+   "note": "Gindins / Gnidins Deniss",
+   "date": ""
+  },
+  {
+   "keep": "60892",
+   "merge": "58480",
+   "stage": "manual",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "9329",
+   "merge": "9395",
+   "stage": "manual",
+   "note": "Hildonen Tapani (swapped names)",
+   "date": ""
+  },
+  {
+   "keep": "31806",
+   "merge": "1453",
+   "stage": "manual",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "10247",
+   "merge": "16113",
+   "stage": "manual",
+   "note": "Genadijs Kaminskis / Геннадий Каминский",
+   "date": ""
+  },
+  {
+   "keep": "93811",
+   "merge": "67374",
+   "stage": "manual",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "9040",
+   "merge": "12336",
+   "stage": "manual",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "917",
+   "merge": "20310",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "11049",
+   "merge": "13677",
+   "stage": "late",
+   "note": "second check list",
+   "date": ""
+  },
+  {
+   "keep": "13016",
+   "merge": "92793",
+   "stage": "late",
+   "note": "second check list",
+   "date": ""
+  },
+  {
+   "keep": "85488",
+   "merge": "21146803",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "90514",
+   "merge": "43973293",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "82077",
+   "merge": "6779410",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "36774",
+   "merge": "89116",
+   "stage": "late",
+   "note": "second check list",
+   "date": ""
+  },
+  {
+   "keep": "57211",
+   "merge": "11904880",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "90516",
+   "merge": "43660021",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "61021",
+   "merge": "71285",
+   "stage": "late",
+   "note": "second check list",
+   "date": ""
+  },
+  {
+   "keep": "85491",
+   "merge": "18314821",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "17018",
+   "merge": "7944661",
+   "stage": "late",
+   "note": "second check list",
+   "date": ""
+  },
+  {
+   "keep": "90518",
+   "merge": "8438715",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "13010",
+   "merge": "58887",
+   "stage": "late",
+   "note": "second check list",
+   "date": ""
+  },
+  {
+   "keep": "20311",
+   "merge": "25429",
+   "stage": "late",
+   "note": "second check list",
+   "date": ""
+  },
+  {
+   "keep": "11079",
+   "merge": "1660311",
+   "stage": "late",
+   "note": "second check list",
+   "date": ""
+  },
+  {
+   "keep": "31156",
+   "merge": "5386518",
+   "stage": "late",
+   "note": "second check list",
+   "date": ""
+  },
+  {
+   "keep": "39289",
+   "merge": "40642270",
+   "stage": "late",
+   "note": "second check list",
+   "date": ""
+  },
+  {
+   "keep": "1526",
+   "merge": "81593",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "11720",
+   "merge": "84980098",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "88757",
+   "merge": "45576862",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "89619",
+   "merge": "42574819",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "62972",
+   "merge": "45168052",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "102276",
+   "merge": "61118644",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "104502",
+   "merge": "53776",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "104502",
+   "merge": "96660",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "8161",
+   "merge": "8842943",
+   "stage": "late",
+   "note": "Schulte(-Ebbert), Riidak, Kingi, Riigov (27 Oct)",
+   "date": ""
+  },
+  {
+   "keep": "5174659",
+   "merge": "41961",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "77488",
+   "merge": "6139134",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "12205177",
+   "merge": "15594157",
+   "stage": "late",
+   "note": "Schulte(-Ebbert), Riidak, Kingi, Riigov (27 Oct)",
+   "date": ""
+  },
+  {
+   "keep": "4464",
+   "merge": "43085134",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "55764",
+   "merge": "6992",
+   "stage": "late",
+   "note": "Kestutis Zhadeikis = Kęstutis Žadeikis Jaun. (confirmed by Aleksandrs 27 Oct)",
+   "date": ""
+  },
+  {
+   "keep": "93848",
+   "merge": "107447",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  },
+  {
+   "keep": "107544",
+   "merge": "93140767",
+   "stage": "late",
+   "note": "Artūrs Silvestrs (TS name reversed) and Timofejs Jevtjuhovs = Joftjukovs (CS), confirmed by Aleksandrs 20 Nov 2026",
+   "date": ""
+  },
+  {
+   "keep": "19307",
+   "merge": "46651888",
+   "stage": "late",
+   "note": "Andrejs Borodins (CS 'Андрей Бородин', wrong country XKX), Eduards Sarkisovs (CS 'Eduard S'), Jegors Jemeļjanovs (CS 'Егор Емельянов'); confirmed by Aleksandrs 20 Nov 2026",
+   "date": ""
+  },
+  {
+   "keep": "70803",
+   "merge": "7086551",
+   "stage": "late",
+   "note": "Andrejs Borodins (CS 'Андрей Бородин', wrong country XKX), Eduards Sarkisovs (CS 'Eduard S'), Jegors Jemeļjanovs (CS 'Егор Емельянов'); confirmed by Aleksandrs 20 Nov 2026",
+   "date": ""
+  },
+  {
+   "keep": "41601",
+   "merge": "44929477",
+   "stage": "late",
+   "note": "Andrejs Borodins (CS 'Андрей Бородин', wrong country XKX), Eduards Sarkisovs (CS 'Eduard S'), Jegors Jemeļjanovs (CS 'Егор Емельянов'); confirmed by Aleksandrs 20 Nov 2026",
+   "date": ""
+  },
+  {
+   "keep": "86170855",
+   "merge": "81378988",
+   "stage": "late",
+   "note": "",
+   "date": ""
+  }
+ ],
+ "cs_links": {
+  "5042602": {
+   "ts": "10244",
+   "note": ""
+  },
+  "6835617": {
+   "ts": "71830",
+   "note": ""
+  },
+  "6907086": {
+   "ts": "13235",
+   "note": ""
+  },
+  "13364104": {
+   "ts": "79431",
+   "note": ""
+  },
+  "15804349": {
+   "ts": "61154",
+   "note": ""
+  },
+  "16146244": {
+   "ts": "10583",
+   "note": ""
+  },
+  "25699759": {
+   "ts": "29047",
+   "note": ""
+  },
+  "25832485": {
+   "ts": "57218",
+   "note": ""
+  },
+  "27196792": {
+   "ts": "71895",
+   "note": ""
+  },
+  "27683962": {
+   "ts": "4392",
+   "note": ""
+  },
+  "35825056": {
+   "ts": "1526",
+   "note": ""
+  },
+  "36971641": {
+   "ts": "22173",
+   "note": ""
+  },
+  "40933252": {
+   "ts": "62190",
+   "note": ""
+  },
+  "41102248": {
+   "ts": "93775",
+   "note": ""
+  },
+  "42219532": {
+   "ts": "87829",
+   "note": ""
+  },
+  "42555004": {
+   "ts": "60892",
+   "note": ""
+  },
+  "48707674": {
+   "ts": "96437",
+   "note": ""
+  },
+  "53888086": {
+   "ts": "100182",
+   "note": ""
+  },
+  "57234157": {
+   "ts": "59479",
+   "note": ""
+  },
+  "67585657": {
+   "ts": "71894",
+   "note": ""
+  },
+  "68584606": {
+   "ts": "84714",
+   "note": ""
+  },
+  "77320483": {
+   "ts": "105378",
+   "note": ""
+  },
+  "85492987": {
+   "ts": "4396",
+   "note": ""
+  },
+  "89111581": {
+   "ts": "15523",
+   "note": ""
+  },
+  "89111704": {
+   "ts": "9039",
+   "note": ""
+  },
+  "90098785": {
+   "ts": "94134",
+   "note": ""
+  }
+ },
+ "not_same": [
+  {
+   "ids": [
+    "26590",
+    "82628"
+   ],
+   "note": "Sergeyev Sergiy, different birth dates",
+   "date": ""
+  },
+  {
+   "ids": [
+    "69444",
+    "81671"
+   ],
+   "note": "Imants Bišers / Imants Ozoliņš: TS 69444 has Latvian name 'Ozoliņš', but two different people, never merge (Aleksandrs 22 Nov 2026)",
+   "date": ""
+  }
+ ],
+ "exclude_tournaments": {
+  "28847": {
+   "reason": "team event",
+   "date": ""
+  },
+  "34217": {
+   "reason": "team event, too few matches",
+   "date": ""
+  },
+  "37150": {
+   "reason": "TS folder labelled Straight pool; its parts 37158 and 37159 count as 10-ball",
+   "date": ""
+  },
+  "37679": {
+   "reason": "race to 3 event, one mistyped score",
+   "date": ""
+  },
+  "45769": {
+   "reason": "team event",
+   "date": ""
+  },
+  "47748": {
+   "reason": "team event, too few matches",
+   "date": ""
+  },
+  "50768": {
+   "reason": "odd event, one match",
+   "date": ""
+  },
+  "56741": {
+   "reason": "TS copy of CueScore 92892997 (POOL8 OPEN 2026)",
+   "date": ""
+  },
+  "56742": {
+   "reason": "TS copy of CueScore 92893684 (Meistari 45+)",
+   "date": ""
+  },
+  "56743": {
+   "reason": "TS copy of CueScore 92893711 (Meistari 55+)",
+   "date": ""
+  },
+  "56744": {
+   "reason": "TS copy of CueScore 92893336 (Sievietes)",
+   "date": ""
+  },
+  "56781": {
+   "reason": "TS copy of CueScore 92894281 (U17 POOL8)",
+   "date": ""
+  },
+  "56782": {
+   "reason": "TS copy of CueScore 92894314 (U17 POOL9)",
+   "date": ""
+  }
+ },
+ "duplicates": {
+  "56183": {
+   "original": "90055279",
+   "note": "CueScore counts: CueScore 90055279 (POOL10 Kopējais 2026); decided 20 Nov 2026",
+   "date": "2026-11-20"
+  },
+  "56184": {
+   "original": "90055324",
+   "note": "CueScore counts: CueScore 90055324 (Meistari 45+); decided 20 Nov 2026",
+   "date": "2026-11-20"
+  },
+  "56185": {
+   "original": "90106411",
+   "note": "CueScore counts: CueScore 90106411 (Meistari 55+); decided 20 Nov 2026",
+   "date": "2026-11-20"
+  },
+  "56186": {
+   "original": "90069343",
+   "note": "CueScore counts: CueScore 90069343 (Sievietes); decided 20 Nov 2026",
+   "date": "2026-11-20"
+  },
+  "56187": {
+   "original": "90055660",
+   "note": "CueScore counts: CueScore 90055660 (U19 POOL8); decided 20 Nov 2026",
+   "date": "2026-11-20"
+  },
+  "56188": {
+   "original": "90098803",
+   "note": "CueScore counts: CueScore 90098803 (U19 POOL9); decided 20 Nov 2026",
+   "date": "2026-11-20"
+  }
+ },
+ "match_fix": {
+  "2575646": {
+   "score": [
+    20,
+    21
+   ],
+   "note": "Vilmars Lucans 20:21 Arturs Petersons (TS 12:21)",
+   "date": "2026-11-20"
+  },
+  "2575656": {
+   "score": [
+    3,
+    23
+   ],
+   "note": "Janis Lisovskis 3:23 Rudolfs Zvaigzne (TS 3:22)",
+   "date": "2026-11-20"
+  },
+  "2575665": {
+   "score": [
+    30,
+    17
+   ],
+   "note": "Mareks Cipsts 30:17 Ilvars Musajevs (TS 30:10)",
+   "date": "2026-11-20"
+  },
+  "2575680": {
+   "score": [
+    35,
+    15
+   ],
+   "note": "Janis Baldis 35:15 Ilvars Musajevs (TS 35:17)",
+   "date": "2026-11-20"
+  },
+  "1091284448": {
+   "score": [
+    8,
+    2
+   ],
+   "note": "Ventsel 9:2 Pintšuk, Mezz Cues meistriliiga VI 2026: race to 8, so 8:2 (issue #1)",
+   "date": "2026-11-16"
+  },
+  "1091737946": {
+   "score": [
+    0,
+    7
+   ],
+   "note": "Cemnolonskis 0:4 Balchiunas, LPF A lyga 6 etapas 2026: count as 7:0 (issue #1)",
+   "date": "2026-11-16"
+  },
+  "1092382301": {
+   "score": null,
+   "note": "Pintšuk 0:3 Daugela, same event, also not played (issue #1)",
+   "date": "2026-11-16"
+  },
+  "1092382415": {
+   "score": null,
+   "note": "Žadeikis 3:0 Pintšuk, BPL Grand Final Riga 2026: never played, Pintšuk did not come (issue #1)",
+   "date": "2026-11-16"
+  }
+ },
+ "not_handicap": {
+  "40348549": {
+   "note": "BPL mini division played without handicap"
+  },
+  "41569429": {
+   "note": "BPL mini division played without handicap"
+  },
+  "46429630": {
+   "note": "BPL mini division played without handicap"
+  },
+  "49205425": {
+   "note": "BPL mini division played without handicap"
+  },
+  "50947813": {
+   "note": "BPL mini division played without handicap"
+  },
+  "56092414": {
+   "note": "BPL mini division played without handicap"
+  },
+  "60456046": {
+   "note": "BPL mini division played without handicap"
+  }
+ },
+ "exclude_players": {
+  "13016": {
+   "reason": "Timofejs Sereda (Belarusian): rated in the background, not shown"
+  },
+  "92793": {
+   "reason": "Timofejs Sereda (Belarusian): rated in the background, not shown"
+  }
+ },
+ "exclude_cs_players": {
+  "6842442": {
+   "reason": "\"X player\""
+  }
+ },
+ "latvian": {
+  "46651888": {
+   "note": "Kirill Borisov (Niger flag on CueScore), Andrejs Borodins (Kosovo flag on CueScore, 20 Nov 2026)"
+  },
+  "64036255": {
+   "note": "Kirill Borisov (Niger flag on CueScore), Andrejs Borodins (Kosovo flag on CueScore, 20 Nov 2026)"
+  }
+ },
+ "sex": {
+  "31861441": "f"
+ },
+ "log": [
+  {
+   "id": 1,
+   "date": "2026-11-21 10:24",
+   "text": "Duplicate 90055279 / 56183: reviewed, keep as it is",
+   "op": {
+    "op": "multi",
+    "ops": [
+     {
+      "op": "del",
+      "file": "ov",
+      "path": [
+       "dup_review"
+      ],
+      "item": {
+       "ids": [
+        "56183",
+        "90055279"
+       ],
+       "note": "POOL10 26 Sep 2026: CueScore copy counts now (switched 20 Nov)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": 2,
+   "date": "2026-11-21 10:24",
+   "text": "Duplicate 90055324 / 56184: reviewed, keep as it is",
+   "op": {
+    "op": "multi",
+    "ops": [
+     {
+      "op": "del",
+      "file": "ov",
+      "path": [
+       "dup_review"
+      ],
+      "item": {
+       "ids": [
+        "56184",
+        "90055324"
+       ],
+       "note": "POOL10 26 Sep 2026: CueScore copy counts now (switched 20 Nov)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": 3,
+   "date": "2026-11-21 10:24",
+   "text": "Duplicate 90106411 / 56185: reviewed, keep as it is",
+   "op": {
+    "op": "multi",
+    "ops": [
+     {
+      "op": "del",
+      "file": "ov",
+      "path": [
+       "dup_review"
+      ],
+      "item": {
+       "ids": [
+        "56185",
+        "90106411"
+       ],
+       "note": "POOL10 26 Sep 2026: CueScore copy counts now (switched 20 Nov)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": 4,
+   "date": "2026-11-21 10:24",
+   "text": "Duplicate 90069343 / 56186: reviewed, keep as it is",
+   "op": {
+    "op": "multi",
+    "ops": [
+     {
+      "op": "del",
+      "file": "ov",
+      "path": [
+       "dup_review"
+      ],
+      "item": {
+       "ids": [
+        "56186",
+        "90069343"
+       ],
+       "note": "POOL10 26 Sep 2026: CueScore copy counts now (switched 20 Nov)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": 5,
+   "date": "2026-11-21 10:24",
+   "text": "Duplicate 90055660 / 56187: reviewed, keep as it is",
+   "op": {
+    "op": "multi",
+    "ops": [
+     {
+      "op": "del",
+      "file": "ov",
+      "path": [
+       "dup_review"
+      ],
+      "item": {
+       "ids": [
+        "56187",
+        "90055660"
+       ],
+       "note": "POOL10 26 Sep 2026: CueScore copy counts now (switched 20 Nov)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": 6,
+   "date": "2026-11-21 10:24",
+   "text": "Duplicate 90098803 / 56188: reviewed, keep as it is",
+   "op": {
+    "op": "multi",
+    "ops": [
+     {
+      "op": "del",
+      "file": "ov",
+      "path": [
+       "dup_review"
+      ],
+      "item": {
+       "ids": [
+        "56188",
+        "90098803"
+       ],
+       "note": "POOL10 26 Sep 2026: CueScore copy counts now (switched 20 Nov)"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": 7,
+   "date": "2026-11-21 10:24",
+   "text": "Duplicate 49407 / 49440: reviewed, keep as it is",
+   "op": {
+    "op": "multi",
+    "ops": [
+     {
+      "op": "del",
+      "file": "ov",
+      "path": [
+       "dup_review"
+      ],
+      "item": {
+       "ids": [
+        "49407",
+        "49440"
+       ],
+       "note": "Siguldas Kauss POOL8 2024: TS 49407 (entered in bulk) counts, TS 49440 was live"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": 8,
+   "date": "2026-11-21 10:24",
+   "text": "Duplicate 49440 / 46221586: reviewed, keep as it is",
+   "op": {
+    "op": "multi",
+    "ops": [
+     {
+      "op": "del",
+      "file": "ov",
+      "path": [
+       "dup_review"
+      ],
+      "item": {
+       "ids": [
+        "49440",
+        "46221586"
+       ],
+       "note": "Siguldas Kauss POOL8 2024: TS 49440 and CueScore 46221586 both live"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": 9,
+   "date": "2026-11-21 10:24",
+   "text": "Duplicate 49333 / 44925487: reviewed, keep as it is",
+   "op": {
+    "op": "multi",
+    "ops": [
+     {
+      "op": "del",
+      "file": "ov",
+      "path": [
+       "dup_review"
+      ],
+      "item": {
+       "ids": [
+        "49333",
+        "44925487"
+       ],
+       "note": "Sigulda 2024 27. turnīrs: TS counts, CueScore scores used for the matches it has (MATCH_FIX)"
+      }
+     }
+    ]
+   }
+  }
+ ],
+ "dup_review": [],
+ "estonian": []
+}
