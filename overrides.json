@@ -2450,6 +2450,27 @@
    "stage": "late",
    "note": "Laura Jegorova / Laura Egorova (Aleksandrs review 22 Nov 2026)",
    "date": "2026-11-22"
+  },
+  {
+   "keep": "7992676",
+   "merge": "8211506",
+   "stage": "late",
+   "note": "Merlin Purge / Merilin Purge (Aleksandrs review v3, 22 Nov 2026)",
+   "date": "2026-11-22"
+  },
+  {
+   "keep": "50296",
+   "merge": "5359127",
+   "stage": "late",
+   "note": "Vaiko Villiam Tuul / Vaiko Tuul (Aleksandrs review v3, 22 Nov 2026)",
+   "date": "2026-11-22"
+  },
+  {
+   "keep": "26482",
+   "merge": "8385374",
+   "stage": "late",
+   "note": "Edgar Balabanov (TS) / Edgar Balabanov (CueScore) (Aleksandrs review v3, 22 Nov 2026)",
+   "date": "2026-11-22"
   }
  ],
  "cs_links": {
@@ -2597,6 +2618,38 @@
     "56241250"
    ],
    "note": "Raul Ojala / Raul Põhjala: different people (Aleksandrs review 22 Nov 2026)",
+   "date": "2026-11-22"
+  },
+  {
+   "ids": [
+    "32588",
+    "30135"
+   ],
+   "note": "Konstantin Simonov / Konstantin Sinonov: different people (Aleksandrs review v3, 22 Nov 2026)",
+   "date": "2026-11-22"
+  },
+  {
+   "ids": [
+    "53760",
+    "14705452"
+   ],
+   "note": "Margus Kala / Markus Kala: different people (Aleksandrs review v3, 22 Nov 2026)",
+   "date": "2026-11-22"
+  },
+  {
+   "ids": [
+    "54740",
+    "27239377"
+   ],
+   "note": "Indrek Paju / Indrek Pajur: different people (Aleksandrs review v3, 22 Nov 2026)",
+   "date": "2026-11-22"
+  },
+  {
+   "ids": [
+    "57230128",
+    "57230125"
+   ],
+   "note": "Mirtel Nei / Mirell Nei: different people (Aleksandrs review v3, 22 Nov 2026)",
    "date": "2026-11-22"
   }
  ],
@@ -2839,7 +2892,9 @@
   "81055861": "f",
   "88589584": "f",
   "88607278": "f",
-  "81055849": "f"
+  "81055849": "f",
+  "27517": "f",
+  "93030013": "f"
  },
  "log": [
   {
@@ -3061,6 +3116,10 @@
   {
    "date": "2026-11-22",
    "what": "Estonian review: 5 names, 3 leagues, 7 merges, 3 not same, 4 non-persons removed, 35 women"
+  },
+  {
+   "date": "2026-11-22",
+   "what": "Estonian review v3: 3 merges, 4 not same, 2 women"
   }
  ],
  "dup_review": [],
