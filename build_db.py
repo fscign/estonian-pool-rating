@@ -431,14 +431,27 @@ def display_raw(root):
     if not CYR.search(f2 + l2): return f2, l2
     return translit(f), translit(l)
 # Men / women: a woman's profile on Tournament Service, or a female Latvian name (first name and surname both end in -a/-e)
-MALE_A = {'nikita', 'ilja', 'ilya', 'kostja', 'sasha', 'sasa', 'misha', 'misa', 'danila', 'vova', 'andrea', 'luca', 'jura', 'kolja', 'tolja', 'vanja', 'gena', 'zhenja', 'zenja'}
+MALE_A = {'ivica', 'nikola', 'luka', 'mika', 'juha', 'jukka', 'joona', 'joosua', 'aleksa', 'jaška', 'jaska', 'nikita', 'ilja', 'ilya', 'kostja', 'sasha', 'sasa', 'misha', 'misa', 'danila', 'vova', 'andrea', 'luca', 'jura', 'kolja', 'tolja', 'vanja', 'gena', 'zhenja', 'zenja'}
 SEX_OVERRIDE = dict(OV['sex'])
+# Estonian female first names that do not end in -a (add more in overrides 'sex' from the admin panel)
+FEMALE_EE = {'kart', 'liis', 'liisi', 'liise', 'heidy', 'heidi', 'kristel', 'kristi', 'kristin', 'kristiina', 'annika', 'elo', 'kullike',
+             'lotte', 'lisette', 'michelle', 'mari', 'marie', 'merle', 'merli', 'merilin', 'kerli', 'kelly', 'kairi', 'kadri', 'kai', 'kati',
+             'katrin', 'karin', 'kadi', 'piret', 'reet', 'sirje', 'triin', 'triinu', 'ulle', 'ly', 'anne', 'anni', 'eve', 'ene', 'helen',
+             'helle', 'ingrid', 'birgit', 'getter', 'grete', 'gerli', 'elis', 'elise', 'eliise', 'jane', 'janne', 'kaire', 'kaisa', 'kertu',
+             'kirke', 'laura', 'liina', 'maarja', 'marju', 'mirjam', 'pille', 'riin', 'siiri', 'signe', 'sigrid', 'tiiu', 'urve', 'viivi',
+             'evelin', 'evelyn', 'karmen', 'kerttu', 'marit', 'merit', 'piia', 'raili', 'sandra', 'sille', 'stella', 'terje', 'tuuli',
+             'vivian', 'yvonne', 'iris', 'irene', 'alice', 'agnes', 'ester', 'ruth', 'olga', 'karoliine', 'kristel-ly', 'emma', 'mia'}
 def plain(x): return ''.join(c for c in unicodedata.normalize('NFKD', x.lower()) if not unicodedata.combining(c)).strip()
 def sex_of(k, first, last):
     if k in SEX_OVERRIDE: return SEX_OVERRIDE[k]
     if any(P[x][5] == 'f' and x not in CSIDS for x in group[k]): return 'f'
-    f = (plain(first).split() or [''])[0]; l = plain(last)
-    return 'f' if f[-1:] in ('a', 'e') and f not in MALE_A and l[-1:] in ('a', 'e') else 'm'
+    f = (plain(first).replace('-', ' ').split() or [''])[0]; l = plain(last)
+    if country(k) in ('LAT', 'LIT'):   # Latvian / Lithuanian names: first name and surname both end in -a/-e
+        return 'f' if f[-1:] in ('a', 'e') and f not in MALE_A and l[-1:] in ('a', 'e') else 'm'
+    # Estonian and other names (22 Nov 2026: Rene Kivila, Andre Kiholane came out as women with the Latvian rule):
+    # the surname says nothing; a first name ending in -a is female (except known male names), else only known female names
+    if f in FEMALE_EE: return 'f'
+    return 'f' if f[-1:] == 'a' and f not in MALE_A else 'm'
 # ---------- skill league (federation list, leagues.json; anyone not listed is Rahvaliiga) ----------
 LG = json.load(open('leagues.json', encoding='utf-8')) if os.path.exists('leagues.json') else {}
 LG_FOLD, LG_PH = {}, {}
