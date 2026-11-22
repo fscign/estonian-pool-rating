@@ -460,7 +460,10 @@ for code in ('ML', 'EL', 'TL'):
         LG_FOLD[fold_name(n)] = code
         w = n.split(); LG_PH[tuple(sorted([ph(w[0]), ph(w[-1])]))] = code
 LG_FOUND = set()
+LG_OVERRIDE = OV.get('league', {})   # player id -> ML/EL/TL/RL, for players missing from the federation list or listed wrongly
 def league_of(k, first, last):
+    for x in group[k]:
+        if x in LG_OVERRIDE: return LG_OVERRIDE[x]
     names = [(first, last)] + [(s(P[x][1]), s(P[x][0])) for x in group[k]]
     for f_, l_ in names:
         c = LG_FOLD.get(fold_name(f_ + l_)) or LG_PH.get(tuple(sorted([ph((f_.split() or [''])[0]), ph((l_.split() or [''])[-1])])))
