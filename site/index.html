@@ -11,8 +11,7 @@
 <style>[hidden]{display:none!important}</style>
 <title>Estonian Pool Rating</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;600;700&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Narrow:wght@600;700&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&family=Spectral:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Narrow:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: one column, sticky top bar, scoreboard-style ranking table, player sheet with chart + results ledger */
 :root{
@@ -303,93 +302,29 @@ a.vs{margin-left:4px;color:var(--muted);text-decoration:none;font-size:13px}a.vs
   header.top nav a:nth-child(n+5){flex-basis:30%;border-top:1px solid var(--line);border-radius:0;margin-top:4px;padding-top:8px}
 }</style>
 <style>
-/* Three design options for the Estonian site (test only: switch at the bottom left). 22 Nov 2026.
-   A "Lipp"    flag colours: black top band with the blue-black-white stripe, white page, flag blue for links and highlights, Archivo type.
-   B "Laud"    the blue tournament cloth: dark = deep cloth blue page, chalk-white text; light = white page with a cloth-blue top band and table heads; yellow of the 1-ball for highlights, Barlow type.
-   C "Ajaleht" a sports page: white paper, black ink, hairline rules instead of boxes, serif headlines (Spectral), blue only for links. */
-
-/* ---------- A: Lipp ---------- */
-html:root[data-skin="a"]{--bg:#ffffff;--surface:#ffffff;--fg:#111214;--muted:#5d6269;--line:#e2e4e8;--soft:#f1f3f6;
+/* Design "Lipp" (chosen by Aleksandrs 23 Nov 2026): flag colours, black top band with the blue-black-white stripe, flag blue for links and highlights, Archivo type; light and dark */
+html:root{--bg:#ffffff;--surface:#ffffff;--fg:#111214;--muted:#5d6269;--line:#e2e4e8;--soft:#f1f3f6;
   --accent:#0072ce;--accent-soft:#e3f0fb;--chart:#0072ce;--chart2:#9aa1aa;--win:#1d7a4c;--loss:#b3332a;
   --f-display:"Archivo Narrow","Arial Narrow",sans-serif;--f-body:"Archivo",system-ui,sans-serif}
-html:root[data-skin="a"].sysdark{--bg:#0f1114;--surface:#15181c;--fg:#eef0f3;--muted:#9aa1aa;--line:#2a2f36;--soft:#1d2127;
+html:root.sysdark{--bg:#0f1114;--surface:#15181c;--fg:#eef0f3;--muted:#9aa1aa;--line:#2a2f36;--soft:#1d2127;
   --accent:#4ea8f0;--accent-soft:#16283a;--chart:#4ea8f0;--chart2:#6b727b;--win:#5cc28c;--loss:#ef8a7e}
-html:root[data-skin="a"] header.top{background:#000;border-bottom:0;box-shadow:inset 0 -6px 0 #0072ce, inset 0 -3px 0 #fff}
-html:root[data-skin="a"] header.top .wrap{padding-bottom:16px}
-html:root[data-skin="a"] .brand{color:#fff}
-html:root[data-skin="a"] .flag{box-shadow:0 0 0 1px #444}
-html:root[data-skin="a"] nav a{color:#b9bfc7}
-html:root[data-skin="a"] nav a.on{color:#fff;background:transparent;box-shadow:inset 0 -2px 0 #0072ce;border-radius:0}
-html:root[data-skin="a"] .lang{border-color:#333}
-html:root[data-skin="a"] .lang button{color:#9aa1aa}
-html:root[data-skin="a"] .lang button.on{background:#0072ce;color:#fff}
-html:root[data-skin="a"] h1{font-size:clamp(30px,5.4vw,46px);letter-spacing:-.01em}
-html:root[data-skin="a"] .tablebox{border:0;border-top:3px solid var(--fg);border-radius:0}
-html:root[data-skin="a"] th{color:var(--fg);border-bottom:1px solid var(--fg)}
-html:root[data-skin="a"] td.rt{font-weight:700;color:var(--accent)}
-html:root[data-skin="a"] .chip.on{background:#0072ce;border-color:#0072ce;color:#fff}
-html:root[data-skin="a"] .site-foot{border-top:6px solid #0072ce;box-shadow:inset 0 3px 0 #000}
-
-/* ---------- B: Laud (always dark: the cloth) ---------- */
-html:root[data-skin="b"]{--bg:#0e3557;--surface:#123f66;--fg:#f4f7fa;--muted:#a9c0d6;--line:#22547f;--soft:#184b77;
-  --accent:#f2c230;--accent-soft:#2a4a5c;--chart:#f2c230;--chart2:#7fa3c4;--win:#7fdcae;--loss:#ff9b8c;
-  --f-display:"Barlow Condensed","Arial Narrow",sans-serif;--f-body:"Barlow",system-ui,sans-serif;color-scheme:dark}
-html:root[data-skin="b"] body{background:radial-gradient(1200px 600px at 50% -200px,#16497a 0,transparent 70%),var(--bg)}
-html:root[data-skin="b"] header.top{background:#0a2a46;border-bottom:1px solid #1d4b73}
-html:root[data-skin="b"] .brand{font-size:22px;letter-spacing:.03em}
-html:root[data-skin="b"] nav a.on{background:#f4f7fa;color:#0e3557;border-radius:999px}
-html:root[data-skin="b"] h1{font-size:clamp(32px,5.6vw,50px);font-weight:600;letter-spacing:.01em}
-html:root[data-skin="b"] .tablebox{background:rgba(10,42,70,.55);border-color:#1d4b73;border-radius:14px}
-html:root[data-skin="b"] th{background:#0f3a5f;color:#a9c0d6}
-html:root[data-skin="b"] td.rt{font-family:var(--f-display);font-size:18px;font-weight:600;color:#fff}
-html:root[data-skin="b"] tbody tr:hover{background:#184b77}
-html:root[data-skin="b"] .chip{background:#0f3a5f;border-color:#2a5d8a;color:#e6eef5}
-html:root[data-skin="b"] .chip.on{background:#f4f7fa;border-color:#f4f7fa;color:#0e3557;box-shadow:inset 0 0 0 2px #f4f7fa, 0 1px 0 #000}
-html:root[data-skin="b"] input,html:root[data-skin="b"] select{background:#0f3a5f;border-color:#2a5d8a;color:#f4f7fa}
-html:root[data-skin="b"] .star.on{color:#f2c230}
-html:root[data-skin="b"] .lang button.on{background:#f2c230;color:#0e3557}
-
-/* ---------- C: Ajaleht ---------- */
-html:root[data-skin="c"]{--bg:#ffffff;--surface:#ffffff;--fg:#141414;--muted:#666;--line:#d9d9d9;--soft:#f3f3f3;
-  --accent:#0060b0;--accent-soft:#eaf2fa;--chart:#141414;--chart2:#9a9a9a;--win:#1d6b44;--loss:#a52c22;
-  --f-display:"Spectral",Georgia,serif;--f-body:"IBM Plex Sans",system-ui,sans-serif}
-html:root[data-skin="c"].sysdark{--bg:#121212;--surface:#121212;--fg:#ededed;--muted:#a0a0a0;--line:#333;--soft:#1e1e1e;
-  --accent:#6fb1ef;--accent-soft:#1a2633;--chart:#ededed;--chart2:#777}
-html:root[data-skin="c"] header.top{border-bottom:3px double var(--fg)}
-html:root[data-skin="c"] .brand{font-family:"Spectral",Georgia,serif;font-weight:800;font-size:24px;letter-spacing:0}
-html:root[data-skin="c"] nav a{font-size:14px}
-html:root[data-skin="c"] nav a.on{background:transparent;color:var(--fg);text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
-html:root[data-skin="c"] h1{font-weight:800;font-size:clamp(32px,5.6vw,52px);letter-spacing:-.015em}
-html:root[data-skin="c"] h2,html:root[data-skin="c"] h3{font-weight:700}
-html:root[data-skin="c"] .tablebox{border:0;border-radius:0;border-top:1px solid var(--fg);border-bottom:1px solid var(--fg)}
-html:root[data-skin="c"] th{font-family:"IBM Plex Sans",sans-serif;color:var(--fg);font-weight:600;border-bottom:1px solid var(--fg)}
-html:root[data-skin="c"] td.rt{font-family:"Spectral",Georgia,serif;font-size:17px;font-weight:700}
-html:root[data-skin="c"] tbody tr:hover{background:var(--soft)}
-html:root[data-skin="c"] .chip{border-radius:2px}
-html:root[data-skin="c"] .chip.on{background:var(--fg);color:var(--bg)}
-html:root[data-skin="c"] input,html:root[data-skin="c"] select{border-radius:2px}
-html:root[data-skin="c"] .card{border-radius:0}
-
-html:root[data-skin="b"]:not(.sysdark){--bg:#ffffff;--surface:#ffffff;--fg:#0b2a45;--muted:#557089;--line:#d5e0ea;--soft:#eef3f8;
-  --accent:#0e3557;--accent-soft:#fff4cf;--chart:#0e3557;--chart2:#9fb4c8;--win:#1d7a4c;--loss:#b3332a;color-scheme:light}
-html:root[data-skin="b"]:not(.sysdark) body{background:var(--bg)}
-html:root[data-skin="b"]:not(.sysdark) header.top{background:#0e3557;border-bottom:4px solid #f2c230}
-html:root[data-skin="b"]:not(.sysdark) .brand,html:root[data-skin="b"]:not(.sysdark) nav a{color:#e6eef5}
-html:root[data-skin="b"]:not(.sysdark) nav a.on{background:#f4f7fa;color:#0e3557}
-html:root[data-skin="b"]:not(.sysdark) .tablebox{background:#fff;border-color:#d5e0ea}
-html:root[data-skin="b"]:not(.sysdark) th{background:#0e3557;color:#e6eef5}
-html:root[data-skin="b"]:not(.sysdark) td.rt{color:#0e3557}
-html:root[data-skin="b"]:not(.sysdark) tbody tr:hover{background:#eef3f8}
-html:root[data-skin="b"]:not(.sysdark) .chip{background:#fff;border-color:#c5d3e0;color:#0b2a45}
-html:root[data-skin="b"]:not(.sysdark) .chip.on{background:#0e3557;border-color:#0e3557;color:#fff;box-shadow:none}
-html:root[data-skin="b"]:not(.sysdark) input,html:root[data-skin="b"]:not(.sysdark) select{background:#fff;border-color:#c5d3e0;color:#0b2a45}
-html:root[data-skin="b"]:not(.sysdark) .star.on{color:#d9a400}
-/* switch (test site only) */
-#skinsw{position:fixed;left:12px;bottom:12px;z-index:50;display:flex;align-items:center;gap:4px;padding:5px 6px;border-radius:999px;background:#111;color:#fff;font:600 12px/1 system-ui,sans-serif;box-shadow:0 4px 18px rgba(0,0,0,.25)}
-#skinsw span{padding:0 6px;opacity:.75}
-#skinsw button{font:inherit;border:0;border-radius:999px;padding:7px 10px;background:transparent;color:#fff;cursor:pointer;min-width:34px}
-#skinsw button.on{background:#0072ce}
-#skinsw i{width:1px;align-self:stretch;margin:2px 4px;background:#444}
+html:root header.top{background:#000;border-bottom:0;box-shadow:inset 0 -6px 0 #0072ce, inset 0 -3px 0 #fff}
+html:root header.top .wrap{padding-bottom:16px}
+html:root .brand{color:#fff}
+html:root .flag{box-shadow:0 0 0 1px #444}
+html:root nav a{color:#b9bfc7}
+html:root nav a.on{color:#fff;background:transparent;box-shadow:inset 0 -2px 0 #0072ce;border-radius:0}
+html:root .lang{border-color:#333}
+html:root .lang button{color:#9aa1aa}
+html:root .lang button.on{background:#0072ce;color:#fff}
+html:root h1{font-size:clamp(30px,5.4vw,46px);letter-spacing:-.01em}
+html:root .tablebox{border:0;border-top:3px solid var(--fg);border-radius:0}
+html:root th{color:var(--fg);border-bottom:1px solid var(--fg)}
+html:root td.rt{font-weight:700;color:var(--accent)}
+html:root .chip.on{background:#0072ce;border-color:#0072ce;color:#fff}
+html:root .site-foot{border-top:6px solid #0072ce;box-shadow:inset 0 3px 0 #000}
+.mode{margin-left:6px}
+.mode button{min-width:34px}
 </style>
 </head>
 <body>
@@ -405,20 +340,17 @@ html:root[data-skin="b"]:not(.sysdark) .star.on{color:#d9a400}
     <a href="#support" data-r="support" data-t="navSupport">Support</a>
   </nav>
   <div class="lang" role="group" aria-label="Language"><button id="l-en" data-l="en">EN</button><button id="l-et" data-l="et">ET</button></div>
+  <div class="lang mode"><button id="modebtn" title="Light / dark" aria-label="Light / dark">☾</button></div>
 </div></header>
 <main class="wrap" id="app"><div class="empty">Loading ratings…</div></main>
-<div id="skinsw" role="group" aria-label="Design"><span>Design</span><button data-skin="a">A</button><button data-skin="b">B</button><button data-skin="c">C</button><i></i><button data-mode="light" title="Light">☀</button><button data-mode="dark" title="Dark">☾</button></div>
 <script>
-{const R=document.documentElement, mq=matchMedia('(prefers-color-scheme: dark)');
- const dark=()=>R.classList.toggle('sysdark',R.dataset.theme==='dark'||(!R.dataset.theme&&mq.matches));
- dark(); mq.addEventListener('change',dark); new MutationObserver(dark).observe(R,{attributes:true,attributeFilter:['data-theme']});
- let k='a'; try{k=localStorage.getItem('skin')||'a'}catch(e){}
- const set=v=>{R.dataset.skin=v;try{localStorage.setItem('skin',v)}catch(e){};document.querySelectorAll('#skinsw [data-skin]').forEach(b=>b.classList.toggle('on',b.dataset.skin===v))};
- document.querySelectorAll('#skinsw [data-skin]').forEach(b=>b.onclick=()=>set(b.dataset.skin));
- let md='light'; try{md=localStorage.getItem('mode')||(mq.matches?'dark':'light')}catch(e){}
- const setM=v=>{R.dataset.theme=v;try{localStorage.setItem('mode',v)}catch(e){};document.querySelectorAll('#skinsw [data-mode]').forEach(b=>b.classList.toggle('on',b.dataset.mode===v))};
- document.querySelectorAll('#skinsw [data-mode]').forEach(b=>b.onclick=()=>setM(b.dataset.mode));
- set(k); setM(md);}
+{const R=document.documentElement, mq=matchMedia('(prefers-color-scheme: dark)'), B=document.getElementById('modebtn');
+ // light or dark: follows the device until the visitor presses the button, then remembers the choice
+ const dark=()=>{const d=R.dataset.theme==='dark'||(!R.dataset.theme&&mq.matches);R.classList.toggle('sysdark',d);B.textContent=d?'☀':'☾'};
+ let md=null; try{md=localStorage.getItem('mode')}catch(e){}
+ if(md) R.dataset.theme=md;
+ dark(); mq.addEventListener('change',dark);
+ B.onclick=()=>{const v=R.classList.contains('sysdark')?'light':'dark';R.dataset.theme=v;try{localStorage.setItem('mode',v)}catch(e){};dark()};}
 </script>
 <footer class="site-foot wrap"><span data-t="footer">Made by Aleksandrs Horsuns · data from CueScore, Tournament Service, EPBF, Matchroom and PBS</span></footer>
 
@@ -453,7 +385,7 @@ en:{
  back:'← Ranking', since:(n,d)=>`${n} matches since ${d}`, rating:'Rating', ratedRacks:'Rated racks', uncomf:'Most uncomfortable opponent', fav:'Favourite opponent', oppSub:(w,l,rw,rl,d)=>`${w}–${l} in matches · ${Math.round(rw)}:${Math.round(rl)} in racks · ${Math.abs(d)} racks ${d<0?'below':'above'} expected`, oppNote:'In 8-ball, 9-ball and 10-ball matches. Most played opponent: all time. Uncomfortable and favourite opponent: among players met at least 5 times who were active in the last 5 years.', mostOpp:'Most played opponent', mostSub:(n,w,l,rw,rl)=>`${n} matches · ${w}–${l} · ${Math.round(rw)}:${Math.round(rl)} in racks`, rank:'Rank',
  history:'Rating history', historyNote:'Rating at the end of each month, recalculated from the results available at that time.', noHistory:'Not enough history yet.',
  results:'Results', p5y:'Last 5 years', p2y:'Last 2 years', p1y:'Last year', p6m:'Last 6 months', pAll:'All', pCustom:'Custom dates…', from:'From', to:'To',
- tournament:'Tournament', allTournaments:'All tournaments', game:'Game', allGames:'All games', profiles:'Profiles:', formTitle:'Stats', sLast6:'Last 6 months', sAllTime:'All time', rivals:'Top rivalries', thRivals:'Rivals', thScore2:'Score', hillKing:'Hill-hill masters', hillNote:n=>`Deciding racks won, at least ${n} played.`, hAll:'All time', h5:'5 years', h2:'2 years', p3:'3 months', p6:'6 months', p12:'1 year', p24:'2 years', period:'Period', min100:'Only players with an established rating (at least 200 racks played before this period).', rivNote:'Tournament matches played race to 4 or more, plus 14.1 (match result only, points are not added to racks).', thDec:'Won', rising:'Rising stars', falling:'Falling', mostActive:'Most active', nMatches:n=>`${n} matches`, nEvents:n=>`${n} ${n===1?'tournament':'tournaments'}`, tPerfTitle:'Performance in this tournament', tMatches:'Matches', thBefore:'Rating before', thPerfFull:'Performance', tPerfNote:"Rating before = at the end of the month before the tournament. Performance = the rating that best explains the player's racks in this tournament against these opponents. A player who won or lost every rack gets no performance number.", opponent:'Head to head', allOpp:'All opponents', oppPh:'Type opponent name', noOpp:'No such opponent', h2hMatches:'matches', h2hRacks:'racks', h2hExp:(x,n)=>`By current ratings, ${n} would be expected to win ${x}% of the racks.`, result:'Result', wonLost:'Won and lost', won:'Won', lost:'Lost',
+ tournament:'Tournament', allTournaments:'All tournaments', game:'Game', allGames:'All games', profiles:'Profiles:', formTitle:'Stats', sLast6:'Last 6 months', sAllTime:'All time', rivals:'Top rivalries', thRivals:'Rivals', thScore2:'Score', hillKing:'Hill-hill masters', hillNote:n=>`Deciding racks won, at least ${n} played.`, hAll:'All time', h5:'5 years', h2:'2 years', p3:'3 months', p6:'6 months', p12:'1 year', p24:'2 years', period:'Period', min100:'Only players with an established rating (at least 200 racks played before this period).', rivNote:'Tournament matches played race to 5 or more, plus 14.1 (match result only, points are not added to racks).', thDec:'Won', rising:'Rising stars', falling:'Falling', mostActive:'Most active', nMatches:n=>`${n} matches`, nEvents:n=>`${n} ${n===1?'tournament':'tournaments'}`, tPerfTitle:'Performance in this tournament', tMatches:'Matches', thBefore:'Rating before', thPerfFull:'Performance', tPerfNote:"Rating before = at the end of the month before the tournament. Performance = the rating that best explains the player's racks in this tournament against these opponents. A player who won or lost every rack gets no performance number.", opponent:'Head to head', allOpp:'All opponents', oppPh:'Type opponent name', noOpp:'No such opponent', h2hMatches:'matches', h2hRacks:'racks', h2hExp:(x,n)=>`By current ratings, ${n} would be expected to win ${x}% of the racks.`, result:'Result', wonLost:'Won and lost', won:'Won', lost:'Lost',
  sMatches:'Matches', sWL:(w,l)=>`${w} won · ${l} lost`, sRacks:'Racks won / lost', sPoints:'Points won / lost', sPct:p=>`${p}% won`, sAvg:'Avg opponent', sAvgNote:'weighted by racks',
  sBest:'Best match', sWorst:'Worst match', sBestT:'Best tournament', sWorstT:'Worst tournament', sNoT:'no tournament with 15+ racks', vs:'vs',
  thOpp:'Opponent', thDate:'Date', thTour:'Tournament', thGame:'Game', thOppR:'Opp.', thScore:'Score', thPerf:'Perf.', thWeight:'Weight', shutout:w=>'shutout',
@@ -507,7 +439,7 @@ et:{
  back:'← Reiting', since:(n,d)=>`${n} mängu alates ${d}`, rating:'Reiting', ratedRacks:'Hinnatud raamid', uncomf:'Kõige ebamugavam vastane', fav:'Lemmikvastane', oppSub:(w,l,rw,rl,d)=>`${w}–${l} mängudes · ${Math.round(rw)}:${Math.round(rl)} raamides · ${Math.abs(d)} raami ${d<0?'alla':'üle'} ootuse`, oppNote:'8-palli, 9-palli ja 10-palli mängudes. Enim mängitud vastane: kogu aeg. Ebamugavam ja lemmikvastane: vähemalt 5 korda kohatud mängijate seast, kes on olnud aktiivsed viimase 5 aasta jooksul.', mostOpp:'Enim mängitud vastane', mostSub:(n,w,l,rw,rl)=>`${n} mängu · ${w}–${l} · ${Math.round(rw)}:${Math.round(rl)} raamides`, rank:'Koht',
  history:'Reitingu ajalugu', historyNote:'Reiting iga kuu lõpus, arvutatud uuesti tol ajal teada olnud tulemustest.', noHistory:'Ajalugu on veel liiga vähe.',
  results:'Tulemused', p5y:'Viimased 5 aastat', p2y:'Viimased 2 aastat', p1y:'Viimane aasta', p6m:'Viimased 6 kuud', pAll:'Kõik', pCustom:'Muud kuupäevad…', from:'Alates', to:'Kuni',
- tournament:'Turniir', allTournaments:'Kõik turniirid', game:'Mäng', allGames:'Kõik mängud', profiles:'Profiilid:', formTitle:'Statistika', sLast6:'Viimased 6 kuud', sAllTime:'Kogu aeg', rivals:'Suurimad rivaalitsemised', thRivals:'Rivaalid', thScore2:'Seis', hillKing:'Otsustava raami meistrid', hillNote:n=>`Võidetud otsustavad raamid, vähemalt ${n} mängitud.`, hAll:'Kogu aeg', h5:'5 aastat', h2:'2 aastat', p3:'3 kuud', p6:'6 kuud', p12:'1 aasta', p24:'2 aastat', period:'Periood', min100:'Ainult väljakujunenud reitinguga mängijad (vähemalt 200 raami enne seda perioodi).', rivNote:'Turniirimängud 4 või enama võiduni ja 14.1 (ainult mängu tulemus, punkte raamidele ei lisata).', thDec:'Võidetud', rising:'Tõusvad tähed', falling:'Langejad', mostActive:'Kõige aktiivsemad', nMatches:n=>`${n} mängu`, nEvents:n=>`${n} ${n===1?'turniir':'turniiri'}`, tPerfTitle:'Sooritus sellel turniiril', tMatches:'Mängud', thBefore:'Reiting enne', thPerfFull:'Sooritus', tPerfNote:'Reiting enne = turniirile eelnenud kuu lõpus. Sooritus = reiting, mis kõige paremini selgitab mängija raame sellel turniiril nende vastaste vastu. Mängija, kes võitis või kaotas kõik raamid, soorituse numbrit ei saa.', opponent:'Omavahelised mängud', allOpp:'Kõik vastased', oppPh:'Kirjuta vastase nimi', noOpp:'Sellist vastast pole', h2hMatches:'mängu', h2hRacks:'raami', h2hExp:(x,n)=>`Praeguste reitingute järgi peaks ${n} võitma ${x}% raamidest.`, result:'Tulemus', wonLost:'Võidud ja kaotused', won:'Võidetud', lost:'Kaotatud',
+ tournament:'Turniir', allTournaments:'Kõik turniirid', game:'Mäng', allGames:'Kõik mängud', profiles:'Profiilid:', formTitle:'Statistika', sLast6:'Viimased 6 kuud', sAllTime:'Kogu aeg', rivals:'Suurimad rivaalitsemised', thRivals:'Rivaalid', thScore2:'Seis', hillKing:'Otsustava raami meistrid', hillNote:n=>`Võidetud otsustavad raamid, vähemalt ${n} mängitud.`, hAll:'Kogu aeg', h5:'5 aastat', h2:'2 aastat', p3:'3 kuud', p6:'6 kuud', p12:'1 aasta', p24:'2 aastat', period:'Periood', min100:'Ainult väljakujunenud reitinguga mängijad (vähemalt 200 raami enne seda perioodi).', rivNote:'Turniirimängud 5 või enama võiduni ja 14.1 (ainult mängu tulemus, punkte raamidele ei lisata).', thDec:'Võidetud', rising:'Tõusvad tähed', falling:'Langejad', mostActive:'Kõige aktiivsemad', nMatches:n=>`${n} mängu`, nEvents:n=>`${n} ${n===1?'turniir':'turniiri'}`, tPerfTitle:'Sooritus sellel turniiril', tMatches:'Mängud', thBefore:'Reiting enne', thPerfFull:'Sooritus', tPerfNote:'Reiting enne = turniirile eelnenud kuu lõpus. Sooritus = reiting, mis kõige paremini selgitab mängija raame sellel turniiril nende vastaste vastu. Mängija, kes võitis või kaotas kõik raamid, soorituse numbrit ei saa.', opponent:'Omavahelised mängud', allOpp:'Kõik vastased', oppPh:'Kirjuta vastase nimi', noOpp:'Sellist vastast pole', h2hMatches:'mängu', h2hRacks:'raami', h2hExp:(x,n)=>`Praeguste reitingute järgi peaks ${n} võitma ${x}% raamidest.`, result:'Tulemus', wonLost:'Võidud ja kaotused', won:'Võidetud', lost:'Kaotatud',
  sMatches:'Mängud', sWL:(w,l)=>`${w} võitu · ${l} kaotust`, sRacks:'Võidetud / kaotatud raamid', sPoints:'Võidetud / kaotatud punktid', sPct:p=>`${p}% võidetud`, sAvg:'Keskmine vastane', sAvgNote:'kaalutud raamidega',
  sBest:'Parim mäng', sWorst:'Halvim mäng', sBestT:'Parim turniir', sWorstT:'Halvim turniir', sNoT:'pole turniiri 15+ raamiga', vs:'vs',
  thOpp:'Vastane', thDate:'Kuupäev', thTour:'Turniir', thGame:'Mäng', thOppR:'Vast.', thScore:'Tulemus', thPerf:'Soor.', thWeight:'Kaal', shutout:w=>'kuiv võit',
@@ -1001,7 +933,8 @@ function drawAllTime(){
     const pr={}, hh={};
     D.matches.forEach(m=>{const a=m[2],b=m[3];if(!PL[a]||!PL[b])return;
       const st=TO[m[1]].game==='14.1';
-      if(PL[a].lv&&PL[b].lv&&(st||Math.max(m[4],m[5])>=4)){const k=a<b?a+'_'+b:b+'_'+a,x=pr[k]||(pr[k]={a:Math.min(a,b),b:Math.max(a,b),n:0,wa:0,ra:0,rb:0});
+      if(PL[a].lv&&PL[b].lv&&(st||Math.max(m[4],m[5])>=5)){   // rivalries: races to 5 or longer (Aleksandrs 23 Nov 2026)
+        const k=a<b?a+'_'+b:b+'_'+a,x=pr[k]||(pr[k]={a:Math.min(a,b),b:Math.max(a,b),n:0,wa:0,ra:0,rb:0});
         x.n++; const aw=m[4]>m[5]; if((a===x.a)===aw)x.wa++; if(!st){x.ra+=a===x.a?m[4]:m[5]; x.rb+=a===x.a?m[5]:m[4];}}   // 14.1: match result counts, racks do not
       if(TO[m[1]].game!=='14.1'&&Math.abs(m[4]-m[5])===1&&Math.max(m[4],m[5])>=3){[[a,m[4]>m[5]],[b,m[5]>m[4]]].forEach(([p,w])=>{if(!PL[p].lv)return;(hh[p]=hh[p]||[]).push([m[0],w,Math.max(m[4],m[5])])})}});
     const riv=Object.values(pr).sort((p,q)=>q.n-p.n).slice(0,10).map(x=>{const aFirst=x.wa>x.n-x.wa||(x.wa===x.n-x.wa&&x.ra>=x.rb);
