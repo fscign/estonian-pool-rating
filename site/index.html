@@ -935,7 +935,9 @@ function famePage(){
 /* ---------------- upsets ---------------- */
 function raceWin(p,n,mx){let s=0,c=1;for(let k=0;k<=Math.min(n-1,mx??n);k++){if(k>0)c=c*(n-1+k)/k;s+=c*Math.pow(p,n)*Math.pow(1-p,k)}return s}
 // Matches that count in the rating and history but are not real upsets (e.g. a final given away). Key: date:tournament:playerA:playerB
-const UPSET_SKIP=new Set([]);
+const UPSET_SKIP=new Set([
+  "20261114:91634539:44809:4405",   // Fred Martmaa 8:6 Mark Mägi, Eesti MV 2026: Mägi gave the match away for another part of the draw (Aleksandrs 23 Nov 2026)
+]);
 function upsets(days){
   const cut=+new Date(GENd.getTime()-days*864e5).toISOString().slice(0,10).replace(/-/g,''), out=[];
   const rk={}; for(const m of D.matches){ if(m[0]>cut) continue; if(m[0]<=cut-20000) break; if(TO[m[1]].game==='14.1') continue; rk[m[2]]=(rk[m[2]]||0)+m[4]+m[5]; rk[m[3]]=(rk[m[3]]||0)+m[4]+m[5] }   // racks in the 2 years before the period
