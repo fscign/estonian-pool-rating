@@ -966,7 +966,7 @@ function potm(days){
 function drawUpsets(){
   const nm=id=>PL[id]&&PL[id].lv?plink(id):`<span>${esc(pname(id))}</span>${cc(PL[id]?PL[id].cc:'')}`;
   const pc=x=>x.ch<0.01?'<1':Math.round(x.ch*100);
-  const sn=id=>PL[id]&&PL[id].lv?`<a class="pname" href="#p${id}">${esc(PL[id].last)}</a>`:`<span>${esc(PL[id]?PL[id].last:pname(id))}</span>${cc(PL[id]?PL[id].cc:'')}`;
+  const sn=id=>PL[id]&&PL[id].lv?`<a class="pname" href="#p${id}">${esc(pname(id))}</a>`:`<span>${esc(pname(id))}</span>${cc(PL[id]?PL[id].cc:'')}`;   // full names: brothers play (Aleksandrs 23 Nov 2026)
   const card=(title,sub,L)=>`<div class="tablebox"><h3>${title}</h3><p class="note" style="margin:0 12px 6px">${sub}</p>${L.length?`<table class="ups"><thead><tr><th class="num">#</th><th>${t('thWinner')}</th><th>${t('thLoser')}</th><th class="num">${t('thScore')}</th><th class="num">${t('thChance')}</th></tr></thead><tbody>${L.slice(0,5).map((y,i)=>`<tr><td class="num rank">${i+1}</td><td>${sn(y.w)} <span class="muted">${y.rw}</span></td><td>${sn(y.l)} <span class="muted">${y.rl}</span></td><td class="num">${y.sw}:${y.sl}</td><td class="num rt">${pc(y)}%</td></tr>`).join('')}</tbody></table>`:`<div class="empty">${t('upNone')}</div>`}</div>`;
   $('#mv0').innerHTML=card(t('upMonth'),t('upMonthS'),upsets(30))
   const pm=potm(30);
@@ -1008,7 +1008,7 @@ function drawAllTime(){
   }
   const per=HS.per, cut=per==='5'?yearsAgo(5):per==='2'?yearsAgo(2):0, minN=per==='5'?25:per==='2'?15:30;
   const hill=Object.entries(ATC.hh).map(([p,l])=>{const x=l.filter(e=>e[0]>=cut&&e[2]>=HS.r);return {p:+p,n:x.length,w:x.filter(e=>e[1]).length}}).filter(y=>y.n>=minN).map(y=>({...y,pc:y.w/y.n})).sort((p,q)=>q.pc-p.pc||q.n-p.n).slice(0,10);
-  const sl=id=>`<a class="pname" href="#p${id}">${esc(PL[id].last)}</a>`;
+  const sl=id=>`<a class="pname" href="#p${id}">${esc(pname(id))}</a>`;
   const rt=`<table><thead><tr><th class="num">#</th><th>${t('thRivals')}</th><th class="num">${t('thMatches')}</th><th class="num">${t('thScore2')}</th><th class="num hide-s">${t('thRacks')}</th></tr></thead><tbody>${ATC.riv.map((x,i)=>`<tr><td class="num rank">${i+1}</td><td>${sl(x.w)} – ${sl(x.l)}</td><td class="num">${x.n}</td><td class="num">${x.sw}–${x.sl}</td><td class="num muted hide-s">${Math.round(x.rw)}–${Math.round(x.rl)}</td></tr>`).join('')}</tbody></table>`;
   const ht=`<table><thead><tr><th class="num">#</th><th>${t('thPlayer')}</th><th class="num">${t('thDec')}</th><th class="num">%</th></tr></thead><tbody>${hill.map((x,i)=>`<tr><td class="num rank">${i+1}</td><td>${plink(x.p)}</td><td class="num muted">${x.w}/${x.n}</td><td class="num">${(x.pc*100).toFixed(1)}%</td></tr>`).join('')}</tbody></table><p class="note" style="margin:8px 12px 12px">${t('hillNote',minN)}</p>`;
   const chips=`<div class="chips" style="margin:2px 12px 8px">${[['all',t('hAll')],['5',t('h5')],['2',t('h2')]].map(([k,l])=>`<button class="chip${per===k?' on':''}" data-h="${k}">${l}</button>`).join('')}</div>`;
