@@ -484,9 +484,9 @@ let LANG=store('lang'); if(LANG!=='en'&&LANG!=='et') LANG=(navigator.language||'
 const t=(k,...a)=>{const v=TXT[LANG][k];return typeof v==='function'?v(...a):v};
 function setLang(l){LANG=l;store('lang',l);document.documentElement.lang=l;
   $('#brand').textContent=t('brand');document.querySelectorAll('[data-t]').forEach(e=>e.textContent=t(e.dataset.t));
-  document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
+  document.querySelectorAll('.lang button[data-l]').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
   if(D) route();}
-document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+document.querySelectorAll('.lang button[data-l]').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
 setLang(LANG);
 
 fetch('data.json').then(r=>r.json()).then(d=>{D=d; if(d.generated){GEN=d.generated;GENd=dnum(isoToNum(GEN));}
