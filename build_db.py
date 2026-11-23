@@ -214,6 +214,10 @@ def game_of(t):
     # 14.1 counts since 2 Nov 2026 (points / 14 = racks in rate.py)
     if disc in ('Straight pool', 'Puls14+1', 'Straightpool'): return '14.1'
     if disc in ('Pool', 'all-around pool', '') and re.search(r'14\s*[.+]\s*1|straight|pulas-14|pool-?14', name, re.I) and not re.search(r'pulas-?(8|9|10)\b|pool-?(8|9|10)\b', name, re.I): return '14.1'
+    # the game written in the name wins over a generic or wrong TS discipline ('Lietuvos Moterų Pulo ČEMPIONATAS 21: Pulas-8'
+    # is stored as all-around pool, 'Lietuvos pulas-8 čempionatas' 2014 as 9-ball; 23 Nov 2026, as the Latvian data has them)
+    _g = re.search(r'\bpulas[- ]?(8|9|10)\b', name, re.I)
+    if _g and disc not in ('Straight pool', 'Puls14+1', 'Straightpool'): return f'{_g.group(1)}-ball'
     if disc in ('8-ball', 'Puls8', 'Puls 8', 'Пул 8', 'Pulas-8', 'Aštuonukė'): return '8-ball'
     if disc in ('9-ball', 'Puls9', 'Devyniukė', 'Пул 9', 'Pulas-9'): return '9-ball'
     if disc in ('10-ball', 'Puls10', 'Пул 10', 'Pulas-10', 'Dešimtukė'): return '10-ball'
