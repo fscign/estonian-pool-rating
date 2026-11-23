@@ -7,7 +7,7 @@
 //   ADMIN_EMAIL   the one e-mail address that may use the panel
 //   GITHUB_BRANCH branch to read and write (main for the live site, admin-panel for the preview)
 const REPO = 'fscign/estonian-pool-rating';
-const FILES = ['overrides.json', 'site/hof.json', 'site/ml.json'];
+const FILES = ['overrides.json', 'site/hof.json', 'site/ml.json', 'site/texts.json'];
 const WORKFLOW = 'daily.yml';
 
 const json = (data, status = 200) => new Response(JSON.stringify(data), {

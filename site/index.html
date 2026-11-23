@@ -485,6 +485,27 @@ et:{
 
 let LANG=store('lang'); if(LANG!=='en'&&LANG!=='et') LANG=(navigator.language||'').toLowerCase().startsWith('et')?'et':'en';
 const t=(k,...a)=>{const v=TXT[LANG][k];return typeof v==='function'?v(...a):v};
+/* texts changed in the admin panel (texts.json, only the changed ones; Aleksandrs 23 Nov 2026). Written as simple markdown:
+   ## heading, - list item, **bold**, [text](link), blank line = new paragraph; {name} = a number the site fills in. */
+const TX_ARGS={about:['tournaments','matches','players','updated','from_year','to_year']}, TX_FMT={about:{matches:n=>num(n)}};
+const txArgs=(k,f)=>TX_ARGS[k]||((f.toString().match(/^\(?([^)=]*?)\)?\s*=>/)||[,''])[1].split(',').map(x=>x.trim()).filter(Boolean));
+function mdInline(x){return x.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,(m,a,u)=>`<a href="${u}"${/^https?:/.test(u)?' target="_blank" rel="noopener"':''}>${a}</a>`)}
+function mdToHtml(x){
+  if(!/\n|^#|^- /.test(x)) return mdInline(x);
+  return x.replace(/\r/g,'').split(/\n\s*\n/).map(b=>{b=b.trim();if(!b)return '';
+    if(b.startsWith('<'))return b;
+    const m=b.match(/^(#{1,3}) (.*)$/s); if(m) return `<h${m[1].length}>${mdInline(m[2].trim())}</h${m[1].length}>`;
+    const L=b.split('\n'); if(L.every(l=>/^- /.test(l.trim()))) return '<ul>'+L.map(l=>`<li>${mdInline(l.trim().slice(2))}</li>`).join('')+'</ul>';
+    return `<p>${mdInline(L.join(' '))}</p>`}).join('\n');
+}
+function applyTexts(ov){
+  for(const [lang,o] of Object.entries(ov||{})) for(const [k,v] of Object.entries(o||{})){
+    if(!TXT[lang]||typeof v!=='string')continue; const def=TXT[lang][k];
+    if(typeof def==='function'){const names=txArgs(k,def),f=TX_FMT[k]||{};
+      TXT[lang][k]=(...a)=>mdToHtml(v).replace(/\{(\w+)\}/g,(m,n)=>{const i=names.indexOf(n);return i<0?m:(f[n]?f[n](a[i]):a[i])})}
+    else TXT[lang][k]=mdToHtml(v);
+  }
+}
 function setLang(l){LANG=l;store('lang',l);document.documentElement.lang=l;
   $('#brand').textContent=t('brand');document.querySelectorAll('[data-t]').forEach(e=>e.textContent=t(e.dataset.t));
   document.querySelectorAll('.lang button[data-l]').forEach(b=>b.classList.toggle('on',b.dataset.l===l));
@@ -492,7 +513,7 @@ function setLang(l){LANG=l;store('lang',l);document.documentElement.lang=l;
 document.querySelectorAll('.lang button[data-l]').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
 setLang(LANG);
 
-fetch('data.json').then(r=>r.json()).then(d=>{D=d; if(d.generated){GEN=d.generated;GENd=dnum(isoToNum(GEN));}
+Promise.all([fetch('data.json').then(r=>r.json()),fetch('texts.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({}))]).then(([d,tx])=>{applyTexts(tx);setLang(LANG);D=d; if(d.generated){GEN=d.generated;GENd=dnum(isoToNum(GEN));}
   d.players.forEach(p=>{PL[p[0]]={id:p[0],first:p[1],last:p[2],cc:p[3],r:Math.round(p[5]),rs:p[5],racks:p[6],n:p[7],last_played:p[8],tsid:p[10],csid:p[11],lv:p[12]!==0,sx:p[13]===1?'f':'m',club:p[14]||'',lg:p[15]||''}});
   d.tournaments.forEach(x=>{TO[x[0]]={id:x[0],name:x[1],date:x[2],city:x[3],club:x[4],game:x[5],src:x[6],url:x[7],full:x[8]||'',n:0}});
   d.matches.forEach(m=>{m[7]=m[4];m[8]=m[5];if(TO[m[1]].game==='14.1'){m[4]/=14;m[5]/=14}   // 14.1: points / 14 = racks; m[7], m[8] keep the points for display
