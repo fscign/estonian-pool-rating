@@ -404,22 +404,25 @@ en:{
    <li>${nT} tournaments with Estonian players from ${y0} to ${y1}, ${num(nM)} of their matches: every tournament in Estonia on CueScore (leagues, Estonian championships, club events), tournaments in Latvia, Lithuania and the Nordic countries, Tournament Service, EPBF (Euro Tour, European Championships), Matchroom and the Predator Pro Billiard Series.</li>
    <li>8-ball, 9-ball and 10-ball singles, played to at least 3 racks. If only the later stages of a tournament (for example semifinals and final) were played to 3 or more, those matches count.</li>
    <li>Straight pool (14.1) singles too, played to 50 points or more: every 14 points count as one rack, so a 70:56 win counts like 5:4. Results still show the real score.</li>
-   <li>Matches against foreign players count too. Foreign players are rated in the background from all matches of these events, so they get a fair rating, but the ranking shows only the ${nP} Estonian players.</li>
+   <li>Matches against foreign players count too. Estonian, Latvian and Lithuanian players are rated together in one Baltic calculation, and other foreign players in the background from all matches of these events, so everyone gets a fair rating. The ranking shows only the ${nP} Estonian players.</li>
+   <li>A score one rack short of the race is taken as a typing slip and counted as the full race: 3:0 in a race to 4 counts as 4:0, 4:1 in a race to 5 as 5:1. The race is what the other matches of the same round were played to.</li>
   </ul>
   <h2>What is left out</h2>
   <ul>
-   <li>Handicap tournaments, doubles and team events, mixed 8/9/10 events, bank pool and one pocket.</li>
-   <li>Walkovers and unplayed matches.</li>
+   <li>Handicap tournaments (also weekly events known to be played with handicap, even if not marked), doubles and team events, mixed 8/9/10 events, bank pool and one pocket.</li>
+   <li>Events whose results show a handicap or fixed-rack format: in many rounds the winners stop at different numbers, or many matches end in a draw.</li>
+   <li>Walkovers and unplayed matches, also a walkover written as a score: 3:0 in a race to 5 or longer.</li>
+   <li>Test and money games.</li>
    <li>A tournament entered on two sites is counted once.</li>
   </ul>
   <p>Players with more than one profile, on any site, are merged into one.</p>
   <h2>How the rating is calculated</h2>
-  <p>Every rack is a small win or loss. The rating is the number that best explains all of a player's racks against all opponents at the same time. Recent results matter more: a match loses half its weight every 2 years. Players who stop playing keep their last rating. Like FargoRate, a rating based on fewer than 200 racks is provisional and is marked with <sup>?</sup>. The scale is set by established Estonian players and their FargoRate.</p>
+  <p>Every rack is a small win or loss. The rating is the number that best explains all of a player's racks against all opponents at the same time. Recent results matter more: a match loses half its weight every 2 years. Players who stop playing keep their last rating. Like FargoRate, a rating based on fewer than 200 racks is provisional and is marked with <sup>?</sup>. The level of the scale is set by more than 500 reference players from all over Europe with an established FargoRate (at least 1,000 games there and 300 racks here in the last 2 years): the whole list is placed so that their ratings match their FargoRate on average. A player who differs from his FargoRate does so because of his own results here, not because of the scale.</p>
   <h2>On the site</h2>
   <ul>
-   <li><b>Ranking:</b> "Played within" shows players with at least one counted match in that period; "Racks played" counts all their racks. From 200 racks a rating is considered established, the same standard as FargoRate. League = the Estonian Billiard Association classification (Meistriliiga, Esiliiga, Teine liiga; everyone else Rahvaliiga). Club = the club the player represented in his latest event on CueScore.</li>
+   <li><b>Ranking:</b> "Played within" shows players with at least one counted match in that period; "Racks played" counts all their racks. From 200 racks a rating is considered established, the same standard as FargoRate. League = the Estonian Billiard Association classification (Meistriliiga, Esiliiga, Teine liiga; everyone else Rahvaliiga). Club = the Estonian club the player represented in his latest event on CueScore.</li>
    <li><b>Player page:</b> rating history (the rating at the end of every month, from the results known at that time), all results with filters, and head to head against any opponent. Best and worst match and tournament: last 5 years.</li>
-   <li><b>Stats:</b> rising stars and the most active players, the most frequent rivalries and the hill-hill masters (best in the deciding rack).</li>
+   <li><b>Stats:</b> upsets and players of the month, rising stars and the most active players, the most frequent rivalries (races to 5 or longer) and the hill-hill masters (best in the deciding rack).</li>
    <li><b>Tournaments:</b> every counted tournament with Estonian players, with each player's performance in it.</li>
   </ul>
   <p>New results are added automatically every day.</p>
@@ -458,22 +461,25 @@ et:{
    <li>${nT} Eesti mängijatega turniiri aastatel ${y0} kuni ${y1}, nendest ${num(nM)} mängu: kõik Eesti turniirid CueScore'is (liigad, Eesti meistrivõistlused, klubiturniirid), turniirid Lätis, Leedus ja Põhjamaades, Tournament Service, EPBF (Euro Tour, Euroopa meistrivõistlused), Matchroom ja Predator Pro Billiard Series.</li>
    <li>8-palli, 9-palli ja 10-palli üksikmängud vähemalt 3 võiduni. Kui ainult turniiri hilisemad etapid (näiteks poolfinaalid ja finaal) mängiti 3 või enama võiduni, loevad need mängud.</li>
    <li>Ka 14.1 üksikmängud 50 või enama punktini: iga 14 punkti loetakse üheks raamiks, nii et võit 70:56 loeb nagu 5:4. Tulemustes on näha tegelik seis.</li>
-   <li>Loevad ka mängud välismaiste mängijate vastu. Välismaised mängijad hinnatakse taustal nende turniiride kõigi mängude põhjal, nii et nad saavad õiglase reitingu, kuid reitingus näidatakse ainult ${nP} Eesti mängijat.</li>
+   <li>Loevad ka mängud välismaiste mängijate vastu. Välismaised mängijad hinnatakse taustal nende turniiride kõigi mängude põhjal, nii et nad saavad õiglase reitingu, kuid reitingus näidatakse ainult ${nP} Eesti mängijat. Eesti, Läti ja Leedu mängijad hinnatakse koos ühes Balti arvutuses.</li>
+   <li>Tulemus, millest jääb võiduni puudu üks raam, loetakse trükiveaks ja arvestatakse täismänguna: 3:0 mängus 4 võiduni loeb nagu 4:0, 4:1 mängus 5 võiduni nagu 5:1. Mängu pikkuse määravad sama vooru teised mängud.</li>
   </ul>
   <h2>Mida ei arvestata</h2>
   <ul>
-   <li>Händikäpiturniirid, paaris- ja võistkondlikud võistlused, segaturniirid (8/9/10), bank pool ja one pocket.</li>
-   <li>Loobumisvõidud ja mängimata mängud.</li>
+   <li>Händikäpiturniirid (ka iganädalased turniirid, mida teadaolevalt mängitakse händikäpiga, isegi kui see pole märgitud), paaris- ja võistkondlikud võistlused, segaturniirid (8/9/10), bank pool ja one pocket.</li>
+   <li>Turniirid, mille tulemused viitavad händikäpile või kindlale raamide arvule: paljudes voorudes lõpetavad võitjad eri numbriga või paljud mängud lõpevad viigiga.</li>
+   <li>Loobumisvõidud ja mängimata mängud, ka tulemusena kirja pandud loobumisvõit: 3:0 mängus 5 või enama võiduni.</li>
+   <li>Testmängud ja rahamängud.</li>
    <li>Kahel saidil sisestatud turniiri arvestatakse üks kord.</li>
   </ul>
   <p>Mängijad, kellel on mitu profiili mis tahes saidil, ühendatakse üheks.</p>
   <h2>Kuidas reitingut arvutatakse</h2>
-  <p>Iga raam on väike võit või kaotus. Reiting on number, mis kõige paremini selgitab mängija kõiki raame kõigi vastaste vastu korraga. Värskemad tulemused loevad rohkem: mäng kaotab poole oma kaalust iga 2 aastaga. Mängijad, kes lõpetavad mängimise, säilitavad oma viimase reitingu. Nagu FargoRate'is, on alla 200 raami põhinev reiting esialgne ja tähistatud märgiga <sup>?</sup>. Skaala on paika pandud väljakujunenud Eesti mängijate ja nende FargoRate'i järgi.</p>
+  <p>Iga raam on väike võit või kaotus. Reiting on number, mis kõige paremini selgitab mängija kõiki raame kõigi vastaste vastu korraga. Värskemad tulemused loevad rohkem: mäng kaotab poole oma kaalust iga 2 aastaga. Mängijad, kes lõpetavad mängimise, säilitavad oma viimase reitingu. Nagu FargoRate'is, on alla 200 raami põhinev reiting esialgne ja tähistatud märgiga <sup>?</sup>. Skaala taseme määravad üle 500 võrdlusmängija üle kogu Euroopa, kellel on väljakujunenud FargoRate (seal vähemalt 1000 mängu ja siin viimase 2 aasta jooksul 300 raami): kogu nimekiri on paigutatud nii, et nende reitingud vastaksid keskmiselt nende FargoRate'ile. Kui mängija reiting erineb tema FargoRate'ist, tuleneb see tema enda tulemustest siin, mitte skaalast.</p>
   <h2>Saidil</h2>
   <ul>
-   <li><b>Reiting:</b> „Mänginud viimase“ näitab mängijaid, kellel on sellel perioodil vähemalt üks arvestatud mäng; „Mängitud raame“ loeb kõiki nende raame. Alates 200 raamist loetakse reiting väljakujunenuks, sama standard nagu FargoRate'is. Liiga = Eesti Piljardiliidu liigitamine (Meistriliiga, Esiliiga, Teine liiga; kõik teised Rahvaliiga). Klubi = klubi, mida mängija esindas oma viimasel turniiril CueScore'is.</li>
+   <li><b>Reiting:</b> „Mänginud viimase“ näitab mängijaid, kellel on sellel perioodil vähemalt üks arvestatud mäng; „Mängitud raame“ loeb kõiki nende raame. Alates 200 raamist loetakse reiting väljakujunenuks, sama standard nagu FargoRate'is. Liiga = Eesti Piljardiliidu liigitamine (Meistriliiga, Esiliiga, Teine liiga; kõik teised Rahvaliiga). Klubi = Eesti klubi, mida mängija esindas oma viimasel turniiril CueScore'is.</li>
    <li><b>Mängija leht:</b> reitingu ajalugu (reiting iga kuu lõpus, tol ajal teada olnud tulemuste järgi), kõik tulemused filtritega ja omavahelised mängud iga vastasega. Parim ja halvim mäng ning turniir: viimased 5 aastat.</li>
-   <li><b>Statistika:</b> tõusvad tähed ja kõige aktiivsemad mängijad, sagedasemad rivaalitsemised ja otsustava raami meistrid.</li>
+   <li><b>Statistika:</b> kuu üllatused ja kuu mängijad, tõusvad tähed ja kõige aktiivsemad mängijad, sagedasemad rivaalitsemised (mängud 5 või enama võiduni) ja otsustava raami meistrid.</li>
    <li><b>Turniirid:</b> kõik arvestatud turniirid Eesti mängijatega ja iga mängija sooritus neil.</li>
   </ul>
   <p>Uued tulemused lisatakse automaatselt iga päev.</p>
