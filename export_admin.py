@@ -26,14 +26,14 @@ NEAR = set(EST)
 for a, b in db.execute('SELECT player_a, player_b FROM matches'):
     if a in EST or b in EST: NEAR.update((a, b))
 players = []
-for r in db.execute('''SELECT p.id, p.first_name, p.last_name, p.country, p.city, p.sex, p.shown, r.rating, r.racks, r.matches
+for r in db.execute('''SELECT p.id, p.first_name, p.last_name, p.country, p.city, p.sex, p.shown, r.rating, r.racks, r.matches, p.club, p.league
                        FROM players p LEFT JOIN ratings r ON r.player_id=p.id'''):
     pid = r[0]
     if pid not in NEAR: continue
     fl = first_last.get(pid, ('', ''))
     players.append(dict(id=pid, first=r[1], last=r[2], country=r[3], city=r[4], sex=r[5], shown=r[6],
                         rating=round(r[7]) if r[7] else None, racks=r[8], matches=r[9], since=fl[0], last_match=fl[1],
-                        ts=prof[pid]['ts'], cs=prof[pid]['cs']))
+                        ts=prof[pid]['ts'], cs=prof[pid]['cs'], club=r[10], league=r[11]))
 
 # ---------- tournaments ----------
 LAT = EST   # 'lat' = number of Estonian players (the panel shows it as EE)

@@ -57,7 +57,7 @@ td input{width:100%;min-width:70px}
 </head>
 <body>
 <header>
-  <a class="brand" href="/">LV Pool Rating · Admin</a>
+  <a class="brand" href="/">EE Pool Rating · Admin</a>
   <nav id="nav"></nav>
   <span id="who">Loading…</span>
   <a class="b" href="#" id="logout" style="text-decoration:none;font:600 13px var(--f-body);border:1px solid var(--line);border-radius:6px;padding:5px 10px;color:var(--fg)">Log out</a>
@@ -178,11 +178,11 @@ async function pollRuns() {
 }
 
 // ---------- tabs ----------
-const TABS = {names: 'Names', tournaments: 'Tournaments', duplicates: 'Duplicates', merge: 'Merge', fame: 'Hall of Fame', log: 'Log'};
-const ST = {q: '', only: 'diff', tq: '', tf: 'all', tlim: 100, dq: '', df: 'review', fame: 'hof', fq: '', edit: null, mA: null, mB: null};
+const TABS = {names: 'Names', players: 'League & women', estonians: 'Estonian players', tournaments: 'Tournaments', duplicates: 'Duplicates', merge: 'Merge', fame: 'Hall of Fame', log: 'Log'};
+const ST = {pq: '', pf: 'all', eq: '', q: '', only: 'diff', tq: '', tf: 'all', tlim: 100, dq: '', df: 'review', fame: 'hof', fq: '', edit: null, mA: null, mB: null};
 function nav() { $('#nav').innerHTML = Object.entries(TABS).map(([k, v]) => `<button data-tab="${k}" class="${k === tab ? 'on' : ''}">${v}</button>`).join(''); }
 $('#nav').onclick = e => { const t = e.target.dataset.tab; if (t) { tab = t; location.hash = t; ST.edit = null; nav(); render(); } };
-function render() { nav(); ({names, tournaments, duplicates, merge, fame, log: logTab})[tab](); }
+function render() { nav(); ({names, players: playersTab, estonians, tournaments, duplicates, merge, fame, log: logTab})[tab](); }
 function keepFocus(fn) {   // re-render while typing in a search box
   const a = document.activeElement, id = a && a.id, pos = a && a.selectionStart;
   fn(); if (id && $('#' + id)) { const x = $('#' + id); x.focus(); try { x.setSelectionRange(pos, pos); } catch (e) {} }
@@ -443,6 +443,75 @@ document.addEventListener('click', e => {
     else { const before = F[k].data[+d.hsave]; change(`${label}: edit ${before[0]} ${before[1]} ${before[2]}`, {op: 'edit', file: k, path: [], before: clone(before), after: r}); }
   }
   if (d.hdel) { const r = F[k].data[+d.hdel]; if (confirm(`Delete ${r[0]} ${r[1]} ${r[2]}?`)) change(`${label}: delete ${r[0]} ${r[1]} ${r[2]} (gold ${r[3]})`, {op: 'del', file: k, path: [], item: clone(r)}); }
+});
+
+// ---------- League & women (Estonian site, 23 Nov 2026) ----------
+// League: the federation's list decides (anyone not on it plays Rahvaliiga); set one here only when the list is missing someone or
+// is wrong. Women: anyone who played a women's event (BPL women, Naisteliiga) is a woman; set one here for anyone else.
+const LGN = {ML: 'Meistriliiga', EL: 'Esiliiga', TL: 'Teine liiga', RL: 'Rahvaliiga'};
+function playersTab() {
+  const q = fold(ST.pq), lo = F.ov.data.league || {}, so = F.ov.data.sex || {};
+  let rows = D.players.filter(p => p.shown);
+  if (ST.pf === 'set') rows = rows.filter(p => lo[p.id] || so[p.id]);
+  else if (ST.pf === 'f') rows = rows.filter(p => p.sex === 'f');
+  else if (LGN[ST.pf]) rows = rows.filter(p => (p.league || 'RL') === ST.pf);
+  if (q) rows = rows.filter(p => fold([shown(p), p.id, p.club || ''].join(' ')).includes(q));
+  rows.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+  const lim = rows.slice(0, 300);
+  $('#main').innerHTML = `<h2>League &amp; women</h2>
+  <p class="m">League comes from the federation's list (not on the list = Rahvaliiga); women are those who played a women's event. Set a value here only where that is wrong. "Auto" goes back to the automatic value. Changes show after Save and the next rating update.</p>
+  <div class="bar"><input id="pq" placeholder="Search name, id or club" value="${esc(ST.pq)}" style="flex:1;min-width:160px">
+  <select id="pf">${[['all', 'All Estonian players'], ['set', 'Set by you'], ['f', 'Women'], ...Object.entries(LGN).map(([k, v]) => [k, v])].map(([k, v]) => `<option value="${k}" ${ST.pf === k ? 'selected' : ''}>${v}</option>`).join('')}</select>
+  <span class="m">${rows.length} players${rows.length > 300 ? ', first 300 shown' : ''}</span></div>
+  <div class="tw"><table><tr><th>Player</th><th>Club</th><th>League</th><th>Men / women</th></tr>
+  ${lim.map(p => {
+    const l = lo[p.id], x = so[p.id], pend = pending.some(y => (y.op.ops || [y.op]).some(z => z.path && ['league', 'sex'].includes(z.path[0]) && z.path[1] == p.id));
+    return `<tr class="${pend ? 'pend' : ''}"><td><a href="${SITE}#p${p.id}" target="_blank">${esc(shown(p))}</a><div class="m">${p.id} · ${p.rating || '-'} · ${p.matches || 0} matches</div></td>
+      <td class="m">${esc(p.club || '-')}</td>
+      <td><select data-plg="${p.id}"><option value="">Auto${l ? '' : ' (' + (p.league || 'RL') + ')'}</option>${Object.keys(LGN).map(k => `<option value="${k}" ${l === k ? 'selected' : ''}>${LGN[k]} (${k})</option>`).join('')}</select>${l ? ' <span class="tag">set by you</span>' : ''}</td>
+      <td><select data-psx="${p.id}"><option value="">Auto${x ? '' : ' (' + (p.sex === 'f' ? 'woman' : 'man') + ')'}</option><option value="m" ${x === 'm' ? 'selected' : ''}>Man</option><option value="f" ${x === 'f' ? 'selected' : ''}>Woman</option></select>${x ? ' <span class="tag">set by you</span>' : ''}</td></tr>`;
+  }).join('')}</table></div>`;
+  $('#pq').oninput = e => { ST.pq = e.target.value; keepFocus(playersTab); };
+  $('#pf').onchange = e => { ST.pf = e.target.value; playersTab(); };
+}
+document.addEventListener('change', e => {
+  const d = e.target.dataset, v = e.target.value;
+  if (d.plg) { const p = PL[d.plg]; if (!F.ov.data.league) F.ov.data.league = {};
+    change(`League ${p.id} ${shown(p)}: ${v ? LGN[v] + ' (' + v + ')' : 'automatic'}`, setOp('ov', ['league', String(p.id)], v || undefined)); }
+  if (d.psx) { const p = PL[d.psx];
+    change(`Men/women ${p.id} ${shown(p)}: ${v === 'f' ? 'woman' : v === 'm' ? 'man' : 'automatic'}`, setOp('ov', ['sex', String(p.id)], v || undefined)); }
+});
+
+// ---------- Estonian players (Estonian site, 23 Nov 2026) ----------
+// Only players with the Estonian flag are shown on the site. A player with another flag (or none) who is Estonian is added here;
+// the list holds one profile id of each (CueScore or Tournament Service).
+function estonians() {
+  const list = F.ov.data.estonian || (F.ov.data.estonian = []), set = new Set(list.map(String));
+  const byProf = {}; for (const p of D.players) for (const x of [...p.ts, ...p.cs]) byProf[String(x[0])] = p;
+  const q = fold(ST.eq);
+  const cand = q.length >= 2 ? D.players.filter(p => !p.shown && fold([shown(p), p.id, ...p.ts.flat(), ...p.cs.flat()].join(' ')).includes(q)).sort((a, b) => (b.matches || 0) - (a.matches || 0)).slice(0, 50) : [];
+  const prof = p => (p.cs[0] || p.ts[0] || [p.id])[0];
+  $('#main').innerHTML = `<h2>Estonian players</h2>
+  <p class="m">The site shows players with the Estonian flag. Players listed here are shown too, whatever their flag says (and removing one hides them again). Changes show after Save and the next rating update.</p>
+  <h3>Added by you (${list.length})</h3>
+  <div class="tw"><table><tr><th>Player</th><th>Profile</th><th></th></tr>
+  ${list.map(id => { const p = byProf[String(id)] || PL[id];
+    return `<tr><td>${p ? `<a href="${SITE}#p${p.id}" target="_blank">${esc(shown(p))}</a><div class="m">${p.id} · flag ${esc(p.country || '-')} · ${p.matches || 0} matches</div>` : '<span class="m">not in the data now</span>'}</td>
+      <td class="m">${esc(String(id))}</td><td><button class="b" data-edel="${esc(String(id))}">Remove</button></td></tr>`; }).join('') || '<tr><td colspan="3" class="m">None.</td></tr>'}</table></div>
+  <h3>Add a player</h3>
+  <div class="bar"><input id="eq" placeholder="Search a player who is not shown now (name or id)" value="${esc(ST.eq)}" style="flex:1;min-width:200px"></div>
+  ${q.length >= 2 ? `<div class="tw"><table><tr><th>Player</th><th>Flag</th><th>Matches</th><th></th></tr>
+  ${cand.map(p => `<tr><td>${esc(shown(p))}<div class="m">${p.id}${p.cs.length ? ' · CueScore ' + p.cs.map(x => x[0]).join(', ') : ''}${p.ts.length ? ' · TS ' + p.ts.map(x => x[0]).join(', ') : ''}</div></td>
+    <td class="m">${esc(p.country || '-')}</td><td class="m">${p.matches || 0}</td>
+    <td>${set.has(String(prof(p))) ? '<span class="tag">added</span>' : `<button class="b p" data-eadd="${p.id}">Show as Estonian</button>`}</td></tr>`).join('') || '<tr><td colspan="4" class="m">No player found who is not shown already.</td></tr>'}</table></div>` : '<p class="m">Type at least 2 letters.</p>'}`;
+  $('#eq').oninput = e => { ST.eq = e.target.value; keepFocus(estonians); };
+}
+document.addEventListener('click', e => {
+  const d = e.target.dataset;
+  if (d.eadd) { const p = PL[d.eadd], id = String((p.cs[0] || p.ts[0] || [p.id])[0]);
+    change(`Show as Estonian: ${shown(p)} (profile ${id}, flag ${p.country || '-'})`, {op: 'add', file: 'ov', path: ['estonian'], item: id}); }
+  if (d.edel) { const id = d.edel, it = F.ov.data.estonian.find(x => String(x) === id);
+    change(`Do not show as Estonian: profile ${id}`, {op: 'del', file: 'ov', path: ['estonian'], item: it}); }
 });
 
 // ---------- Log ----------
