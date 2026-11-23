@@ -162,10 +162,14 @@ known = [k for k, s_ in enumerate(snap) if s_[3] is not None]
 # remove one-month jumps in the correction (compare with the centred 7-month median): with few reference players one month can jump by 10 points,
 # which would show as a fake spike in everybody's history
 _raw = {k: snap[k][3] for k in known}
-for k in known:
-    win = [_raw[q] for q in known if abs(q - k) <= 3]
-    med = float(np.median(win))
-    if abs(_raw[k] - med) > 3: snap[k] = snap[k][:3] + (med,) + snap[k][4:]   # only one-month outliers are replaced
+for n, k in enumerate(known):
+    # a spike is a month that sits above (or below) BOTH neighbouring months by more than 3 points; a steady trend is left alone
+    # (23 Nov 2026: comparing with a 7-month median also 'corrected' the steady trend of recent months, and the current month)
+    if n == 0 or n == len(known) - 1: continue
+    a, b, c = _raw[known[n - 1]], _raw[k], _raw[known[n + 1]]
+    if (b - a) * (b - c) > 0 and abs(b - (a + c) / 2) > 3: snap[k] = snap[k][:3] + ((a + c) / 2,) + snap[k][4:]
+# the current month is today's rating itself, so the chart always ends at the number shown on the player page
+snap[-1] = (snap[-1][0], r.copy(), snap[-1][2], 0.0, snap[-1][4])
 rows = 0
 for k, (mon, rrm, rec, corr, nref) in enumerate(snap):
     if corr is None: corr = snap[min(known, key=lambda q: abs(q - k))][3] if known else 0.0
