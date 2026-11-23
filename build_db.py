@@ -271,7 +271,7 @@ for x in d['matches']:
 #   x:0 two or more short (3:0 in a race to 5): walkover written as a score, not counted
 #   one short but the loser has racks (4:1 in a race to 5): counts as a full race (5:1)
 #   two or more short with racks for both (3:2 in a race to 5): counts as recorded, listed for checking
-# Events not counted: a single match; events where in at least 2 rounds (and 40% of rounds) the winners stop at different numbers,
+# Events not counted: a test or money game of one match; events where in at least 2 rounds (and 40% of rounds) the winners stop at different numbers,
 # many drawn matches, or rounds mixing short matches with matches over
 # twice as long: patterns of handicap or fixed-rack formats. OV['format_ok'] lists events checked and kept.
 TSMAX = 1_000_000
@@ -290,7 +290,11 @@ for x in d['matches']:
 ODD_EVENTS = {}
 for tid, ms in ev_m.items():
     if str(tid) in FORMAT_OK: continue
-    if len(ms) == 1: T[tid]['excl'] = 'only one match'; ODD_EVENTS[tid] = 'only one match'; continue
+    # one counted match: often the only race to 3+ in an event of shorter races, or a real two-player event, so it counts;
+    # only a test or money game with one match does not (Aleksandrs 23 Nov 2026)
+    if len(ms) == 1:
+        if re.search(r'test|money', T[tid]['name'], re.I): T[tid]['excl'] = 'test or money game, one match'; ODD_EVENTS[tid] = T[tid]['excl']
+        continue
     em = _mode(collections.Counter(max(sc) for _, sc in ms))
     rounds = collections.defaultdict(list)
     for x, sc in ms: rounds[_rkey(x)].append(sc)
