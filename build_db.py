@@ -26,6 +26,14 @@ for t in ts['tournaments']:
         d['tournaments'].append(t[:7]); TS_CTRY[t[0]] = cc
 keep_ts = set(TS_CTRY)
 d['matches'] = [m for m in ts['matches'] if m[0] in keep_ts]
+# Tournament Service events only the Latvian repo had (2018 Lithuanian championships and others; pool-data, copied 23 Nov 2026)
+_tx = load('data/baltic_extra_ts_raw.json.gz') or {'tournaments': [], 'players': {}, 'matches': []}
+_txn = {t[0] for t in _tx['tournaments'] if t[0] not in keep_ts}
+for t in _tx['tournaments']:
+    if t[0] in _txn: d['tournaments'].append(t[:7]); TS_CTRY[t[0]] = ''
+d['matches'] += [m for m in _tx['matches'] if m[0] in _txn]
+for k, v in _tx['players'].items(): P.setdefault(k, v)
+keep_ts |= _txn
 
 # ---------- CueScore: Baltic and Nordic files from pool-data (tournament rows of collect_cuescore.py) ----------
 CS_GAME = {'8-Ball': '8-ball', '9-Ball': '9-ball', '10-Ball': '10-ball', 'Straightpool': 'Straight pool'}
@@ -42,7 +50,7 @@ CC_SUFFIX = {'estonia': '', 'latvia': ' (LAT)', 'lithuania': ' (LIT)', 'finland'
 CLUB = {}              # CueScore id -> club the player represents (collector stores it)
 CLUB_MEMBER = {}       # CueScore id -> (club, flag), all collected countries: tells Estonian clubs from foreign ones
 T_CTRY = {}            # tournament id -> country code of the venue (for the site)
-for cc_file in ('ee', 'lv', 'lt', 'fi', 'se', 'dk', 'no'):
+for cc_file in ('ee', 'lv', 'lt', 'baltic_extra', 'fi', 'se', 'dk', 'no'):   # baltic_extra: BPL Final Vilnius 2025 (organizer without country), POOL8TV 2013-14, 8me 2016
     cs = load(f'data/{cc_file}_cuescore_raw.json.gz')
     if not cs: continue
     nordic = cc_file in ('fi', 'se', 'dk', 'no')
@@ -198,8 +206,8 @@ TEAM_EVENT = re.compile(r'komand|\bteam\b', re.I)   # team championships: result
 EXCLUDE_TOURNAMENTS = {int(k): v['reason'] for k, v in OV['exclude_tournaments'].items()}   # never counted, even when the update fetches them again
 PAIR = re.compile(r'pār|paru|pair|dubult|parn|mix ?pār|paar|porų|poros|doubles|dvejet', re.I)   # pair events (EE 'paar', LT 'porų', EN 'doubles' added 2026-11-10)
 EXCL_NAME = re.compile(r'bank ?pool|one ?pocket|hcp|handi?cap|handikap|фора|marat|sn[uū]k|snooker', re.I)
-def name_hcp(n):   # handicap by name (Baribal Monday events, Baribal HC, 'fora'): rules/score_rules.py in pool-data
-    sys.path.insert(0, 'data'); import score_rules; return score_rules.name_handicap(n)
+def name_hcp(n, org='', date=None):   # handicap by name or organizer rule (Baribal Monday, Baribal HC, 'fora', Hill Hill Mondays): rules/score_rules.py in pool-data
+    sys.path.insert(0, 'data'); import score_rules; return score_rules.name_handicap(n, org, date)
 def game_of(t):
     disc, name = t[4], t[1]
     if re.search(r'8\s*/\s*9\s*/\s*10|8910|pool9-pool8-pool10|p8/9/10', name, re.I): return 'mixed'
@@ -230,7 +238,7 @@ for t in d['tournaments']:
     # Sigulda weekly championship is included (decided 2026-10-17)
     elif tid in EXCLUDE_TOURNAMENTS: excl = EXCLUDE_TOURNAMENTS[tid]
     elif EXCL_NAME.search(name): excl = 'other discipline'
-    elif name_hcp(name): excl = name_hcp(name)
+    elif name_hcp(name, org, parse_date(date) if date else None): excl = name_hcp(name, org, parse_date(date) if date else None)
     elif re.search(r'\bmini\b', name, re.I) and tid not in MINI_NO_HCP: excl = 'BPL MINI division (played with handicap)'
     elif g is None: excl = 'other discipline'
     elif g == 'mixed': excl = 'mixed 8/9/10 or unknown game'
