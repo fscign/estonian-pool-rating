@@ -198,7 +198,7 @@ EXCLUDE_TOURNAMENTS = {int(k): v['reason'] for k, v in OV['exclude_tournaments']
 PAIR = re.compile(r'pār|paru|pair|dubult|parn|mix ?pār|paar|porų|poros|doubles|dvejet', re.I)   # pair events (EE 'paar', LT 'porų', EN 'doubles' added 2026-11-10)
 EXCL_NAME = re.compile(r'bank ?pool|one ?pocket|hcp|handi?cap|handikap|фора|marat|sn[uū]k|snooker', re.I)
 # Baribal Monday events (Baribali Esmaspäevak, all spellings) and Baribal HC are played with handicap, though not marked (Aleksandrs 22 Nov 2026)
-BARIBAL_HCP = re.compile(r'baribal\w*\s+(?:suvine\s+)?esma\w*|baribal\w*\s+hc\b', re.I)
+BARIBAL_HCP = re.compile(r'bari(?:bal|[ck]a)\w*\s+(?:suvine\s+)?esma\w*|baribal\w*\s+hc\b|\bfora\b|фора', re.I)   # also 'Barica/Barika Esmaspäevak', and 'fora' (handicap in Lithuanian)
 def game_of(t):
     disc, name = t[4], t[1]
     if re.search(r'8\s*/\s*9\s*/\s*10|8910|pool9-pool8-pool10|p8/9/10', name, re.I): return 'mixed'
@@ -260,14 +260,107 @@ for x in d['matches']:
     if w is None: continue
     stage_all[(x[0], x[8])] += 1
     if w >= 3: stage_long[(x[0], x[8])] += 1
-# A match recorded as x:0 that ends before the race its round was played to (most common winner score; the stored race for
-# rounds of 1-2 matches) is a walkover written as a score, e.g. 3:0 in a race-to-5 round (Aleksandrs 22 Nov 2026): not counted
-stage_race = collections.defaultdict(collections.Counter)
+# Short scores, walkovers written as a score and odd-format events (Aleksandrs 22-23 Nov 2026, for the whole model) ------------
+# The race of a match is the race its round was actually played to: the most common winner score in the round (ties: the
+# shorter). Tournament Service stores a reliable race for each match, so its rounds are split by that race; CueScore stores one
+# race for the whole event, which is often wrong. A round of 2 matches: the other match (if it went longer); a final of one
+# match: the semifinals; another single match only when x:0 (the other small rounds of the event, then the whole event).
+# A third-place match counts as recorded (often a shorter race).
+#   winner reached the race: counts as recorded
+#   x:0 one short of the race (3:0 in a race to 4): counts as a full race (4:0)
+#   x:0 two or more short (3:0 in a race to 5): walkover written as a score, not counted
+#   one short but the loser has racks (4:1 in a race to 5): counts as a full race (5:1)
+#   two or more short with racks for both (3:2 in a race to 5): counts as recorded, listed for checking
+# Events not counted: a single match; events where in at least 2 rounds (and 40% of rounds) the winners stop at different numbers,
+# many drawn matches, or rounds mixing short matches with matches over
+# twice as long: patterns of handicap or fixed-rack formats. OV['format_ok'] lists events checked and kept.
+TSMAX = 1_000_000
+THIRD_PLACE = re.compile(r'3rd|third|bronz|3\.? ?(?:vieta|koht|place)|treči|kolmand|trešā', re.I)
+def _own(x): return int(x[6]) if str(x[6]).isdigit() and int(x[6]) > 0 else 0
+def _rkey(x): return (x[0], x[8], _own(x)) if x[0] < TSMAX else (x[0], x[8])
+def _mode(c):
+    top = max(c.values()); return min(k for k, v in c.items() if v == top)
+FORMAT_OK = set(str(k) for k in OV.get('format_ok', {}))
+ev_m = collections.defaultdict(list)
 for x in d['matches']:
-    w = played(x)
-    if w: stage_race[(x[0], x[8])][w] += 1
-    if w and str(x[6]).isdigit(): stage_race[(x[0], 'race', int(x[6]))][w] += 1   # same stored race in the whole event
-WALKOVER = collections.Counter(); SHORT_NOT_ZERO = collections.Counter(); WALKOVER_EX = []; SHORT_EX = []
+    t = T[x[0]]
+    if t['excl'] or t['game'] == '14.1': continue
+    sc = score(x)
+    if sc: ev_m[x[0]].append((x, sc))
+ODD_EVENTS = {}
+for tid, ms in ev_m.items():
+    if str(tid) in FORMAT_OK: continue
+    if len(ms) == 1: T[tid]['excl'] = 'only one match'; ODD_EVENTS[tid] = 'only one match'; continue
+    em = _mode(collections.Counter(max(sc) for _, sc in ms))
+    rounds = collections.defaultdict(list)
+    for x, sc in ms: rounds[_rkey(x)].append(sc)
+    mixed = rounds_n = huge = 0
+    for r, scs in rounds.items():
+        ws = [max(s) for s in scs]
+        if len(scs) >= 2 and max(ws) > 2 * min(ws) and max(ws) > 2 * em: huge += 1
+        wp = [max(s) for s in scs if min(s) > 0 and s[0] != s[1]]   # walkover-like x:0 and draws left out
+        if len(wp) < 2: continue
+        rounds_n += 1; mixed += len(set(wp)) > 1
+    ties = sum(1 for _, s in ms if s[0] == s[1])
+    why = []
+    if mixed >= 2 and mixed >= 0.4 * rounds_n: why.append(f'in {mixed} of {rounds_n} rounds the winners stop at different numbers')
+    if ties >= 3 and ties >= 0.15 * len(ms): why.append(f'{ties} of {len(ms)} matches drawn')
+    if huge: why.append(f'{huge} round(s) mixing short matches with matches over twice as long')
+    if why: T[tid]['excl'] = 'odd format (looks like handicap or fixed racks): ' + '; '.join(why); ODD_EVENTS[tid] = T[tid]['excl']
+round_w = collections.defaultdict(collections.Counter); small_w = collections.defaultdict(collections.Counter); event_w = collections.defaultdict(collections.Counter)
+for tid, ms in ev_m.items():
+    if T[tid]['excl']: continue
+    for x, sc in ms: round_w[_rkey(x)][max(sc)] += 1
+for tid, ms in ev_m.items():
+    if T[tid]['excl']: continue
+    for x, sc in ms:
+        k = (tid, _own(x)) if tid < TSMAX else tid
+        event_w[k][max(sc)] += 1
+        if sum(round_w[_rkey(x)].values()) < 3 and not THIRD_PLACE.search(x[8] or ''): small_w[k][max(sc)] += 1
+SEMI = re.compile(r'semi|pusfin|pusfināl|pusfinal|poolfin|1/2', re.I)
+FINAL = re.compile(r'^\s*(final|finals|fināls|finalas|finaal|finale)\s*$', re.I)
+round_sc = collections.defaultdict(list)
+for tid, ms in ev_m.items():
+    if T[tid]['excl']: continue
+    for x, sc in ms: round_sc[_rkey(x)].append((x[1], max(sc)))
+semi_w = collections.defaultdict(collections.Counter)
+for (k, scs) in round_sc.items():
+    if SEMI.search(str(k[1] or '')):
+        for _, w in scs: semi_w[(k[0], k[2]) if k[0] < TSMAX else k[0]][w] += 1
+own_w = collections.defaultdict(collections.Counter)   # (event, stored race) -> winner scores in rounds of 3+ matches
+stored_mode = {}
+for tid, ms in ev_m.items():
+    if T[tid]['excl']: continue
+    for x, sc in ms:
+        if sum(round_w[_rkey(x)].values()) >= 3 and _own(x): own_w[(tid, _own(x))][max(sc)] += 1
+    c = collections.Counter(_own(x) for x, sc in ms if _own(x))
+    if c: stored_mode[tid] = _mode(c)
+def trusted(x):
+    # Tournament Service sets the race for each match; CueScore only when the organizer set this round's race apart from the
+    # event's usual one and bigger rounds with that race reached it (a race left at the event's default proves nothing)
+    o = _own(x)
+    if not o: return 0
+    if x[0] < TSMAX: return o
+    if o == stored_mode.get(x[0]): return 0
+    c = own_w[(x[0], o)]
+    return o if sum(c.values()) >= 3 and _mode(c) == o else 0
+def race_of(x, sc):
+    rw = round_w[_rkey(x)]; n = sum(rw.values())
+    if n >= 3: return _mode(rw), f'round of {n} matches'
+    k = (x[0], _own(x)) if x[0] < TSMAX else x[0]
+    if n == 2:   # the other match of the round
+        other = [w for mid, w in round_sc[_rkey(x)] if mid != x[1]]
+        if other and other[0] > max(sc): return other[0], 'other match of the round'
+        tr = trusted(x)
+        if tr and max(sc) < tr and (not other or other[0] < tr): return tr, 'stored race (both matches of the round short of it)'
+        return None, 'other match of the round'
+    if FINAL.search(x[8] or '') and semi_w[k]: return _mode(semi_w[k]), 'semifinals'
+    if trusted(x) and max(sc) < trusted(x): return trusted(x), 'stored race'
+    if min(sc) > 0: return None, 'single match, kept'
+    if sum(small_w[k].values()) >= 3: return _mode(small_w[k]), f'small rounds together ({sum(small_w[k].values())} matches)'
+    if sum(event_w[k].values()) >= 3: return _mode(event_w[k]), f'whole event ({sum(event_w[k].values())} matches)'
+    return (_own(x) or None), 'stored race'
+WALKOVER_EX = []; FIXED_EX = []; SHORT_EX = []
 odd_long = collections.Counter()
 raw_valid = []
 for x in d['matches']:
@@ -279,20 +372,17 @@ for x in d['matches']:
     if fx is None: continue
     if fx: sc = fx
     if t['game'] == '14.1' and max(sc) < 50: continue   # straight pool: matches to 50 points or longer only (Aleksandrs 20 Nov 2026)
-    if t['game'] != '14.1' and not fx:
-        # the race actually played in the round (most common winner score) decides; the stored race only for rounds of 1-2 matches
-        # (a stored race is sometimes wrong for a whole event, e.g. 'race to 4' where every match ended 3:x)
-        # a match that reached its own stored race is complete (rounds can mix races)
-        sr = stage_race[(x[0], x[8])]; own = int(x[6]) if str(x[6]).isdigit() else 0
-        if sum(sr.values()) < 3 and own:   # small round (final, semifinals): matches with the same stored race in the event
-            sr = stage_race[(x[0], 'race', own)]
-        race = max(sr.items(), key=lambda kv: kv[1])[0] if sum(sr.values()) >= 3 or not own else own
-        if max(sc) < race and (not own or max(sc) < own):
-            if min(sc) == 0:
-                WALKOVER[x[0]] += 1
-                WALKOVER_EX.append(dict(tid=x[0], mid=x[1], a=x[2], b=x[3], score=sc, race=race, own=own, stage=x[8], n=sum(sr.values())))
-                continue
-            SHORT_NOT_ZERO[x[0]] += 1; SHORT_EX.append(dict(tid=x[0], mid=x[1], a=x[2], b=x[3], score=sc, race=race, own=own, stage=x[8], n=sum(sr.values())))
+    if t['game'] != '14.1' and not fx and not THIRD_PLACE.search(x[8] or ''):
+        race, how = race_of(x, sc)
+        w, l = max(sc), min(sc)
+        if race and w < race and w > l:
+            info = dict(tid=x[0], mid=x[1], a=x[2], b=x[3], score=sc, race=race, own=_own(x), stage=x[8], how=how)
+            if w == race - 1:
+                sc = (race, sc[1]) if sc[0] > sc[1] else (sc[0], race); info['new'] = sc; FIXED_EX.append(info)
+            elif l == 0:
+                WALKOVER_EX.append(info); continue
+            else:
+                SHORT_EX.append(info)
     k = (x[0], x[8])
     if x[0] not in SOURCE and t['game'] != '14.1' and stage_long[k] < 0.5 * stage_all[k]:
         odd_long[x[0]] += 1; continue
@@ -556,8 +646,8 @@ for m in matches:
 db.commit()
 print('tournaments total', len(T), 'used', len({m['tid'] for m in matches}))
 print('excluded', collections.Counter(t['excl'] for t in T.values()))
-print('walkovers written as a score (x:0 short of the race), not counted:', sum(WALKOVER.values()), 'in', len(WALKOVER), 'events; short of the race but not x:0 (kept):', sum(SHORT_NOT_ZERO.values()))
-json.dump({'walkovers': WALKOVER_EX, 'short': SHORT_EX}, open('walkover_check.json', 'w', encoding='utf-8'), default=str)
+print('odd-format events not counted:', len(ODD_EVENTS), '| walkovers written as a score:', len(WALKOVER_EX), '| scores raised to the race:', len(FIXED_EX), '| short, kept as recorded:', len(SHORT_EX))
+json.dump({'events': ODD_EVENTS, 'walkovers': WALKOVER_EX, 'fixed': FIXED_EX, 'short': SHORT_EX}, open('walkover_check.json', 'w', encoding='utf-8'), default=str)
 print('dropped odd long matches', sum(odd_long.values()), 'in', len(odd_long), 'events')
 print('raw valid', len(raw_valid), 'final matches', len(matches), 'players', len(used))
 print('shown (Estonian) players', sum(1 for k in used if k in SHOWN), 'background players', sum(1 for k in used if k not in SHOWN))
