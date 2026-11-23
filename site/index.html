@@ -88,6 +88,9 @@ h2{font-size:22px}
 .controls .clabel{align-items:center}
 .controls .clabel .chips{text-transform:none;letter-spacing:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .controls .clabel .chip{padding:7px 14px}
+/* desktop: all ranking filters in one row; the club list takes the space left and cuts long names (Aleksandrs 23 Nov 2026) */
+@media (min-width:900px){.controls:has(#club){flex-wrap:nowrap}.controls:has(#club) input[type=search]{width:170px}
+  .controls label:has(#club){flex:1 1 150px;min-width:0}.controls #club{width:100%;text-overflow:ellipsis}}
 input,select{font:inherit;font-size:14px;color:var(--fg);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:7px 10px;min-width:0}
 input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 input[type=search]{width:min(260px,100%)}
