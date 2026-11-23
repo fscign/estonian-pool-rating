@@ -2,6 +2,7 @@
 Same rules as the Latvian rating (fscign/latvian-pool-rating build_db.py). Every counted match is rated; only Estonians are shown.
 Sources: Tournament Service (Baltic events + any event with an Estonian), CueScore Estonia, Latvia, Lithuania, Finland, Sweden,
 Denmark, Norway, EPBF, Matchroom (WNT), PBS. Decided by Aleksandrs 22 Nov 2026."""
+import sys
 import json, re, sqlite3, collections, unicodedata, datetime, os, gzip
 
 DB = 'ee_pool.sqlite'
@@ -197,8 +198,8 @@ TEAM_EVENT = re.compile(r'komand|\bteam\b', re.I)   # team championships: result
 EXCLUDE_TOURNAMENTS = {int(k): v['reason'] for k, v in OV['exclude_tournaments'].items()}   # never counted, even when the update fetches them again
 PAIR = re.compile(r'pār|paru|pair|dubult|parn|mix ?pār|paar|porų|poros|doubles|dvejet', re.I)   # pair events (EE 'paar', LT 'porų', EN 'doubles' added 2026-11-10)
 EXCL_NAME = re.compile(r'bank ?pool|one ?pocket|hcp|handi?cap|handikap|фора|marat|sn[uū]k|snooker', re.I)
-# Baribal Monday events (Baribali Esmaspäevak, all spellings) and Baribal HC are played with handicap, though not marked (Aleksandrs 22 Nov 2026)
-BARIBAL_HCP = re.compile(r'bari(?:bal|[ck]a)\w*\s+(?:suvine\s+)?esma\w*|baribal\w*\s+hc\b|\bfora\b|фора', re.I)   # also 'Barica/Barika Esmaspäevak', and 'fora' (handicap in Lithuanian)
+def name_hcp(n):   # handicap by name (Baribal Monday events, Baribal HC, 'fora'): rules/score_rules.py in pool-data
+    sys.path.insert(0, 'data'); import score_rules; return score_rules.name_handicap(n)
 def game_of(t):
     disc, name = t[4], t[1]
     if re.search(r'8\s*/\s*9\s*/\s*10|8910|pool9-pool8-pool10|p8/9/10', name, re.I): return 'mixed'
@@ -229,7 +230,7 @@ for t in d['tournaments']:
     # Sigulda weekly championship is included (decided 2026-10-17)
     elif tid in EXCLUDE_TOURNAMENTS: excl = EXCLUDE_TOURNAMENTS[tid]
     elif EXCL_NAME.search(name): excl = 'other discipline'
-    elif BARIBAL_HCP.search(name): excl = 'handicap (Baribal Monday or HC event)'
+    elif name_hcp(name): excl = name_hcp(name)
     elif re.search(r'\bmini\b', name, re.I) and tid not in MINI_NO_HCP: excl = 'BPL MINI division (played with handicap)'
     elif g is None: excl = 'other discipline'
     elif g == 'mixed': excl = 'mixed 8/9/10 or unknown game'
@@ -260,110 +261,20 @@ for x in d['matches']:
     if w is None: continue
     stage_all[(x[0], x[8])] += 1
     if w >= 3: stage_long[(x[0], x[8])] += 1
-# Short scores, walkovers written as a score and odd-format events (Aleksandrs 22-23 Nov 2026, for the whole model) ------------
-# The race of a match is the race its round was actually played to: the most common winner score in the round (ties: the
-# shorter). Tournament Service stores a reliable race for each match, so its rounds are split by that race; CueScore stores one
-# race for the whole event, which is often wrong. A round of 2 matches: the other match (if it went longer); a final of one
-# match: the semifinals; another single match only when x:0 (the other small rounds of the event, then the whole event).
-# A third-place match counts as recorded (often a shorter race).
-#   winner reached the race: counts as recorded
-#   x:0 one short of the race (3:0 in a race to 4): counts as a full race (4:0)
-#   x:0 two or more short (3:0 in a race to 5): walkover written as a score, not counted
-#   one short but the loser has racks (4:1 in a race to 5): counts as a full race (5:1)
-#   two or more short with racks for both (3:2 in a race to 5): counts as recorded, listed for checking
-# Events not counted: a test or money game of one match; events where in at least 2 rounds (and 40% of rounds) the winners stop at different numbers,
-# many drawn matches, or rounds mixing short matches with matches over
-# twice as long: patterns of handicap or fixed-rack formats. OV['format_ok'] lists events checked and kept.
-TSMAX = 1_000_000
-THIRD_PLACE = re.compile(r'3rd|third|bronz|3\.? ?(?:vieta|koht|place)|treči|kolmand|trešā', re.I)
-def _own(x): return int(x[6]) if str(x[6]).isdigit() and int(x[6]) > 0 else 0
-def _rkey(x): return (x[0], x[8], _own(x)) if x[0] < TSMAX else (x[0], x[8])
-def _mode(c):
-    top = max(c.values()); return min(k for k, v in c.items() if v == top)
-FORMAT_OK = set(str(k) for k in OV.get('format_ok', {}))
-ev_m = collections.defaultdict(list)
+# Score and event rules shared by every rating: rules/score_rules.py in fscign/pool-data, downloaded by get_data.sh
+# (walkovers written as a score, short scores raised to the race, odd-format and test/money events; Aleksandrs 22-23 Nov 2026)
+sys.path.insert(0, 'data')
+import score_rules as SR
+TSMAX = 1_000_000   # Tournament Service event ids are small; TS stores a reliable race for each match
+_ev = {}
 for x in d['matches']:
     t = T[x[0]]
     if t['excl'] or t['game'] == '14.1': continue
     sc = score(x)
-    if sc: ev_m[x[0]].append((x, sc))
-ODD_EVENTS = {}
-for tid, ms in ev_m.items():
-    if str(tid) in FORMAT_OK: continue
-    # one counted match: often the only race to 3+ in an event of shorter races, or a real two-player event, so it counts;
-    # only a test or money game with one match does not (Aleksandrs 23 Nov 2026)
-    if len(ms) == 1:
-        if re.search(r'test|money', T[tid]['name'], re.I): T[tid]['excl'] = 'test or money game, one match'; ODD_EVENTS[tid] = T[tid]['excl']
-        continue
-    em = _mode(collections.Counter(max(sc) for _, sc in ms))
-    rounds = collections.defaultdict(list)
-    for x, sc in ms: rounds[_rkey(x)].append(sc)
-    mixed = rounds_n = huge = 0
-    for r, scs in rounds.items():
-        ws = [max(s) for s in scs]
-        if len(scs) >= 2 and max(ws) > 2 * min(ws) and max(ws) > 2 * em: huge += 1
-        wp = [max(s) for s in scs if min(s) > 0 and s[0] != s[1]]   # walkover-like x:0 and draws left out
-        if len(wp) < 2: continue
-        rounds_n += 1; mixed += len(set(wp)) > 1
-    ties = sum(1 for _, s in ms if s[0] == s[1])
-    why = []
-    if mixed >= 2 and mixed >= 0.4 * rounds_n: why.append(f'in {mixed} of {rounds_n} rounds the winners stop at different numbers')
-    if ties >= 3 and ties >= 0.15 * len(ms): why.append(f'{ties} of {len(ms)} matches drawn')
-    if huge: why.append(f'{huge} round(s) mixing short matches with matches over twice as long')
-    if why: T[tid]['excl'] = 'odd format (looks like handicap or fixed racks): ' + '; '.join(why); ODD_EVENTS[tid] = T[tid]['excl']
-round_w = collections.defaultdict(collections.Counter); small_w = collections.defaultdict(collections.Counter); event_w = collections.defaultdict(collections.Counter)
-for tid, ms in ev_m.items():
-    if T[tid]['excl']: continue
-    for x, sc in ms: round_w[_rkey(x)][max(sc)] += 1
-for tid, ms in ev_m.items():
-    if T[tid]['excl']: continue
-    for x, sc in ms:
-        k = (tid, _own(x)) if tid < TSMAX else tid
-        event_w[k][max(sc)] += 1
-        if sum(round_w[_rkey(x)].values()) < 3 and not THIRD_PLACE.search(x[8] or ''): small_w[k][max(sc)] += 1
-SEMI = re.compile(r'semi|pusfin|pusfināl|pusfinal|poolfin|1/2', re.I)
-FINAL = re.compile(r'^\s*(final|finals|fināls|finalas|finaal|finale)\s*$', re.I)
-round_sc = collections.defaultdict(list)
-for tid, ms in ev_m.items():
-    if T[tid]['excl']: continue
-    for x, sc in ms: round_sc[_rkey(x)].append((x[1], max(sc)))
-semi_w = collections.defaultdict(collections.Counter)
-for (k, scs) in round_sc.items():
-    if SEMI.search(str(k[1] or '')):
-        for _, w in scs: semi_w[(k[0], k[2]) if k[0] < TSMAX else k[0]][w] += 1
-own_w = collections.defaultdict(collections.Counter)   # (event, stored race) -> winner scores in rounds of 3+ matches
-stored_mode = {}
-for tid, ms in ev_m.items():
-    if T[tid]['excl']: continue
-    for x, sc in ms:
-        if sum(round_w[_rkey(x)].values()) >= 3 and _own(x): own_w[(tid, _own(x))][max(sc)] += 1
-    c = collections.Counter(_own(x) for x, sc in ms if _own(x))
-    if c: stored_mode[tid] = _mode(c)
-def trusted(x):
-    # Tournament Service sets the race for each match; CueScore only when the organizer set this round's race apart from the
-    # event's usual one and bigger rounds with that race reached it (a race left at the event's default proves nothing)
-    o = _own(x)
-    if not o: return 0
-    if x[0] < TSMAX: return o
-    if o == stored_mode.get(x[0]): return 0
-    c = own_w[(x[0], o)]
-    return o if sum(c.values()) >= 3 and _mode(c) == o else 0
-def race_of(x, sc):
-    rw = round_w[_rkey(x)]; n = sum(rw.values())
-    if n >= 3: return _mode(rw), f'round of {n} matches'
-    k = (x[0], _own(x)) if x[0] < TSMAX else x[0]
-    if n == 2:   # the other match of the round
-        other = [w for mid, w in round_sc[_rkey(x)] if mid != x[1]]
-        if other and other[0] > max(sc): return other[0], 'other match of the round'
-        tr = trusted(x)
-        if tr and max(sc) < tr and (not other or other[0] < tr): return tr, 'stored race (both matches of the round short of it)'
-        return None, 'other match of the round'
-    if FINAL.search(x[8] or '') and semi_w[k]: return _mode(semi_w[k]), 'semifinals'
-    if trusted(x) and max(sc) < trusted(x): return trusted(x), 'stored race'
-    if min(sc) > 0: return None, 'single match, kept'
-    if sum(small_w[k].values()) >= 3: return _mode(small_w[k]), f'small rounds together ({sum(small_w[k].values())} matches)'
-    if sum(event_w[k].values()) >= 3: return _mode(event_w[k]), f'whole event ({sum(event_w[k].values())} matches)'
-    return (_own(x) or None), 'stored race'
+    if sc: _ev.setdefault(x[0], {'name': t['name'], 'per_match_race': x[0] < TSMAX, 'matches': []})['matches'].append((x[1], x[8], x[6], sc))
+RULES = SR.ScoreRules(_ev, OV.get('format_ok', {}))
+ODD_EVENTS = RULES.odd_events
+for tid, why in ODD_EVENTS.items(): T[tid]['excl'] = why
 WALKOVER_EX = []; FIXED_EX = []; SHORT_EX = []
 odd_long = collections.Counter()
 raw_valid = []
@@ -376,17 +287,13 @@ for x in d['matches']:
     if fx is None: continue
     if fx: sc = fx
     if t['game'] == '14.1' and max(sc) < 50: continue   # straight pool: matches to 50 points or longer only (Aleksandrs 20 Nov 2026)
-    if t['game'] != '14.1' and not fx and not THIRD_PLACE.search(x[8] or ''):
-        race, how = race_of(x, sc)
-        w, l = max(sc), min(sc)
-        if race and w < race and w > l:
-            info = dict(tid=x[0], mid=x[1], a=x[2], b=x[3], score=sc, race=race, own=_own(x), stage=x[8], how=how)
-            if w == race - 1:
-                sc = (race, sc[1]) if sc[0] > sc[1] else (sc[0], race); info['new'] = sc; FIXED_EX.append(info)
-            elif l == 0:
-                WALKOVER_EX.append(info); continue
-            else:
-                SHORT_EX.append(info)
+    if t['game'] != '14.1' and not fx:
+        act, new_sc, race, how = RULES.decide(x[0], x[1], x[8], x[6], sc)
+        if act != 'keep':
+            info = dict(tid=x[0], mid=x[1], a=x[2], b=x[3], score=sc, race=race, own=x[6], stage=x[8], how=how)
+            if act == 'fix': sc = new_sc; info['new'] = sc; FIXED_EX.append(info)
+            elif act == 'walkover': WALKOVER_EX.append(info); continue
+            else: SHORT_EX.append(info)
     k = (x[0], x[8])
     if x[0] not in SOURCE and t['game'] != '14.1' and stage_long[k] < 0.5 * stage_all[k]:
         odd_long[x[0]] += 1; continue

@@ -9,4 +9,6 @@ for f in $FILES; do
   elif curl -fsSL --retry 3 -o "data/$f.new" "https://raw.githubusercontent.com/fscign/pool-data/main/data/$f"; then mv "data/$f.new" "data/$f"; echo "$f: release file missing, used the starting copy"
   else rm -f "data/$f.new"; echo "$f: NOT downloaded"; fi
 done
+# Shared score and event rules (one copy for every rating)
+curl -fsSL --retry 3 -o data/score_rules.py.new "https://raw.githubusercontent.com/fscign/pool-data/main/rules/score_rules.py" && mv data/score_rules.py.new data/score_rules.py || echo "score_rules.py: NOT downloaded"
 gh release download data -R fscign/pool-data -p 'status_*' -D status --clobber 2>/dev/null || echo "status files not downloaded"
