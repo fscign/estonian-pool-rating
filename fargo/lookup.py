@@ -17,6 +17,10 @@ def look(n):
             time.sleep(3)
     return n, 'error'
 names = json.load(open('fargo/names.json', encoding='utf-8'))
-with ThreadPoolExecutor(4) as ex: res = dict(ex.map(look, names))
+# 27 Nov 2026: names already looked up are kept, only new names (and earlier errors) are searched
+try: res = json.load(open('fargo/results.json', encoding='utf-8'))
+except Exception: res = {}
+todo = [n for n in names if n not in res or res[n] == 'error']
+with ThreadPoolExecutor(3) as ex: res.update(dict(ex.map(look, todo)))
 json.dump(res, open('fargo/results.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
-print(len(names), 'names,', sum(1 for v in res.values() if v and v != 'error'), 'found,', sum(1 for v in res.values() if v == 'error'), 'errors')
+print(len(todo), 'searched now,', len(names), 'names,', sum(1 for v in res.values() if v and v != 'error'), 'found,', sum(1 for v in res.values() if v == 'error'), 'errors')
