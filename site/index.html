@@ -1094,5 +1094,8 @@ function about(){
 }
 </script>
 
+<script>/* width check for phones: open the site with ?dbg (temporary, 27 Nov 2026) */
+if(location.search.includes('dbg'))setTimeout(function(){var W=document.documentElement.clientWidth,out=[];document.querySelectorAll('body *').forEach(function(e){var r=e.getBoundingClientRect();if(r.width>0&&(r.right>W+0.5||r.left<-0.5)&&!e.closest('.tablebox')&&out.length<8)out.push(e.tagName+'.'+(e.className||'')+' '+Math.round(r.left)+'..'+Math.round(r.right))});var d=document.createElement('pre');d.style.cssText='position:fixed;left:0;bottom:0;z-index:99;background:#ff0;color:#000;font:11px monospace;margin:0;padding:6px;white-space:pre-wrap;width:100%';d.textContent='inner '+innerWidth+' client '+W+' scrollW '+document.documentElement.scrollWidth+' body '+document.body.scrollWidth+' vv '+(window.visualViewport?Math.round(visualViewport.width):'-')+'\n'+(out.join('\n')||'nothing sticks out');document.body.appendChild(d)},3000);
+</script>
 </body>
 </html>
