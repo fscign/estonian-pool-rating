@@ -349,14 +349,6 @@ html,body{margin:0}
   .controls:has(#club) .inline{display:flex;gap:6px;min-width:0}
 }
 </style>
-<script>/* sideways check for phones: open the site with ?dbg (temporary, 27 Nov 2026) */
-(function(){if(!location.search.includes('dbg'))return;var D=document.createElement('pre'),mx=0,mn=0,vx=0,sc=1,tg='';D.style.cssText='position:fixed;left:0;bottom:70px;z-index:99;background:#ff0;color:#000;font:11px monospace;margin:0;padding:6px;white-space:pre-wrap;width:100%;pointer-events:none';
-function show(){var W=document.documentElement.clientWidth;D.textContent='scrollX now '+Math.round(scrollX)+' max '+Math.round(mx)+' min '+Math.round(mn)+' | vv x '+vx.toFixed(1)+' scale '+sc.toFixed(3)+'\nscrollW '+document.documentElement.scrollWidth+' bodyW '+document.body.scrollWidth+' client '+W+' inner '+innerWidth+'\ntouch: '+tg}
-addEventListener('scroll',function(){mx=Math.max(mx,scrollX);mn=Math.min(mn,scrollX);show()},{passive:true});
-if(window.visualViewport)visualViewport.addEventListener('scroll',function(){vx=Math.max(vx,Math.abs(visualViewport.offsetLeft));sc=visualViewport.scale;show()});
-addEventListener('touchstart',function(e){var t=e.target,p=[];for(var i=0;t&&i<4;i++,t=t.parentElement)p.push(t.tagName.toLowerCase()+(t.className&&typeof t.className=='string'?'.'+t.className.split(' ')[0]:''));tg=p.join(' < ');show()},{passive:true});
-document.addEventListener('DOMContentLoaded',function(){document.body.appendChild(D);show()});setInterval(show,500)})();
-</script>
 </head>
 <body>
 <header class="top"><div class="wrap">
