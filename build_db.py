@@ -224,7 +224,7 @@ if dp:
     for tk, ms in by_t.items():
         t = dp['tournaments'].get(tk)
         if not t: continue
-        name, start, gtype, ttype, vname, vcc, is_test, hc = t
+        name, start, gtype, ttype, vname, vcc, is_test, hc = t[:8]; slug = t[8] if len(t) > 8 else ''
         if is_test or DP_TEST.search((name or '').strip()) or gtype not in DP_GAME or ttype == 'chip' or not start: continue
         if re.search(r'scotch|doubles|team|world cup of pool', name or '', re.I): continue
         sd = datetime.date.fromisoformat(start)
@@ -244,7 +244,7 @@ if dp:
             _seen.setdefault(k, []).append(ts_)
             if not added:
                 d['tournaments'].append([tid, (name or '').strip(), sd.strftime('%d.%m.%y'), ' · '.join(x for x in (vname, vcc) if x), DP_GAME[gtype], 'DigitalPool', 0, {}])
-                SOURCE[tid] = 'digitalpool'; EXT_URL[tid] = f"https://digitalpool.com/tournaments/{tk}"; added = True
+                SOURCE[tid] = 'digitalpool'; EXT_URL[tid] = f"https://digitalpool.com/tournaments/{slug}" if slug else "https://digitalpool.com/tournaments"; added = True
             d['matches'].append([tid, DP_M + mid, a, b, str(s1), str(s2), race, ts_, f"round {rnd}", ''])
             dp_n += 1
     print(f'DigitalPool: {dp_n} matches added, {dp_dup} already read from another site')
