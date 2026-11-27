@@ -328,6 +328,26 @@ html:root .chip.on{background:#0072ce;border-color:#0072ce;color:#fff}
 html:root .site-foot{border-top:6px solid #0072ce;box-shadow:inset 0 3px 0 #000}
 .mode{margin-left:6px}
 .mode button{min-width:34px}
+
+/* phone: no sideways panning, compact header and ranking filters (Aleksandrs 27 Nov 2026) */
+html,body{overflow-x:clip;overscroll-behavior-x:none}
+@media (max-width:600px){
+  header.top .wrap{flex-wrap:wrap;gap:6px 8px}
+  header.top .brand{flex:1 1 auto;min-width:0;font-size:17px;order:1}
+  header.top .brand #brand{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  header.top .lang{order:2;margin-left:auto}
+  header.top .lang.mode{order:3;margin-left:0}
+  header.top .lang button{padding:3px 7px}
+  header.top nav{order:4;flex-basis:100%}
+  .controls:has(#club){display:grid;grid-template-columns:1fr 1fr;gap:8px 10px;margin:4px 0 10px;align-items:end}
+  .controls:has(#club) label,.controls:has(#club) .clabel{font-size:10.5px;gap:3px;min-width:0;max-width:none;width:auto}
+  .controls:has(#club) label:first-child,.controls:has(#club) label:has(#club){grid-column:1/-1}
+  .controls:has(#club) .clabel{align-items:stretch}
+  .controls:has(#club) .clabel .chips{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .controls:has(#club) .clabel .chip{padding:6px 4px;font-size:14px}
+  .controls:has(#club) input[type=search],.controls:has(#club) select{width:100%;min-width:0;font-size:16px;padding-top:6px;padding-bottom:6px}
+  .controls:has(#club) .inline{display:flex;gap:6px;min-width:0}
+}
 </style>
 </head>
 <body>
@@ -841,6 +861,7 @@ function drawHH(){
 }
 /* ---------------- hall of fame ---------------- */
 // RK = Meistriliiga stage podiums (ml.json), shown separately from the Estonian championships (hof.json) (Aleksandrs 21 Nov 2026)
+const SHOW_RK=false;   // Meistriliiga hidden for now, ml.json kept (Aleksandrs 27 Nov 2026)
 let HOF=null, RK=[]; const FS2={comp:'lc',cat:['Main'],disc:['Pool 8','Pool 9','Pool 10','Pool 14+1'],lim:20};   // on/off buttons, several can be on (Aleksandrs 10 Nov)
 const CATMAP={Main:['Main'],Women:['Women'],Sen:['Seniors'],Jun:['Juniors'],All:null};
 const catLbl=c=>({'Main':t('fMain'),'Women':t('fWomen'),'Seniors':t('fSen'),'Juniors':t('fJun')}[c]||c);
@@ -855,7 +876,7 @@ function hofLink(n){if(n===''){[...(HOF||[]),...RK].forEach(r=>r.slice(3,7).forE
   if(!hofLink.fx){hofLink.fx={};Object.values(PL).forEach(p=>{if(p.lv)return;const k=ff(p.first+' '+p.last),o=hofLink.fx[k];if(!o||p.racks>o.racks)hofLink.fx[k]=p})}
   const fp=id||HOF_NOLINK.has(n)?null:hofLink.fx[ff(n)];   // foreign medallist (open championships): show his country
   return `<button class="mlink" data-med="${esc(n)}">${esc(n)}</button>${fp?cc(fp.cc):''}`}
-function loadHof(cb){ if(HOF) return cb(); if(loadHof.p) return loadHof.p.then(cb); loadHof.p=Promise.all([fetch('hof.json').then(r=>r.json()),fetch('ml.json').then(r=>r.json()).catch(()=>[])]).then(([d,rk])=>{HOF=d;RK=rk}).catch(()=>{}); loadHof.p.then(cb) }
+function loadHof(cb){ if(HOF) return cb(); if(loadHof.p) return loadHof.p.then(cb); loadHof.p=Promise.all([fetch('hof.json').then(r=>r.json()),(SHOW_RK?fetch('ml.json').then(r=>r.json()).catch(()=>[]):Promise.resolve([]))]).then(([d,rk])=>{HOF=d;RK=rk}).catch(()=>{}); loadHof.p.then(cb) }
 const MB=[1,2,3].map(i=>`<span class="mb m${i}">${i}</span>`), MED=[MB[0],MB[1],MB[2],MB[2]];
 const discLbl=d=>({'Pool 8':'8-ball','Pool 9':'9-ball','Pool 10':'10-ball','Pool 14+1':'14.1'}[d]||d||'');
 function medalsByName(n,comp){const out=[];(comp==='rk'?RK:(HOF||[])).forEach(r=>[3,4,5,6].forEach((k,i)=>{if(r[k]===n)out.push({y:r[0],cat:r[1],d:r[2],m:i})}));return out.sort((a,b)=>b.y-a.y||a.m-b.m)}
@@ -885,7 +906,7 @@ function famePage(){
   const T=Object.entries(tab).sort((a,b)=>b[1][0]-a[1][0]||b[1][1]-a[1][1]||b[1][2]-a[1][2]||a[0].localeCompare(b[0]));
   const dl=d=>({'Pool 8':'8-ball','Pool 9':'9-ball','Pool 10':'10-ball','Pool 14+1':'14.1'}[d]||d||'');
   $('#app').innerHTML=`<h1>${t('fTitle')}</h1><p class="lede">${t(FS2.comp==='rk'?'fLedeRK':'fLede')}</p>
-  <div class="hofgrid"><div class="ffilt"><div class="frow"><span class="flab">${t('fComp')}</span><span class="chips">${[['lc','fCompLC'],['rk','fCompRK']].map(([k,l])=>`<button class="chip${FS2.comp===k?' on':''}" data-fx="${k}">${t(l)}</button>`).join('')}</span></div>
+  <div class="hofgrid"><div class="ffilt">${SHOW_RK?`<div class="frow"><span class="flab">${t('fComp')}</span><span class="chips">${[['lc','fCompLC'],['rk','fCompRK']].map(([k,l])=>`<button class="chip${FS2.comp===k?' on':''}" data-fx="${k}">${t(l)}</button>`).join('')}</span></div>`:''}
   <div class="frow"><span class="flab">${t('fCat')}</span><span class="chips">${cats.map(([k,l])=>`<button class="chip${FS2.cat.includes(k)?' on':''}" data-fc="${k}">${t(l)}</button>`).join('')}</span></div>
   <div class="frow"><span class="flab">${t('fDisc')}</span><span class="chips">${discs.map(([k,l])=>`<button class="chip${FS2.disc.includes(k)?' on':''}" data-fd="${k}">${l}</button>`).join('')}</span></div></div>
   <div class="mv"><div class="tablebox"><h3>${t('fMedals')}</h3><table class="hof"><thead><tr><th class="num">#</th><th>${t('thPlayer')}</th><th class="num">${MB[0]}</th><th class="num">${MB[1]}</th><th class="num">${MB[2]}</th><th class="num">${t('thTotal')}</th></tr></thead><tbody>${
