@@ -7,6 +7,7 @@ cp site/data.json previous_data.json 2>/dev/null || echo '{"players":[],"tournam
 if [ "$1" = "--get-data" ]; then sh get_data.sh; fi
 python3 -I fetch_leagues.py | tee -a update_log.txt || echo "league list step failed, kept the old list" | tee -a update_log.txt
 python3 -I build_db.py > build_log.txt 2>&1
+python3 -I fargo/daily_lookup.py | tee -a update_log.txt || echo "FargoRate lookup failed, kept the old results" | tee -a update_log.txt
 python3 -I rate.py > rate_log.txt
 python3 -I export.py
 python3 -I export_admin.py

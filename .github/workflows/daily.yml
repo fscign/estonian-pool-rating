@@ -41,7 +41,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY" || true
           git config user.name "rating-bot"
           git config user.email "rating-bot@users.noreply.github.com"
-          for f in site/data.json site/admin/data.json leagues.json cs_times.json data/leagues_page.html; do [ -f "$f" ] && git add "$f"; done
+          for f in site/data.json site/admin/data.json leagues.json cs_times.json data/leagues_page.html fargo/results.json fargo/names.json; do [ -f "$f" ] && git add "$f"; done
           git commit -m "Daily update $(date +%Y-%m-%d)" || echo "No changes"
           for i in 1 2 3; do git pull --rebase --autostash && git push && exit 0; sleep 10; done
           exit 1
