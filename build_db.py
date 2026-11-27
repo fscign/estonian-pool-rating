@@ -179,6 +179,76 @@ for e in (pb or {}).get('events', []):
         d['matches'].append([tid, PB_M + int(mid) * 10 + int(setno), str(ia), str(ib), str(sa), str(sb), int(race or 0),
                              int(datetime.datetime(md.year, md.month, md.day, 12).timestamp()), rnd + (f' set {setno}' if setno else ''), ''])
 
+def ph(t):
+    t = unicodedata.normalize('NFKD', t.lower()); t = ''.join(c for c in t if not unicodedata.combining(c))
+    t = t.translate(str.maketrans('аеосрхуі', 'aeocpxyi'))
+    t = re.sub(r'[^a-z]', '', t)
+    for a, b in [('sch', 's'), ('sh', 's'), ('ch', 'c'), ('zh', 'z'), ('kh', 'h'), ('ts', 'c'), ('y', 'i'), ('j', 'i'), ('w', 'v'), ('ph', 'f')]:
+        t = t.replace(a, b)
+    t = re.sub(r'(.)\1', r'\1', t)
+    return re.sub(r'(s|is|us|a|e|ie|ijs|ij|i)$', '', t)
+
+# ---------- DigitalPool (digitalpool.com): matches of Estonian players abroad, mostly the US (Aleksandrs 27 Nov 2026) ----------
+# Only singles of 8, 9, 10-ball and 14.1 with even races. Skipped: test events, team and doubles events, chip tournaments,
+# handicap matches (different races), byes, forfeits and unfinished matches, and matches already read from another site
+# (Matchroom, EPBF, PBS, CueScore: same two players, same score, within 4 days).
+DP_T, DP_P, DP_M = 7_000_000_000, 7_500_000_000, 7_000_000_000_000
+DP_GAME = {'EIGHT_BALL': '8-ball', 'NINE_BALL': '9-ball', 'TEN_BALL': '10-ball', 'STRAIGHT_POOL': 'Straight pool'}
+DP_TEST = re.compile(r'\btest|tester|fddf|newest one|grgrg|^how$|sun346|bracket \d+$|temp$|giải 128|mosconi cup|thirty thirsday', re.I)
+DP_CC = {'estonia': 'EST', 'latvia': 'LAT', 'lithuania': 'LTU', 'finland': 'FIN', 'united states': 'USA', 'usa': 'USA', 'germany': 'GER',
+         'spain': 'ESP', 'austria': 'AUT', 'saudi arabia': 'SAU', 'philippines': 'PHI', 'poland': 'POL', 'netherlands': 'NED', 'canada': 'CAN'}
+dp = load('data/digitalpool_raw.json.gz')
+if dp:
+    import json as _json
+    _ds = _json.load(open('data/digitalpool_search.json', encoding='utf-8')) if os.path.exists('data/digitalpool_search.json') else {'names': []}
+    DP_EE = {ph(n) for n, _f, _l in _ds['names']} | {ph(' '.join(n.split()[::-1])) for n, _f, _l in _ds['names']}
+    def _pname(i): v = P.get(i); return ph(f"{v[1]} {v[0]}") if v else ''
+    _seen = {}
+    for m in d['matches']:
+        if not str(m[4]).isdigit() or not str(m[5]).isdigit(): continue
+        _seen.setdefault((frozenset((_pname(m[2]), _pname(m[3]))), tuple(sorted((int(m[4]), int(m[5]))))), []).append(m[7])
+    DP_IDS = {}
+    def dp_player(name, flag):
+        name = re.sub(r'\s+', ' ', name or '').strip()
+        if name.isupper() or name.islower(): name = name.title()
+        key = ph(name)
+        pid = DP_IDS.setdefault(key, str(DP_P + len(DP_IDS)))
+        if pid not in P:
+            w = name.split(); f = (flag or '').strip()
+            cc = 'EST' if key in DP_EE else (DP_CC.get(f.lower()) or (cc3(f) if len(f) in (2, 3) else '?'))
+            P[pid] = [w[-1], ' '.join(w[:-1]), cc, '', None, 'm']
+        return pid
+    dp_n = dp_dup = 0
+    by_t = {}
+    for mid, m in dp['matches'].items(): by_t.setdefault(str(m[0]), []).append((int(mid), m))
+    for tk, ms in by_t.items():
+        t = dp['tournaments'].get(tk)
+        if not t: continue
+        name, start, gtype, ttype, vname, vcc, is_test, hc = t
+        if is_test or DP_TEST.search((name or '').strip()) or gtype not in DP_GAME or ttype == 'chip' or not start: continue
+        if re.search(r'scotch|doubles|team|world cup of pool', name or '', re.I): continue
+        sd = datetime.date.fromisoformat(start)
+        tid = DP_T + int(tk); added = False
+        for mid, m in sorted(ms):
+            _, rnd, no, n1, f1, s1, r1, x1, n2, f2, s2, r2, x2, bye, st, when = m
+            if bye or st != 'COMPLETED' or x1 or x2 or s1 is None or s2 is None or not n1 or not n2: continue
+            if re.search(r'\bbye\b|/|&|\d', n1 + ' ' + n2, re.I) or len(n1.split()) < 2 or len(n2.split()) < 2: continue   # placeholders, teams
+            if (r1 or 0) != (r2 or 0) or max(s1, s2) <= 0: continue      # handicap (different races) or empty
+            race = r1 or 0
+            if race and max(s1, s2) != race: continue                   # not finished
+            md = datetime.date.fromisoformat(when) if when else sd
+            ts_ = int(datetime.datetime(md.year, md.month, md.day, 12).timestamp())
+            a, b = dp_player(n1, f1), dp_player(n2, f2)
+            k = (frozenset((_pname(a), _pname(b))), tuple(sorted((int(s1), int(s2)))))
+            if any(abs(ts_ - x) <= 4 * 86400 for x in _seen.get(k, [])): dp_dup += 1; continue
+            _seen.setdefault(k, []).append(ts_)
+            if not added:
+                d['tournaments'].append([tid, (name or '').strip(), sd.strftime('%d.%m.%y'), ' · '.join(x for x in (vname, vcc) if x), DP_GAME[gtype], 'DigitalPool', 0, {}])
+                SOURCE[tid] = 'digitalpool'; EXT_URL[tid] = f"https://digitalpool.com/tournaments/{tk}"; added = True
+            d['matches'].append([tid, DP_M + mid, a, b, str(s1), str(s2), race, ts_, f"round {rnd}", ''])
+            dp_n += 1
+    print(f'DigitalPool: {dp_n} matches added, {dp_dup} already read from another site')
+
 # ---------- profile merges (alias -> canonical tournamentservice id) ----------
 MANUAL_MERGES = [[m['keep'], m['merge']] for m in OV['merges'] if m.get('stage') == 'manual']
 EXCLUDE_PLAYERS = set(OV['exclude_players'])   # rated in the background, not shown
@@ -283,7 +353,7 @@ for x in d['matches']:
     t = T[x[0]]
     if t['excl'] or t['game'] == '14.1': continue
     sc = score(x)
-    if sc: _ev.setdefault(x[0], {'name': t['name'], 'per_match_race': x[0] < TSMAX, 'matches': []})['matches'].append((x[1], x[8], x[6], sc))
+    if sc: _ev.setdefault(x[0], {'name': t['name'], 'per_match_race': x[0] < TSMAX or SOURCE.get(x[0]) == 'digitalpool', 'matches': []})['matches'].append((x[1], x[8], x[6], sc))
 RULES = SR.ScoreRules(_ev, OV.get('format_ok', {}))
 ODD_EVENTS = RULES.odd_events
 for tid, why in ODD_EVENTS.items(): T[tid]['excl'] = why

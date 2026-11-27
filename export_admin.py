@@ -45,7 +45,7 @@ for r in db.execute('SELECT id, source, name, date, city, club, game, excluded_r
     t = r[0]
     if not (pl[t] & EST) and not ((r[4] or '') + ' ').lower().startswith(('tallinn', 'tartu', 'pärnu', 'parnu', 'narva')) and t not in DUP_IDS: continue
     reason = r[7] or ('' if cnt[t] else 'no counted matches')
-    tours.append(dict(id=t, src={'cuescore': 'CS', 'epbf': 'EPBF', 'wnt': 'WNT'}.get(r[1], 'TS'), name=r[2], date=r[3], venue=' · '.join(x for x in (r[4], r[5]) if x),
+    tours.append(dict(id=t, src={'cuescore': 'CS', 'epbf': 'EPBF', 'wnt': 'WNT', 'digitalpool': 'DP'}.get(r[1], 'TS'), name=r[2], date=r[3], venue=' · '.join(x for x in (r[4], r[5]) if x),
                       game=r[6], matches=cnt[t], players=len(pl[t]), lat=len(pl[t] & LAT), counted=bool(cnt[t]) and not r[7],
                       reason=reason, url=r[8], excluded=str(t) in OV['exclude_tournaments']))
 T = {t['id']: t for t in tours}
